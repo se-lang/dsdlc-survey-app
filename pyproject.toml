@@ -9,7 +9,7 @@ package-mode = false
 django = "^5.2.3"
 psycopg = {extras = ["binary"], version = "^3.2.9"}
 ruff = "^0.11.0"
-strawberry-graphql = "^0.274.0"
+strawberry-graphql = "^0.327.2"
 strawberry-graphql-django = "^0.62.0"
 django-post-office = "^3.9.1"
 django-import-export = {extras = ["csv", "xls", "xlsx"], version = "^4.3.3"}
