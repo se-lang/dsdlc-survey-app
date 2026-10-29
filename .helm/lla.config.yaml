@@ -1,0 +1,35 @@
+debug_mode: false
+development_mode: false
+
+network:
+    allowed_urls:
+{{ if .Values.ingress.enabled -}}
+{{ range .Values.ingress.apiHostnames }}
+        - '{{ include "dsdlc.v1.ingressProto" $ }}://{{ . }}'
+{{ end }}
+{{ else }}
+{{ range .Values.gatewayApi.apiHostnames }}
+        - '{{ include "dsdlc.v1.ingressProto" $ }}://{{ . }}'
+{{ end }}
+{{ end }}
+    frontend_url: '{{ include "dsdlc.v1.ingressProto" . }}://{{ include "dsdlc.v1.mainFrontendHostname" . }}'
+    client_ip_source: 'HTTP_X_FORWARDED_FOR'
+    proxy_count: 0
+
+db:
+    dsn: 'postgres://{{ include "dsdlc.v1.postgresHostPort" . }}/{{ .Values.databaseConnection.databaseName | default .Values.postgresql.auth.database }}?sslmode={{ .Values.databaseConnection.sslmode }}'
+    username: "{{ .Values.databaseConnection.username | default .Values.postgresql.auth.username }}"
+    extra_options:
+        DISABLE_SERVER_SIDE_CURSORS: {{ .Values.databaseConnection.disableServerSideCursors }}
+
+redis:
+    dsn: 'redis://{{ include "dsdlc.v1.redisHostPort" . }}/{{ .Values.redisConnection.database }}'
+    key_prefix: "{{ .Values.redisConnection.keyPrefix }}"
+    {{- if not (empty .Values.redisConnection.username) }}
+    username: redis
+    {{- end }}
+
+
+email: {{ (omit .Values.email "password") | toYaml | nindent 4 }}
+
+storage: {{ (omit .Values.storage "secret_key") | toYaml | nindent 4 }}

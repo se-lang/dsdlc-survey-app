@@ -1,0 +1,17 @@
+.lla-button-link,
+:where(a) {
+    display: inline;
+    background: none;
+    border: none;
+    padding: 0;
+    margin: 0;
+
+    color: var(--lla-clr-text);
+    text-decoration: none;
+
+    &:where(:hover) {
+        text-decoration: underline;
+        text-underline-offset: 0.2em;
+        text-decoration-thickness: 1px;
+    }
+}

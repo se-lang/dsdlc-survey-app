@@ -1,0 +1,237 @@
+fragment QnrElementBase on QuestionnaireElement {
+    id
+    types
+}
+
+fragment QnrParentElement on QnrParentElement {
+    childrenIds
+}
+
+fragment QnrTextElement on QnrPlainTextSectionElement {
+    text
+}
+
+fragment QnrHtmlElement on QnrHtmlSectionElement {
+    html
+    kind
+}
+
+fragment QnrFormControlElement on QnrFormControlElement {
+    types
+    formControlId
+}
+
+fragment AutocompleteItem on QnrAutocompleteListItem {
+    id
+    label
+    value
+}
+
+fragment AutocompleteList on QnrAutocompleteList {
+    id
+    items {
+        ...AutocompleteItem
+    }
+}
+
+fragment QuestionValidator on QnrQuestionValidator {
+    errorMessage
+    __typename
+    ... on MinValueValidator {
+        minValue
+    }
+    ... on MaxValueValidator {
+        maxValue
+    }
+    ... on MaxTextLengthValidator {
+        maxLength
+    }
+    ... on TextPatternValidator {
+        pattern
+        flags
+    }
+    ... on MinDateValidator {
+        minDate: minValue
+    }
+    ... on MaxDateValidator {
+        maxDate: maxValue
+    }
+}
+
+fragment QnrOpenQuestionElement on QnrOpenQuestionElement {
+    ...QnrElementBase
+    ...QnrParentElement
+    ...QnrFormControlElement
+    autocomplete {
+        ...AutocompleteList
+    }
+    inputType
+    validators {
+        ...QuestionValidator
+    }
+    placeholder
+    prefix
+    postfix
+    label
+    initialDate
+}
+
+fragment QnrBaseChoiceOptionElement on QnrChoiceOptionElement {
+    ...QnrElementBase
+    ...QnrFormControlElement
+    label
+    labelPosition
+    attachedOpenQuestionIds
+}
+
+fragment QnrBaseChoiceQuestionElement on QnrChoiceQuestionElement {
+    ...QnrElementBase
+    ...QnrParentElement
+    ...QnrFormControlElement
+    optionIds
+}
+
+fragment QnrMultipleChoiceOptionElement on QnrMultipleChoiceOptionElement {
+    ...QnrBaseChoiceOptionElement
+    exclusive
+}
+
+fragment QnrMultipleChoiceQuestionElement on QnrMultipleChoiceQuestionElement {
+    ...QnrBaseChoiceQuestionElement
+}
+
+fragment QnrSingleChoiceOptionElement on QnrSingleChoiceOptionElement {
+    ...QnrBaseChoiceOptionElement
+    formValue
+}
+
+fragment QnrSingleChoiceQuestionElement on QnrSingleChoiceQuestionElement {
+    ...QnrBaseChoiceQuestionElement
+    style
+}
+
+fragment QnrElement on QuestionnaireElement {
+    ...QnrElementBase
+    ...QnrParentElement
+    ...QnrTextElement
+    ...QnrHtmlElement
+
+    ...QnrFormControlElement
+
+    ...QnrMultipleChoiceQuestionElement
+    ...QnrMultipleChoiceOptionElement
+
+    ...QnrSingleChoiceQuestionElement
+    ...QnrSingleChoiceOptionElement
+
+    ...QnrOpenQuestionElement
+
+    ...QnrMatrixQuestionElement
+    ...QnrMatrixQuestionCategoryElement
+    ...QnrChoiceMatrixQuestionCategoryElement
+
+    ...QnrSingleChoiceMatrixQuestionElement
+    ...QnrSingleChoiceMatrixQuestionCategoryElement
+
+    ...QnrMultipleChoiceMatrixQuestionElement
+    ...QnrMultipleChoiceMatrixQuestionCategoryElement
+
+    ...QnrDoubleMatrixQuestionElement
+    ...QnrDoubleMatrixQuestionCategoryElement
+    ...QnrDoubleMatrixQuestionPartElement
+
+    ...QnrDifferentialQuestionElement
+    ...QnrDifferentialQuestionPartElement
+}
+
+fragment AnyQnrElement on QuestionnaireElement {
+    ...QnrElement
+    ...ZfElement
+}
+
+fragment QuestionnairePageButton on QuestionnairePageButton {
+    id
+    label
+    type
+}
+
+fragment QnrPageLayout on QuestionnairePageLayout {
+    __typename
+    ... on QuestionnairePageLayoutBoxed {
+        title
+    }
+    ... on ZfEpisodeBoxedLayout {
+        episode {
+            ...ZfEpisodeEntry
+        }
+    }
+}
+
+fragment QnrFormValue on QuestionnaireFormValue {
+    formControlId
+    value
+}
+
+fragment QnrPage on QuestionnairePage {
+    id
+    version
+    layout {
+        ...QnrPageLayout
+    }
+    allElements {
+        ...AnyQnrElement
+    }
+    childrenIds
+    headerIds
+    buttons {
+        ...QuestionnairePageButton
+    }
+    formValues {
+        ...QnrFormValue
+    }
+}
+
+fragment QuestionnaireStatus on QuestionnaireStatus {
+    id
+    completionState
+    lastVisit
+    hidden
+}
+
+fragment Questionnaire on Questionnaire {
+    id
+    name
+    status {
+        ...QuestionnaireStatus
+    }
+}
+
+fragment CurrentQuestionnairePage on Questionnaire {
+    id
+    currentPage {
+        ...QnrPage
+    }
+    status {
+        ...QuestionnaireStatus
+    }
+}
+
+query questionnaires {
+    questionnaires {
+        results {
+            ...Questionnaire
+        }
+    }
+}
+
+query currentQuestionnairePage($questionnaireId: ID!) {
+    questionnaire(id: $questionnaireId) {
+        ...CurrentQuestionnairePage
+    }
+}
+
+mutation refreshQuestionnaireStatus($statusIds: [ID!]!) {
+    refreshQuestionnaireStatus(statusIds: $statusIds) {
+        ...QuestionnaireStatus
+    }
+}

@@ -1,0 +1,10 @@
+fragment QnrDifferentialQuestionElement on QnrDifferentialQuestionElement {
+    ...QnrParentElement
+    partIds
+}
+
+fragment QnrDifferentialQuestionPartElement on QnrDifferentialQuestionPartElement {
+    ...QnrParentElement
+    ...QnrFormControlElement
+    optionIds
+}

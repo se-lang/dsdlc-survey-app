@@ -1,0 +1,33 @@
+debug_mode = false
+development_mode = false
+secret_key = "django-insecure-j!%z8sd#*amjc4e^%m3s+$jmhf8q=r-mq6yzaw-75ajk^*90@%"
+
+[network]
+allowed_urls = [
+    'http://dzhw-docker-test.codepartner.cloud',
+    'https://dzhw-docker-test.codepartner.cloud',
+    'http://api.dzhw-docker-test.codepartner.cloud',
+    'https://api.dzhw-docker-test.codepartner.cloud',
+]
+frontend_url = 'https://dzhw-docker-test.codepartner.cloud'
+rate_limiting = false
+
+[db]
+dsn = "postgres://postgres:5432/django"
+username = "django"
+password = "django"
+database = "django"
+
+[redis]
+dsn = "redis://redis:6379/"
+
+[email]
+host = "127.0.0.1:8025"
+username = "django"
+password = "django"
+security = "plaintext"
+source_email = "lla@local.example.com"
+
+[storage]
+type="local"
+path="/home/app/.media"

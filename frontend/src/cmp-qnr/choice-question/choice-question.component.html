@@ -1,0 +1,15 @@
+<lla-qnr-element-children [parentElement]="element()" />
+@switch (style()) {
+    @case ("SELECT") {
+        <select [formControl]="formControl()!" class="lla-form-control" [attr.form]="pageForm()">
+            @for (option of options(); track option.id) {
+                <option [value]="singleChoiceOptionFormValue(option)">{{ option.label }}</option>
+            }
+        </select>
+    }
+    @default {
+        <div [class.buttons]="useButtons()" [class.buttons--columns]="allowButtonColumns()">
+            <lla-qnr-elements [elementIds]="element().optionIds" />
+        </div>
+    }
+}

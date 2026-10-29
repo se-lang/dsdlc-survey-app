@@ -1,0 +1,65 @@
+.current {
+    font-weight: var(--lla-bold-font-weight);
+    font-size: var(--lla-month-picker-font-size);
+
+    lla-icon {
+        vertical-align: middle;
+        margin-block-start: calc(1ex - 1cap);
+        margin-inline-end: 0.8125rem;
+        --icon-size: 1.125rem;
+    }
+}
+
+.year {
+    --icon-size: 1rem;
+    display: grid;
+    grid-template-columns: auto 1fr auto;
+    text-align: center;
+    align-items: center;
+    user-select: none;
+    margin-block: 2rem;
+    font-weight: var(--lla-bold-font-weight);
+
+    .next-year {
+        justify-self: end;
+        lla-icon {
+            transform: rotate(180deg);
+        }
+    }
+
+    button:disabled {
+        color: var(--lla-clr-gray);
+    }
+}
+
+.months {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+
+    button {
+        border: none;
+        font-size: var(--lla-month-picker-font-size);
+        font-weight: var(--lla-month-picker-font-weight);
+        padding: 0.857em;
+        text-align: center;
+
+        background: var(--lla-clr-white);
+        color: var(--lla-clr-black);
+        border-radius: 6px;
+        user-select: none;
+
+        transition:
+            background-color 100ms ease,
+            color 100ms ease;
+
+        &[aria-current="date"] {
+            background-color: var(--lla-clr-black);
+            color: var(--lla-clr-white);
+            font-weight: var(--lla-month-picker-selected-font-weight);
+        }
+
+        &:disabled {
+            color: var(--lla-clr-gray);
+        }
+    }
+}

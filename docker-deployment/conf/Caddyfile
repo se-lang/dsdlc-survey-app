@@ -1,0 +1,25 @@
+dzhw-docker-test.codepartner.cloud {
+    handle /api/media/* {
+        root * /srv
+        file_server
+    }
+    handle /api/* {
+        reverse_proxy django:8000
+    }
+    handle {
+        reverse_proxy nginx:80
+    }
+}
+
+api.dzhw-docker-test.codepartner.cloud {
+    handle /api/media/* {
+        root * /srv
+        file_server
+    }
+    handle /static/* {
+        reverse_proxy nginx:80
+    }
+    handle {
+        reverse_proxy django:8000
+    }
+}

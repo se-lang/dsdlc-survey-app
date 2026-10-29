@@ -1,0 +1,21 @@
+@let lastNews = this.lastNews.value();
+@if (lastNews) {
+    <ng-container *transloco="let t; prefix: 'newsInfoBar'">
+        <div class="news-info-bar-wrapper">
+            <p>
+                <span [id]="nameId">{{ lastNews.title }}</span>
+                &ngsp;
+                <a [routerLink]="['/news', lastNews.id]" [attr.aria-describedby]="nameId">{{
+                    t("readMore")
+                }}</a>
+            </p>
+            <button
+                type="button"
+                (click)="qnrNewsService.markAsSeen(lastNews.id)"
+                [attr.aria-label]="t('markAsSeen')"
+            >
+                <lla-icon name="close_x" />
+            </button>
+        </div>
+    </ng-container>
+}

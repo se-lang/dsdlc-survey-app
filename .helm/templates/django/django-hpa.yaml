@@ -1,0 +1,23 @@
+{{ if ne .Values.infra.api.minReplicas .Values.infra.api.maxReplicas }}
+apiVersion: autoscaling/v2
+kind: HorizontalPodAutoscaler
+metadata:
+    name: "{{ include "dsdlc.v1.django.fullname" . }}"
+    labels:
+        app.kubernetes.io/component: api
+spec:
+    scaleTargetRef:
+        apiVersion: apps/v1
+        kind: Deployment
+        name: "{{ include "dsdlc.v1.django.fullname" . }}"
+    minReplicas: {{ .Values.infra.api.minReplicas }}
+    maxReplicas: {{ .Values.infra.api.maxReplicas }}
+
+    metrics:
+        - type: Resource
+          resource:
+              name: cpu
+              target:
+                  type: Utilization
+                  averageUtilization: 75
+{{ end }}

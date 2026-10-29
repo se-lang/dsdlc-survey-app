@@ -1,0 +1,19 @@
+:host {
+    display: block;
+    margin-block-end: var(--lla-question-space);
+}
+
+.buttons {
+    display: flex;
+    flex-direction: column;
+    gap: 0.625rem;
+}
+
+.buttons--columns {
+    flex-direction: row;
+    flex-wrap: wrap;
+}
+
+.radios {
+    display: block;
+}

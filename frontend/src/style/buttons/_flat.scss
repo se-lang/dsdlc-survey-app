@@ -1,0 +1,56 @@
+@use "../variables" as v;
+
+/**
+Flat button, no outline/border, text uppercase
+By default background color animates as slide-in from left
+ */
+.lla-flat-button {
+    text-transform: uppercase;
+    padding: 0.75rem;
+    border: none;
+    color: var(--_btn-text-resolved);
+    letter-spacing: var(--lla-text-flat-buttons-letter-spacing);
+
+    &:not(.lla-flat-button--blend) {
+        background-color: var(--_btn-base-bg);
+        background-image: linear-gradient(
+            to left,
+            transparent 0%,
+            transparent 50%,
+            var(--_btn-background-hover) 50%,
+            var(--_btn-background-hover) 100%
+        );
+        // Add 1px to avoid rounding errors if button size happens to have fractional pixels
+        background-size: calc(200% + 1px) 100%;
+        background-position-x: calc(100% - var(--_btn-hover) * 100%);
+
+        --_bg-position-transition-speed: var(--_btn-transition-duration);
+
+        transition:
+            color var(--_btn-transition-duration) var(--_btn-transition-function),
+            background-color var(--_bg-position-transition-speed) var(--_btn-transition-function),
+            background-position-x var(--_btn-transition-duration) var(--_btn-transition-function);
+
+        &:focus-visible {
+            outline: none;
+            --_bg-position-transition-speed: 0;
+        }
+    }
+}
+
+/**
+Changes flat button to animate background color by blending instead
+ */
+.lla-flat-button--blend {
+    background: var(--_btn-bg-resolved);
+    transition:
+        color var(--_btn-transition-duration) var(--_btn-transition-function),
+        background-color var(--_btn-transition-duration) var(--_btn-transition-function);
+}
+
+@media (width >= v.$mobileWidth) {
+    .lla-flat-button {
+        padding-block: 0.875rem;
+        padding-inline: 1.5rem;
+    }
+}

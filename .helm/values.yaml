@@ -1,0 +1,132 @@
+fullnameOverride: ""
+nameOverride: ""
+
+applicationConfig: { }
+
+dependencies:
+    redis: true
+    haRedis: false
+    postgresql: true
+
+databaseConnection:
+    host: ""
+    username: ""
+    password: ""
+    databaseName: ""
+    port: 5432
+    disableServerSideCursors: false
+    sslmode: "prefer"
+
+redisConnection:
+    host: ""
+    port: 6379
+    database: ""
+    username: ""
+    password: ""
+    keyPrefix: ""
+
+ingress:
+    enabled: true
+    name: "ing"
+    apiHostnames: [ ]
+    extraApiTlsHostnames: [ ]
+    frontendHostnames: [ ]
+    extraFrontendTlsHostnames: [ ]
+    className: "nginx"
+    annotations: { }
+    frontendAnnotations: { }
+    apiAnnotations: { }
+    tls:
+        enabled: false
+        secretName: "tls"
+
+gatewayApi:
+    enabled: false
+    gateway:
+        enabled: true
+        className: "traefik"
+        httpPort: 8000
+        httpsPort: 8443
+    gatewayRef:
+        http:
+            www.example.com:
+                - name: gateway
+                  sectionName: http
+        https:
+            www.example.com:
+                - name: gateway
+                  sectionName: https
+    apiHostnames: [ ]
+    extraApiTlsHostnames: [ ]
+    frontendHostnames: [ ]
+    extraFrontendTlsHostnames: [ ]
+    routeFilters:
+        api: []
+        frontend: []
+    tls:
+        enabled: false
+        issuerRef:
+            name: letsencrypt
+            kind: ClusterIssuer
+
+email:
+    host: ""
+    username: ""
+    password: ""
+    security: ""
+    source_email: ""
+
+reverseProxy:
+    name: "nginx"
+
+api:
+    secretKey: ""
+    name: "api"
+    migrationJobName: "migrate"
+
+pushNotifications:
+    privateKey: ""
+
+worker:
+    name: "worker"
+
+configMap:
+    name: "config"
+
+secrets:
+    name: "secret"
+    nameFile: "secret-files"
+
+infra:
+    celeryReplicas: 1
+    wsgiWorkers: 1
+    wsgiThreads: 4
+    api:
+        cpuRequests: "100m"
+        minReplicas: 1
+        maxReplicas: 1
+        minAvailable: 0
+    nginx:
+        cpuRequests: "100m"
+        minReplicas: 1
+        maxReplicas: 1
+        minAvailable: 0
+
+tolerations: [ ]
+
+nodeSelector: { }
+
+imagePullSecrets: [ ]
+
+postgresql:
+    auth:
+        username: dsdlc
+        database: dsdlc
+        password: dsdlc
+
+
+redis-ha:
+    haproxy:
+        enabled: true
+        replicas: 2
+        stickyBalancing: true

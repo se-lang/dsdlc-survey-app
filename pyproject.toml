@@ -1,0 +1,59 @@
+[project]
+name = "lebenslaeufe-app"
+requires-python = ">= 3.13,<4.0"
+
+[tool.poetry]
+package-mode = false
+
+[tool.poetry.dependencies]
+django = "^5.2.3"
+psycopg = {extras = ["binary"], version = "^3.2.9"}
+ruff = "^0.11.0"
+strawberry-graphql = "^0.274.0"
+strawberry-graphql-django = "^0.62.0"
+django-post-office = "^3.9.1"
+django-import-export = {extras = ["csv", "xls", "xlsx"], version = "^4.3.3"}
+django-jazzmin = "^3.0.1"
+django-debug-toolbar = "^5.2.0"
+django-stubs = "^5.1.1"
+celery = {extras = ["redis"], version = "^5.4.0"}
+django-push-notifications = {extras = ["wp"], version = "^3.2.0"}
+django-celery-beat = "^2.7.0"
+redis = {extras = ["hiredis"], version = "^5.2.1"}
+pydantic = "^2.10.6"
+requests = "^2.32.3"
+lxml = "^5.3.1"
+html5lib = "^1.1"
+python-dateutil = "^2.9.0.post0"
+django-pydantic-field = "^0.3.12"
+django-jsonform = "^2.23.2"
+pydantic-extra-types = "^2.10.4"
+django-ratelimit = "^4.1.0"
+django-ipware = "^7.0.1"
+pydantic-settings = "^2.9.1"
+pydantic-file-secrets = "^0.4.4"
+email-validator = "^2.2.0"
+django-modeltranslation = "^0.19.15"
+django-cleanup = "^9.0.0"
+django-storages = {extras = ["s3", "sftp"], version = "^1.14.6"}
+timedelta-isoformat = "^0.7.0"
+django-stubs-ext = "^5.2.2"
+faker = "^37.4.2"
+tqdm = "^4.67.1"
+django-cte = "^2.0.0"
+pytimeparse2 = "^1.7.1"
+django-relativedelta = "^2.0.0"
+html-text = "^0.7.0"
+pycmarkgfm = "^1.2.1"
+gunicorn = "^23.0.0"
+django-import-export-extensions = "^1.9.2"
+
+[tool.poetry.group.dev.dependencies]
+pre-commit = "^4.0.1"
+py-vapid = "^1.9.2"
+
+[tool.ruff]
+src = ["backend"]
+
+[tool.ruff.format]
+quote-style = "single"

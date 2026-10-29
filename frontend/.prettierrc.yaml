@@ -1,0 +1,7 @@
+overrides:
+    - files: "*.html"
+      excludeFiles:
+          - "src/index.html"
+      options:
+          parser: angular
+printWidth: 100

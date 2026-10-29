@@ -1,0 +1,84 @@
+:root {
+    --lla-mobile-sidebar-height: calc(100vh - 32px);
+}
+
+@supports (height: 100dvh) {
+    :root {
+        --lla-mobile-sidebar-height: 100dvh;
+    }
+}
+
+dialog.mobile-sidebar {
+    --lla-sidebar-element-padding-vert: 1.1875rem;
+    --lla-sidebar-element-padding-sides: 1.25rem;
+    border: none;
+    height: var(--lla-mobile-sidebar-height);
+    grid-template-columns: 1fr max-content;
+    top: 0;
+    padding: 0;
+    margin: 0 0 0 auto;
+    right: 0;
+    z-index: 10;
+    background: transparent;
+    overflow: hidden;
+
+    .mobile-sidebar-wrapper {
+        grid-column: 2;
+        background: white;
+        height: 100%;
+        width: 15rem;
+        box-shadow: 0px 4px 16px 0px rgba(0, 0, 0, 0.15);
+        display: grid;
+        grid-template-rows: min-content 1fr min-content;
+
+        .sidebar-mobile-header,
+        .lla-sidebar-sort-list li {
+            border-bottom: 0.0625rem solid var(--lla-clr-beige);
+        }
+
+        .lla-sidebar-sort-list {
+            margin: 0;
+            padding: 0;
+
+            li {
+                width: 100%;
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+                font-weight: var(--lla-bold-font-weight);
+                width: 100%;
+                padding: var(--lla-sidebar-element-padding-vert)
+                    var(--lla-sidebar-element-padding-sides);
+            }
+        }
+
+        .sidebar-mobile-header {
+            width: 100%;
+            display: flex;
+            padding: 0;
+            justify-content: space-between;
+            span {
+                padding: var(--lla-sidebar-element-padding-vert)
+                    var(--lla-sidebar-element-padding-sides);
+                --icon-size: 0.6875rem;
+                display: flex;
+                gap: 0.4375rem;
+                justify-content: center;
+                align-items: center;
+                font-weight: var(--lla-bold-font-weight);
+            }
+
+            button {
+                padding: var(--lla-sidebar-element-padding-vert)
+                    var(--lla-sidebar-element-padding-sides);
+                --icon-size: 1rem;
+                justify-content: center;
+                align-items: center;
+                display: flex;
+                width: auto;
+                border: none;
+                background-color: transparent;
+            }
+        }
+    }
+}

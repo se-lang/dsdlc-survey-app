@@ -1,0 +1,5 @@
+mutation storeParadata($data: [ParadataInput!]!) {
+    addParadata(data: $data) {
+        ...OperationInfo
+    }
+}

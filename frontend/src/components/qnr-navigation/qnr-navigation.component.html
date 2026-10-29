@@ -1,0 +1,37 @@
+@if (!root() || !service.rootNavigationHidden()) {
+    <div
+        [class.full-view]="
+            root() && service.context()?.page?.layout?.__typename === 'QuestionnairePageLayoutFull'
+        "
+    >
+        <div class="lla-button-row">
+            @for (button of service.pageButtons(); track button.id) {
+                @if (button.routerLink) {
+                    <a
+                        [llaTourHighlightElement]="
+                            button.highlight === null ? null : button.highlight + highlightSuffix()
+                        "
+                        [routerLink]="button.routerLink"
+                        class="lla-button lla-flat-button"
+                        [class]="button.cssClasses"
+                        (click)="handleNavigation(button)"
+                    >
+                        {{ button.label }}
+                    </a>
+                } @else {
+                    <button
+                        [llaTourHighlightElement]="
+                            button.highlight === null ? null : button.highlight + highlightSuffix()
+                        "
+                        type="button"
+                        class="lla-flat-button"
+                        [class]="button.cssClasses"
+                        (click)="handleNavigation(button)"
+                    >
+                        {{ button.label }}
+                    </button>
+                }
+            }
+        </div>
+    </div>
+}

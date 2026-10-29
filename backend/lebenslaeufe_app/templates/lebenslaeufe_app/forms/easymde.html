@@ -1,0 +1,14 @@
+<textarea name="{{ widget.name }}"{% include "django/forms/widgets/attrs.html" %}>{% if widget.value %}{{ widget.value }}{% endif %}</textarea>
+<script>
+    {
+        const textareaEl = document.currentScript.previousElementSibling;
+        const easyMde = new EasyMDE({
+            element: textareaEl,
+            spellChecker: false,
+            toolbar: ["bold", "italic", "|", "heading-1", "heading-2", "heading-3", "|", "quote", "unordered-list", "ordered-list", "link"]
+        });
+        const copyClasses = Array.from(textareaEl.classList)
+            .filter(cl => cl !== 'mt' && !cl.startsWith('mt-field-'));
+        easyMde.codemirror.getWrapperElement().parentElement.classList.add(...copyClasses);
+    }
+</script>

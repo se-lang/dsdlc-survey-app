@@ -1,0 +1,12 @@
+Hallo {{ name }},
+
+Sie möchten Ihre E-Mail-Adresse für das Befragungsportal Dynamische Bildungs- und Erwerbsverläufe ändern? Um die Änderung zu bestätigen, klicken Sie bitte auf den folgenden Link:
+
+{{ link }}
+
+Sie möchten Ihre E-Mail-Adresse nicht ändern? Dann ignorieren Sie diese E-Mail bitte einfach. Es wurden keine Änderungen vorgenommen.
+
+Freundliche Grüße
+Ihr Befragungsteam Dynamische Bildungs- und Erwerbsverläufe
+
+Dies ist eine automatisch generierte Nachricht. Bitte antworten Sie nicht auf diese E-Mail.

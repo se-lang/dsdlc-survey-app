@@ -1,0 +1,9 @@
+<ng-container *transloco="let t; prefix: 'notFound'">
+    <h1>{{ t("header") }}</h1>
+    <p>{{ t("text") }}</p>
+    <p>
+        <a [routerLink]="['']">
+            {{ t("backToHome") }}
+        </a>
+    </p>
+</ng-container>

@@ -1,0 +1,194 @@
+@let selectedType = this.selectedType();
+
+<ng-container *transloco="let t; prefix: 'episodeDialog'">
+    <lla-dialog-header [subtitle]="subtitle()" [llaZfEpisodeColorStyles]="selectedType">
+        <h2 class="lla-dialog-title">{{ title() }}</h2>
+    </lla-dialog-header>
+    <lla-dialog-content>
+        <form
+            [formGroup]="formGroup"
+            (ngSubmit)="submit($event)"
+            [id]="componentId + '-form'"
+            #formElement
+        >
+            <div
+                class="lla-form-row lla-form-row--grid type-badge-grid"
+                [class.badge-visible]="eventSelected()"
+            >
+                <div>
+                    <label [for]="componentId + '-fc-type'">{{ element().typeFieldLabel }}</label>
+                    <select
+                        class="lla-form-control"
+                        [id]="componentId + '-fc-type'"
+                        [formControl]="formGroup.controls.type"
+                    >
+                        @for (episodeType of availableElementTypes(); track episodeType.id) {
+                            <option [value]="episodeType.id">{{ episodeType.label }}</option>
+                        }
+                    </select>
+                    <val-errors [control]="formGroup.controls.type">
+                        <ng-template [valError]="'required'">
+                            {{ t("error.typeRequired") }}
+                        </ng-template>
+                    </val-errors>
+                </div>
+                <div class="badge-container" [attr.aria-hidden]="eventSelected() ? null : 'true'">
+                    <label [for]="componentId + '-fc-badge'">{{ t("badgeLabel") }}</label>
+                    <select
+                        class="lla-form-control lla-custom-select lla-icon-select"
+                        [id]="componentId + '-fc-badge'"
+                        [formControl]="formGroup.controls.badge"
+                    >
+                        <button>
+                            @let selectedBadge = this.selectedBadge();
+                            @if (selectedBadge) {
+                                <lla-icon [name]="'episode-badge/' + selectedBadge" />
+                            }
+                        </button>
+                        @for (episodeBadge of translatedBadges(); track episodeBadge.id) {
+                            <option [value]="episodeBadge.id">
+                                <lla-icon [name]="'episode-badge/' + episodeBadge.id" />
+                                <span class="badge-label">{{ episodeBadge.label }}</span>
+                            </option>
+                        }
+                    </select>
+                    <val-errors [control]="formGroup.controls.badge">
+                        <ng-template [valError]="'required'">
+                            {{ t("error.badgeRequired") }}
+                        </ng-template>
+                    </val-errors>
+                </div>
+            </div>
+
+            <div class="lla-form-row">
+                <label [for]="componentId + '-fc-title'">{{ element().nameFieldLabel }}</label>
+                <input
+                    class="lla-form-control"
+                    [id]="componentId + '-fc-title'"
+                    [formControl]="formGroup.controls.name"
+                    [placeholder]="t('namePlaceholder')"
+                    type="text"
+                />
+                <val-errors [control]="formGroup.controls.name"> </val-errors>
+            </div>
+
+            <div class="lla-form-row lla-form-row--grid">
+                <div>
+                    <label [for]="componentId + '-fc-start'">{{ element().startFieldLabel }}</label>
+                    <lla-month-year-picker>
+                        <input
+                            llaMonthYearPickerInput
+                            class="lla-form-control"
+                            [id]="componentId + '-fc-start'"
+                            [formControl]="formGroup.controls.start"
+                            [min]="element().minDate"
+                            [max]="element().maxDate"
+                        />
+                    </lla-month-year-picker>
+
+                    <val-errors [control]="formGroup.controls.start">
+                        <ng-template [valError]="'required'">
+                            {{ t("error.startRequired") }}
+                        </ng-template>
+                    </val-errors>
+
+                    <div class="date-range-checkbox-container">
+                        <div class="lla-form-check">
+                            <input
+                                class="lla-form-control"
+                                type="checkbox"
+                                [id]="componentId + '-fc-before-start'"
+                                [formControl]="formGroup.controls.beforeStart"
+                            />
+                            <label [for]="componentId + '-fc-before-start'">
+                                {{ formattedBeforeStartLabel() }}
+                            </label>
+                        </div>
+                        @if (allowEvents()) {
+                            <div class="lla-form-check">
+                                <input
+                                    class="lla-form-control"
+                                    type="checkbox"
+                                    [id]="componentId + '-fc-event'"
+                                    [formControl]="formGroup.controls.event"
+                                />
+                                <label [for]="componentId + '-fc-event'">
+                                    {{ t("eventCheckbox") }}
+                                </label>
+                            </div>
+                        }
+                    </div>
+                </div>
+                <div>
+                    @if (eventSelected()) {
+                        <p class="lla-form-row-hint">
+                            {{ t("eventNote") }}
+                        </p>
+                    } @else {
+                        <label [for]="componentId + '-fc-end'">{{ element().endFieldLabel }}</label>
+                        <lla-month-year-picker>
+                            <input
+                                llaMonthYearPickerInput
+                                class="lla-form-control"
+                                [id]="componentId + '-fc-end'"
+                                [formControl]="formGroup.controls.end"
+                                [min]="element().minDate"
+                                [max]="element().maxDate"
+                            />
+                        </lla-month-year-picker>
+                        <val-errors [control]="formGroup.controls.end">
+                            <ng-template [valError]="'required'">
+                                {{ t("error.endRequired") }}
+                            </ng-template>
+                        </val-errors>
+                        <val-errors [control]="formGroup">
+                            <ng-template [valError]="'startEndMismatch'">
+                                {{ t("error.startEndMismatch") }}
+                            </ng-template>
+                        </val-errors>
+                        <div class="date-range-checkbox-container">
+                            <div class="lla-form-check">
+                                <input
+                                    class="lla-form-control"
+                                    type="checkbox"
+                                    [id]="componentId + '-fc-no-end'"
+                                    [formControl]="formGroup.controls.afterEnd"
+                                />
+                                <label [for]="componentId + '-fc-no-end'">{{
+                                    formattedAfterEndLabel()
+                                }}</label>
+                            </div>
+                        </div>
+                    }
+                </div>
+            </div>
+        </form>
+    </lla-dialog-content>
+    <lla-dialog-footer>
+        <div class="lla-button-row">
+            <button llaDialogClose type="button" class="lla-flat-button lla-button--secondary">
+                {{ element().cancelBtnLabel }}
+            </button>
+            @if (selectedType?.hasDetailQuestions ?? true) {
+                <button
+                    [llaTourHighlightElement]="'episode-to-details'"
+                    type="submit"
+                    data-continue-to-details
+                    class="lla-flat-button"
+                    [attr.form]="componentId + '-form'"
+                    [disabled]="submitting()"
+                >
+                    {{ t("saveAndGoToDetails") }}
+                </button>
+            }
+            <button
+                type="submit"
+                class="lla-flat-button"
+                [attr.form]="componentId + '-form'"
+                [disabled]="submitting()"
+            >
+                {{ element().saveBtnLabel }}
+            </button>
+        </div>
+    </lla-dialog-footer>
+</ng-container>

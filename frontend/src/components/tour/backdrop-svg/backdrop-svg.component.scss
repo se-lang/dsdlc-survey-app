@@ -1,0 +1,19 @@
+:host {
+    position: fixed;
+    inset: 0;
+    display: block;
+    z-index: 1300;
+}
+
+.animated-mask {
+    opacity: 1;
+    transition:
+        cx 300ms ease,
+        cy 300ms ease,
+        r 300ms ease,
+        opacity 300ms ease;
+}
+
+.animated-mask--hidden {
+    opacity: 0;
+}

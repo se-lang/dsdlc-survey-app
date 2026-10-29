@@ -1,0 +1,42 @@
+@use "../../../style/variables" as v;
+
+.buttons {
+    display: flex;
+    gap: 0.5rem;
+}
+
+button {
+    --lla-icon-clr-bg: transparent;
+
+    --_btn-background-hover: var(--lla-zf-episode-clr);
+    --_btn-text-hover: var(--lla-zf-episode-clr-fg);
+}
+
+@media (width < v.$mobileWidth) {
+    .buttons {
+        overflow-x: auto;
+        --mask-width: var(--lla-main-margin);
+        padding-right: var(--mask-width);
+        padding-left: var(--mask-width);
+        margin-right: calc(var(--mask-width) / 2);
+        --mask-image-content: linear-gradient(
+            to right,
+            transparent,
+            black var(--mask-width),
+            black calc(100% - var(--mask-width)),
+            transparent
+        );
+        --mask-image-scrollbar: linear-gradient(black, black);
+        --mask-size-scrollbar: var(--scrollbar-width) 100%;
+        mask-image: var(--mask-image-content), var(--mask-image-scrollbar);
+        mask-size: 100%, 0;
+        mask-position:
+            0 0,
+            100% 0;
+        mask-repeat: no-repeat, no-repeat;
+
+        button {
+            white-space: nowrap;
+        }
+    }
+}

@@ -1,0 +1,9 @@
+apiVersion: policy/v1
+kind: PodDisruptionBudget
+metadata:
+    name: {{ include "dsdlc.v1.django.fullname" . }}
+spec:
+    minAvailable: {{.Values.infra.api.minAvailable}}
+    selector:
+        matchLabels:
+            app.kubernetes.io/component: api

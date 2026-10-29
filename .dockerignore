@@ -1,0 +1,8 @@
+.husky
+.run
+.venv
+node_modules
+backend/static
+backend/lla.config.toml
+.gitlab-ci.yml
+/.docker-data

@@ -1,0 +1,21 @@
+:host {
+    display: block;
+    margin-block-end: var(--lla-question-space);
+}
+
+.parts {
+    border: 1px solid var(--lla-clr-form-control-border);
+}
+
+.part:not(:last-child) {
+    border-bottom: 1px solid var(--lla-clr-form-control-border);
+}
+
+.part {
+    background-color: var(--lla-clr-form-control-bg);
+    display: flow-root;
+}
+
+.part:nth-child(even) {
+    background-color: var(--lla-clr-form-control-bg-alternate);
+}

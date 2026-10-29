@@ -1,0 +1,150 @@
+fragment ZfEpisodeCategory on ZfEpisodeCategory {
+    id
+    label
+    sortIndex
+    typeIds
+}
+
+fragment ZfEpisodeType on ZfEpisodeType {
+    id
+    label
+    description
+    allowEvents
+    hasDetailQuestions
+}
+
+fragment ZfEpisodeEntry on ZfEpisodeEntry {
+    id
+    startDate
+    endDate
+    episodeTypeId
+    gap
+    label
+    flags
+    state
+    event
+    badge
+    allowEditDialog
+}
+
+fragment ZfEpisodesBase on ZfEpisodesBase {
+    ...QnrElementBase
+    episodeCategories {
+        ...ZfEpisodeCategory
+    }
+    episodeTypes {
+        ...ZfEpisodeType
+    }
+    entries {
+        ...ZfEpisodeEntry
+    }
+    minDate
+    maxDate
+    startFieldLabel
+    endFieldLabel
+    beforeStartFieldLabel
+    afterEndFieldLabel
+    typeFieldLabel
+    nameFieldLabel
+    saveBtnLabel
+    cancelBtnLabel
+}
+
+fragment ZfEpisodesCalendar on ZfEpisodesCalendarElement {
+    ...ZfEpisodesBase
+}
+
+fragment ZfEpisodesTable on ZfEpisodesTableElement {
+    ...ZfEpisodesBase
+}
+
+fragment ZfElement on ZfElement {
+    ...ZfEpisodesCalendar
+    ...ZfEpisodesTable
+}
+
+mutation submitZofarPage($data: ZfFormSubmit!) {
+    nextPage: zofarSubmit(data: $data) {
+        ...OperationInfo
+        ...QnrPage
+    }
+}
+
+mutation zofarBack($questionnaireId: ID!) {
+    nextPage: zofarBack(questionnaireId: $questionnaireId) {
+        ...OperationInfo
+        ...QnrPage
+    }
+}
+
+mutation zofarSaveEpisode($data: ZfSaveEpisodeInput!, $continueToDetails: Boolean!) {
+    nextPage: saveZofarEpisode(data: $data, continueToDetails: $continueToDetails) {
+        ...OperationInfo
+        ...QnrPage
+    }
+}
+
+mutation zofarNavigateToEpisode($data: ZfNavigateToEpisodeDetailsInput!) {
+    nextPage: zofarNavigateToEpisodeDetails(data: $data) {
+        ...OperationInfo
+        ...QnrPage
+    }
+}
+
+mutation zofarRemoveEpisode($data: ZfRemoveEpisodeInput!) {
+    nextPage: removeZofarEpisode(data: $data) {
+        ...OperationInfo
+        ...QnrPage
+    }
+}
+mutation zofarHideGap($data: ZfHideGapInput!) {
+    nextPage: markZofarGapHidden(data: $data) {
+        ...OperationInfo
+        ...QnrPage
+    }
+}
+
+mutation zofarGuestSession($data: ZfGuestSessionInput!) {
+    activateZofarGuestSession(data: $data) {
+        ...OperationInfo
+        ...CurrentUser
+    }
+}
+
+mutation zofarRegister($data: ZofarCreateUser!) {
+    zofarRegister(data: $data) {
+        ...OperationInfo
+    }
+}
+
+fragment ZofarTokenAccountState on ZofarToken {
+    id
+    accountState
+}
+
+query zofarTokenAccountState($token: String!) {
+    zofarToken(token: $token) {
+        ...ZofarTokenAccountState
+    }
+}
+
+fragment ZofarTokenTour on ZofarToken {
+    id
+    hasSeenTour
+}
+
+query zofarTokenTourState {
+    zofarToken {
+        ...ZofarTokenTour
+    }
+}
+
+mutation markTourSeen {
+    updateZofarToken(data: { markTourSeen: true }) {
+        ...ZofarTokenTour
+    }
+}
+
+query findQuestionnaireFromExternal($externalId: String!) {
+    zofarLookupExternalQuestionnaireId(externalId: $externalId)
+}

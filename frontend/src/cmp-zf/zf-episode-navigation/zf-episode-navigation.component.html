@@ -1,0 +1,13 @@
+<ng-container *transloco="let t; prefix: 'zofarEpisodes'">
+    <div class="lla-button-row">
+        <button
+            [llaTourHighlightElement]="'new-episode-' + mode()"
+            type="button"
+            class="new-episode-navigation-button lla-flat-button"
+            (click)="newEpisode.emit()"
+        >
+            {{ t("calendarNewEpisodeButton") }}
+        </button>
+    </div>
+    <lla-qnr-navigation [root]="false" [highlightSuffix]="'-' + mode()" />
+</ng-container>

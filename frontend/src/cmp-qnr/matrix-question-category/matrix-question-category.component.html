@@ -1,0 +1,51 @@
+@let element = this.element();
+@let customLabelElement = this.customLabelElement();
+@let isDoubleMatrix = this.isDoubleMatrix();
+
+<div
+    [attr.role]="isDoubleMatrix ? null : 'radiogroup'"
+    [attr.aria-labelledby]="isDoubleMatrix || customLabelElement !== null ? null : headingId"
+>
+    <div class="heading-container">
+        <div class="heading" [id]="headingId" [class.heading-custom]="customLabelElement !== null">
+            @if (customLabelElement !== null) {
+                <lla-open-question
+                    [context]="context()"
+                    [element]="customLabelElement"
+                    [matrixHeaderCustomLabelMode]="true"
+                />
+            } @else {
+                {{ element.label }}
+            }
+        </div>
+    </div>
+    <div class="content" [class.content--open]="isOpen()">
+        @if (element.unitLabel !== null) {
+            <div class="unit">
+                <h4 class="unit-label">{{ element.unitLabel }}</h4>
+                <div class="children">
+                    <ng-container *ngTemplateOutlet="childrenOrSelect" />
+                </div>
+            </div>
+        } @else {
+            <div class="children">
+                <ng-container *ngTemplateOutlet="childrenOrSelect" />
+            </div>
+        }
+    </div>
+</div>
+<ng-template #childrenOrSelect>
+    @if (selectOptions(); as options) {
+        <select
+            [formControl]="singleChoiceFormControl()!"
+            class="lla-form-control"
+            [attr.form]="pageForm()"
+        >
+            @for (option of options; track option.id) {
+                <option [value]="singleChoiceOptionFormValue(option)">{{ option.label }}</option>
+            }
+        </select>
+    } @else {
+        <lla-qnr-element-children [parentElement]="element" />
+    }
+</ng-template>

@@ -1,0 +1,64 @@
+<ng-container *transloco="let t">
+    @let expandedId = this.expandedId();
+    <ul class="lla-button-grid">
+        @for (linkData of settingsLinks(); track linkData.id) {
+            <li>
+                @if ("link" in linkData || "externalLink" in linkData) {
+                    <ng-container
+                        *ngTemplateOutlet="
+                            linkButton;
+                            context: {
+                                classes: 'lla-button lla-flat-button lla-button--inverted',
+                                $implicit: linkData,
+                            }
+                        "
+                    />
+                } @else {
+                    @let isExpanded = expandedId === linkData.id;
+                    @let listId = componentId + linkData.id;
+                    <button
+                        type="button"
+                        class="lla-flat-button lla-button--inverted"
+                        [attr.aria-expanded]="isExpanded"
+                        [attr.aria-controls]="listId"
+                        (click)="toggleExpanded(linkData.id)"
+                    >
+                        {{ linkData.textLangKey ? t(linkData.textLangKey) : linkData.text }}
+                    </button>
+                    <div class="lla-button-grid__nested" [class.nested-hidden]="!isExpanded">
+                        <ul class="lla-button-grid__nested-inner" [id]="listId">
+                            @for (c of linkData.children; track c.id) {
+                                <li>
+                                    <ng-container
+                                        *ngTemplateOutlet="linkButton; context: { $implicit: c }"
+                                    />
+                                </li>
+                            }
+                        </ul>
+                    </div>
+                }
+            </li>
+        }
+    </ul>
+    <ng-template #linkButton let-link let-classes="classes">
+        @if ("link" in link) {
+            <a
+                [routerLink]="link.link"
+                [routerLinkActive]="''"
+                [routerLinkActiveOptions]="{ exact: true }"
+                [ariaCurrentWhenActive]="'page'"
+                [class]="classes"
+            >
+                {{ link.textLangKey ? t(link.textLangKey) : link.text }}
+            </a>
+        } @else {
+            <a
+                [href]="link.externalLink"
+                [class]="classes"
+                [attr.target]="link.newWindow ? '_blank' : null"
+            >
+                {{ link.textLangKey ? t(link.textLangKey) : link.text }}
+            </a>
+        }
+    </ng-template>
+</ng-container>

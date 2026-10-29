@@ -1,0 +1,14 @@
+<!-- eslint-disable -->
+<dialog
+    class="mobile-sidebar"
+    #mobileSidebarRef
+    (click)="clickSidebar($event)"
+    (close)="open.set(false)"
+>
+    <!-- eslint-enable -->
+    <div class="mobile-sidebar-wrapper">
+        <div class="sidebar-mobile-header"><ng-content select="[slot=top]"></ng-content></div>
+        <ng-content></ng-content>
+        <div class="sidebar-mobile-footer"><ng-content select="[slot=bottom]"></ng-content></div>
+    </div>
+</dialog>

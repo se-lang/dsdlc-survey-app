@@ -1,0 +1,10 @@
+{{ if and .Values.gatewayApi.enabled .Values.gatewayApi.tls.enabled }}
+apiVersion: cert-manager.io/v1
+kind: Certificate
+metadata:
+    name: {{ include "dsdlc.v1.tlsSecretGatewayApi.fullname" . }}
+spec:
+    issuerRef: {{ .Values.gatewayApi.tls.issuerRef | toYaml | nindent 8 }}
+    secretName: {{ include "dsdlc.v1.tlsSecretGatewayApi.fullname" . }}
+    dnsNames: {{ (concat .Values.gatewayApi.apiHostnames .Values.gatewayApi.extraApiTlsHostnames) | toYaml | nindent 8 }}
+{{ end }}

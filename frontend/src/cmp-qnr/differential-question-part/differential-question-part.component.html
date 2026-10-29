@@ -1,0 +1,12 @@
+@let element = this.element();
+<div class="content" role="radiogroup">
+    <label [for]="firstChoiceId" class="lla-basic-label">{{ firstChoiceElement()?.label }}</label>
+    <div class="options">
+        @for (childId of element.childrenIds; track trackChildId(childId)) {
+            <lla-qnr-element [elementId]="childId" />
+        }
+    </div>
+    <label [for]="lastChoiceId" class="lla-basic-label last-label">{{
+        lastChoiceElement()?.label
+    }}</label>
+</div>

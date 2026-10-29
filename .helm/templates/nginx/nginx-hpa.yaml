@@ -1,0 +1,22 @@
+{{ if ne .Values.infra.nginx.minReplicas .Values.infra.nginx.maxReplicas }}
+apiVersion: autoscaling/v2
+kind: HorizontalPodAutoscaler
+metadata:
+    name: "{{ include "dsdlc.v1.nginx.fullname" . }}"
+    labels:
+        app.kubernetes.io/component: nginx
+spec:
+    scaleTargetRef:
+        apiVersion: apps/v1
+        kind: Deployment
+        name: "{{ include "dsdlc.v1.nginx.fullname" . }}"
+    minReplicas: {{ .Values.infra.nginx.minReplicas }}
+    maxReplicas: {{ .Values.infra.nginx.maxReplicas }}
+    metrics:
+        - type: Resource
+          resource:
+              name: cpu
+              target:
+                  type: Utilization
+                  averageUtilization: 75
+{{ end }}

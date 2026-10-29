@@ -1,0 +1,10 @@
+<ng-container *transloco="let t; prefix: 'topMenuLastUpdate'">
+    @let date = this.formattedDate();
+    @if (date) {
+        <p>
+            <strong>{{ t("lastUpdate") }}</strong
+            ><br />
+            {{ formattedDate() }}
+        </p>
+    }
+</ng-container>

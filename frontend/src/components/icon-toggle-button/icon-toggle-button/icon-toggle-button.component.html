@@ -1,0 +1,10 @@
+@let unselectedOption = this.unselectedOption();
+@for (option of options(); track option.id()) {
+    <lla-icon
+        [attr.aria-hidden]="option.id() !== unselectedOption.id() ? 'true' : null"
+        [name]="option.icon()"
+    />
+    <span [attr.aria-hidden]="option.id() !== unselectedOption.id() ? 'true' : null">
+        <ng-container *ngTemplateOutlet="option.template" />
+    </span>
+}

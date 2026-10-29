@@ -1,0 +1,35 @@
+@let ctx = service.context();
+@if (ctx) {
+    @if (isBoxedLayout()) {
+        <lla-dialog [size]="'questionnaire-box'" [llaTourHighlightElement]="'questionnaire-box'">
+            <lla-dialog-header
+                class="questionnaire-dialog-header"
+                [title]="boxedLayoutTitle()"
+                [subtitle]="boxedLayoutSubtitle()"
+                [llaZfEpisodeColorStyles]="boxedLayoutEpisode()"
+            />
+            <lla-dialog-content>
+                <lla-qnr-page-contents [context]="ctx" />
+            </lla-dialog-content>
+            <lla-dialog-footer>
+                <lla-qnr-navigation />
+                @if (viewportService.isMobile()) {
+                    <lla-qnr-last-update-info />
+                }
+            </lla-dialog-footer>
+        </lla-dialog>
+    } @else {
+        <lla-qnr-page-contents [context]="ctx" />
+        <lla-qnr-navigation />
+        @if (viewportService.isMobile()) {
+            <lla-qnr-last-update-info />
+        }
+    }
+} @else {
+    @let err = service.unexpectedError();
+    @if (err) {
+        <ng-container *transloco="let t; prefix: 'questionnaire'">
+            <p>{{ t("unknownError") }}</p>
+        </ng-container>
+    }
+}

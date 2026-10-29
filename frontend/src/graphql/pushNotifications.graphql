@@ -1,0 +1,13 @@
+fragment WebPushDevice on WebPushDevice {
+    id
+}
+
+mutation registerPushNotifications($input: RegisterWebPushInput!) {
+    registerWebPush(input: $input) {
+        ...WebPushDevice
+    }
+}
+
+mutation unregisterPushNotifications($input: UnregisterWebPushInput!) {
+    unregisterWebPush(input: $input)
+}

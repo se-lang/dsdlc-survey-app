@@ -1,0 +1,28 @@
+:host {
+    display: block;
+    font-size: var(--lla-text-calendar-episode-popover-text-font-size);
+    font-weight: var(--lla-text-calendar-episode-popover-text-font-weight);
+    letter-spacing: var(--lla-text-calendar-episode-popover-text-letter-spacing);
+
+    text-align: center;
+    width: max-content;
+}
+
+.ep-title {
+    text-transform: uppercase;
+    font-size: var(--lla-text-calendar-episode-popover-title-font-size);
+    font-weight: var(--lla-text-calendar-episode-popover-title-font-weight);
+    letter-spacing: var(--lla-text-calendar-episode-popover-title-letter-spacing);
+}
+.ep-title,
+.ep-text {
+    margin: 0;
+}
+
+.buttons {
+    display: flex;
+    gap: 0.375rem;
+    justify-content: center;
+
+    --icon-size: 1.625rem;
+}

@@ -1,0 +1,38 @@
+debug_mode = true
+development_mode = true
+secret_key = "django-insecure-j!%z8sd#*amjc4e^%m3s+$jmhf8q=r-mq6yzaw-75ajk^*90@%"
+
+[network]
+allowed_urls = [
+    'http://localhost:8000',
+    'http://127.0.0.1:8000',
+    'http://dzhw.localhost:8000',
+    'http://localhost:4200',
+    'http://127.0.0.1:4200',
+]
+frontend_url = 'http://localhost:4200'
+
+[db]
+dsn = "postgres://127.0.0.1:15432/django"
+username = "django"
+password = "django"
+database = "django"
+
+[redis]
+dsn = "redis://127.0.0.1:16379/"
+key_prefix = "lla_"
+
+[email]
+host = "127.0.0.1:1025"
+username = ""
+password = ""
+security = "plaintext"
+source_email = "lla@local.test"
+
+[storage]
+type = "local"
+path = ".media"
+
+[zofar]
+hide_completed_questionnaires = false
+events_enabled = false

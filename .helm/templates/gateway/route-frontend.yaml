@@ -1,0 +1,33 @@
+{{ if .Values.gatewayApi.enabled }}
+apiVersion: gateway.networking.k8s.io/v1
+kind: HTTPRoute
+metadata:
+    name: frontend-routes
+spec:
+    hostnames: {{ .Values.gatewayApi.frontendHostnames | toYaml | nindent 8 }}
+    parentRefs:
+{{ range $host := .Values.gatewayApi.frontendHostnames }}
+{{ include "dsdlc.v1.gatewayHttpsRef" (dict "root" $ "host" $host) | indent 8 }}
+{{ end }}
+    rules:
+        -   matches:
+                -   path:
+                        type: PathPrefix
+                        value: "/api"
+            backendRefs:
+                -   name: {{ include "dsdlc.v1.django.fullname" $ }}
+                    port: 8000
+{{ if not (empty .Values.gatewayApi.routeFilters.frontend) }}
+            filters: {{ .Values.gatewayApi.routeFilters.frontend | toYaml | nindent 16 }}
+{{ end }}
+        -   matches:
+                -   path:
+                        type: PathPrefix
+                        value: "/"
+            backendRefs:
+                -   name: {{ include "dsdlc.v1.nginx.fullname" $ }}
+                    port: 80
+{{ if not (empty .Values.gatewayApi.routeFilters.frontend) }}
+            filters: {{ .Values.gatewayApi.routeFilters.frontend | toYaml | nindent 16 }}
+{{ end }}
+{{ end }}

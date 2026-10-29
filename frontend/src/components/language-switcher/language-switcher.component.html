@@ -1,0 +1,17 @@
+@if (availableLanguages.length === 2) {
+    <button
+        llaIconToggleButton
+        class="lla-button--inverted mobile-navigation"
+        [selectedId]="i18n.currentLanguageId()"
+        (selectedIdChange)="i18n.setLanguage($event)"
+    >
+        @for (lang of availableLanguages; track lang.id) {
+            <ng-template
+                class="lla-lang-label"
+                [llaIconToggleButtonOption]="lang.id"
+                [icon]="`lang_${lang.id}`"
+                >{{ viewportService.isMobile() ? "" : lang.label }}</ng-template
+            >
+        }
+    </button>
+}

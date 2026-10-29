@@ -1,0 +1,49 @@
+@use "../../style/variables" as v;
+@use "../../style/visually-hidden" as *;
+
+:host {
+    display: flex;
+}
+
+.buttons {
+    display: grid;
+    grid-auto-flow: column;
+    grid-auto-columns: 1fr;
+    gap: 0.5rem;
+    margin-inline-start: 1.625rem;
+
+    --lla-icon-bg: currentColor;
+    --lla-icon-fg: transparent;
+}
+
+.logo-button {
+    --icon-size: 5rem;
+    display: grid;
+    align-items: end;
+    margin-inline-end: auto;
+}
+
+@media (width < v.$mobileWidth) {
+    .buttons {
+        gap: 0.625rem;
+        grid-auto-columns: min-content;
+        --lla-icon-fg: var(--lla-clr-white);
+    }
+    .lla-button {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        --icon-size: 1.4rem;
+        border: none;
+        background: none;
+        padding: 0;
+        span {
+            @include visually-hidden();
+        }
+    }
+    .logo-button {
+        --icon-size: 3.875rem;
+        align-items: center;
+        padding: 1rem 0.8rem;
+    }
+}

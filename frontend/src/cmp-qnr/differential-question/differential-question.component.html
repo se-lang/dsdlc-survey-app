@@ -1,0 +1,11 @@
+@let element = this.element();
+
+<lla-qnr-element-children [parentElement]="element" />
+
+<div class="parts">
+    @for (partId of element.partIds; track trackPartId(partId)) {
+        <div class="part">
+            <lla-qnr-element [elementId]="partId" />
+        </div>
+    }
+</div>

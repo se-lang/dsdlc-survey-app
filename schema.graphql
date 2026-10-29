@@ -1,0 +1,1214 @@
+schema {
+  query: Query
+  mutation: Mutation
+}
+
+type ZfDoubleMatrixQuestionPartElement implements ZfParentElement & ZfElement & QnrDoubleMatrixQuestionPartElement & QnrFormControlElement & QnrParentElement & QnrHasElementChildren & QuestionnaireElement {
+  id: String!
+  types: [QnrElementType!]!
+  childrenIds: [String!]!
+  children: [QuestionnaireElement!]!
+  formControlId: String!
+  title: String!
+}
+
+interface QnrHasElementChildren {
+  childrenIds: [String!]!
+}
+
+interface QuestionnaireElement {
+  id: String!
+  types: [QnrElementType!]!
+}
+
+enum QnrElementType {
+  ZfEpisodesTableElement
+  ZfDoubleMatrixQuestionCategoryElement
+  QnrMultipleChoiceQuestionElement
+  ZfDoubleMatrixQuestionPartElement
+  QnrOpenMatrixQuestionCategoryElement
+  QnrPlainTextSectionElement
+  QnrDoubleMatrixQuestionPartElement
+  ZfOpenMatrixQuestionCategoryElement
+  QnrOpenQuestionElement
+  QnrMultipleChoiceMatrixQuestionCategoryElement
+  QnrParentElement
+  QnrContainerElement
+  ZfMultipleChoiceQuestionElement
+  QnrChoiceMatrixQuestionElement
+  QnrSingleChoiceMatrixQuestionCategoryElement
+  QnrOpenMatrixQuestionElement
+  QnrHtmlSectionElement
+  ZfSingleChoiceMatrixQuestionElement
+  ZfMultipleChoiceMatrixQuestionElement
+  ZfSingleChoiceQuestionElement
+  QnrMatrixQuestionCategoryElement
+  ZfDoubleMatrixQuestionElement
+  QnrFormControlElement
+  ZfEpisodesCalendarElement
+  QnrChoiceQuestionElement
+  ZfChoiceMatrixQuestionCategoryElement
+  QnrDifferentialQuestionPartElement
+  QnrMatrixQuestionBaseElement
+  ZfSingleChoiceOptionElement
+  QnrDifferentialQuestionElement
+  ZfUnmappedElement
+  ZfSingleChoiceMatrixQuestionCategoryElement
+  ZfFormControlElement
+  ZfEpisodesBase
+  ZfMultipleChoiceOptionElement
+  QnrLabeledElement
+  ZfDifferentialQuestionElement
+  ZfSingleChoiceQuestionBaseElement
+  ZfMultipleChoiceMatrixQuestionCategoryElement
+  ZfOpenMatrixQuestionElement
+  QnrMultipleChoiceMatrixQuestionElement
+  ZfHtmlSectionElement
+  ZfParentElement
+  QnrChoiceMatrixQuestionCategoryElement
+  ZfElement
+  QnrSingleChoiceMatrixQuestionElement
+  QnrChoiceOptionElement
+  QnrSingleChoiceOptionElement
+  QnrDoubleMatrixQuestionCategoryElement
+  ZfDifferentialQuestionPartElement
+  QnrMultipleChoiceOptionElement
+  QnrDoubleMatrixQuestionElement
+  ZfContainerElement
+  ZfOpenQuestionElement
+  ZfUnknownElement
+  QnrSingleChoiceQuestionElement
+  ZfChoiceOptionBaseElement
+  ZfMatrixQuestionCategoryElement
+}
+
+interface QnrOpenMatrixQuestionCategoryElement implements QnrMatrixQuestionCategoryElement & QnrParentElement & QnrHasElementChildren & QuestionnaireElement {
+  childrenIds: [String!]!
+  id: String!
+  types: [QnrElementType!]!
+  label: String!
+  unitLabel: String
+  customLabelElementId: String
+}
+
+type ZfOpenMatrixQuestionCategoryElement implements ZfMatrixQuestionCategoryElement & ZfParentElement & ZfElement & QnrOpenMatrixQuestionCategoryElement & QnrMatrixQuestionCategoryElement & QnrParentElement & QnrHasElementChildren & QuestionnaireElement {
+  id: String!
+  types: [QnrElementType!]!
+  childrenIds: [String!]!
+  children: [QuestionnaireElement!]!
+  label: String!
+  unitLabel: String
+  customLabelElementId: String
+}
+
+interface QnrOpenQuestionElement implements QnrParentElement & QnrHasElementChildren & QnrFormControlElement & QnrLabeledElement & QuestionnaireElement {
+  childrenIds: [String!]!
+  id: String!
+  types: [QnrElementType!]!
+  formControlId: String!
+  label: String!
+  autocomplete: QnrAutocompleteList
+  inputType: QnrOpenQuestionInputType!
+  validators: [QnrQuestionValidator!]!
+  placeholder: String
+  prefix: String
+  postfix: String
+  initialDate: Date
+}
+
+interface QnrAutocompleteList implements Node {
+  """The Globally Unique ID of this object"""
+  id: ID!
+  items: [QnrAutocompleteListItem!]!
+}
+
+"""An object with a Globally Unique ID"""
+interface Node {
+  """The Globally Unique ID of this object"""
+  id: ID!
+}
+
+interface QnrAutocompleteListItem implements Node {
+  """The Globally Unique ID of this object"""
+  id: ID!
+  label: String!
+  value: String!
+}
+
+enum QnrOpenQuestionInputType {
+  TEXT
+  DECIMAL
+  INTEGER
+  EMAIL
+  YEAR_MONTH
+}
+
+interface QnrQuestionValidator {
+  errorMessage: String!
+}
+
+"""Date (isoformat)"""
+scalar Date
+
+type MinValueValidator implements QnrQuestionValidator {
+  errorMessage: String!
+  minValue: Decimal!
+}
+
+"""Decimal (fixed-point)"""
+scalar Decimal
+
+interface QnrMultipleChoiceMatrixQuestionCategoryElement implements QnrChoiceMatrixQuestionCategoryElement & QnrMatrixQuestionCategoryElement & QnrParentElement & QnrHasElementChildren & QuestionnaireElement {
+  childrenIds: [String!]!
+  id: String!
+  types: [QnrElementType!]!
+  label: String!
+  unitLabel: String
+  customLabelElementId: String
+  optionIds: [String!]!
+}
+
+interface QnrParentElement implements QnrHasElementChildren & QuestionnaireElement {
+  childrenIds: [String!]!
+  id: String!
+  types: [QnrElementType!]!
+}
+
+type ZfMultipleChoiceQuestionElement implements ZfParentElement & ZfElement & QnrMultipleChoiceQuestionElement & QnrChoiceQuestionElement & QnrParentElement & QnrHasElementChildren & QuestionnaireElement {
+  id: String!
+  types: [QnrElementType!]!
+  childrenIds: [String!]!
+  children: [QuestionnaireElement!]!
+  optionIds: [String!]!
+}
+
+interface QnrChoiceMatrixQuestionElement implements QnrMatrixQuestionBaseElement & QnrParentElement & QnrHasElementChildren & QuestionnaireElement {
+  childrenIds: [String!]!
+  id: String!
+  types: [QnrElementType!]!
+  categoryIds: [String!]!
+}
+
+interface QnrSingleChoiceMatrixQuestionCategoryElement implements QnrChoiceMatrixQuestionCategoryElement & QnrMatrixQuestionCategoryElement & QnrParentElement & QnrHasElementChildren & QnrFormControlElement & QuestionnaireElement {
+  childrenIds: [String!]!
+  id: String!
+  types: [QnrElementType!]!
+  label: String!
+  unitLabel: String
+  customLabelElementId: String
+  optionIds: [String!]!
+  formControlId: String!
+  style: QnrSingleChoiceQuestionStyle!
+}
+
+enum QnrSingleChoiceQuestionStyle {
+  RADIO
+  SELECT
+}
+
+interface QnrHtmlSectionElement implements QuestionnaireElement {
+  id: String!
+  types: [QnrElementType!]!
+  html: String!
+  kind: QnrTextSectionKind!
+}
+
+enum QnrTextSectionKind {
+  GENERIC
+  GENERIC_NO_SPACE
+  QUESTION
+  INTRODUCTION
+}
+
+type ZfSingleChoiceQuestionElement implements ZfSingleChoiceQuestionBaseElement & ZfFormControlElement & ZfParentElement & ZfElement & QnrSingleChoiceQuestionElement & QnrChoiceQuestionElement & QnrParentElement & QnrHasElementChildren & QnrFormControlElement & QuestionnaireElement {
+  id: String!
+  types: [QnrElementType!]!
+  formControlId: String!
+  childrenIds: [String!]!
+  children: [QuestionnaireElement!]!
+  optionIds: [String!]!
+  style: QnrSingleChoiceQuestionStyle!
+}
+
+type ZfDoubleMatrixQuestionElement implements ZfParentElement & ZfElement & QnrDoubleMatrixQuestionElement & QnrMatrixQuestionBaseElement & QnrParentElement & QnrHasElementChildren & QuestionnaireElement {
+  id: String!
+  types: [QnrElementType!]!
+  childrenIds: [String!]!
+  children: [QuestionnaireElement!]!
+  categoryIds: [String!]!
+  titleLeft: String!
+  titleRight: String!
+}
+
+type ZfEpisodesCalendarElement implements ZfEpisodesBase & ZfElement & QuestionnaireElement {
+  id: String!
+  types: [QnrElementType!]!
+  minDate: Date!
+  maxDate: Date!
+  saveBtnLabel: String!
+  cancelBtnLabel: String!
+  nameFieldLabel: String!
+  typeFieldLabel: String!
+  startFieldLabel: String!
+  endFieldLabel: String!
+  beforeStartFieldLabel: String!
+  afterEndFieldLabel: String!
+  episodeTypes: [ZfEpisodeType!]!
+  episodeCategories: [ZfEpisodeCategory!]!
+  entries: [ZfEpisodeEntry!]!
+}
+
+type ZfEpisodeType {
+  id: String!
+  label: String!
+  description: String!
+  category: ZfEpisodeCategory!
+  allowEvents: Boolean!
+  hasDetailQuestions: Boolean!
+}
+
+type ZfEpisodeCategory {
+  id: String!
+  label: String!
+  sortIndex: Int!
+  typeIds: [String!]!
+  types: [ZfEpisodeType!]!
+}
+
+type ZfEpisodeEntry {
+  id: String!
+  label: String!
+  episodeTypeId: String!
+  startDate: Date!
+  endDate: Date!
+  event: Boolean!
+  gap: Boolean!
+  badge: String
+  state: ZfEpisodeState!
+  flags: [ZfEpisodeFlags!]!
+  allowEditDialog: Boolean!
+}
+
+enum ZfEpisodeState {
+  new
+  done
+  updated
+}
+
+enum ZfEpisodeFlags {
+  BEFORE_START
+  AFTER_END
+}
+
+interface ZfChoiceMatrixQuestionCategoryElement implements ZfMatrixQuestionCategoryElement & ZfParentElement & ZfElement & QnrChoiceMatrixQuestionCategoryElement & QnrMatrixQuestionCategoryElement & QnrParentElement & QnrHasElementChildren & QuestionnaireElement {
+  id: String!
+  types: [QnrElementType!]!
+  childrenIds: [String!]!
+  children: [QuestionnaireElement!]!
+  label: String!
+  unitLabel: String
+  customLabelElementId: String
+  optionIds: [String!]!
+  formControlId: String!
+}
+
+type TextPatternValidator implements QnrQuestionValidator {
+  errorMessage: String!
+  pattern: String!
+  flags: String!
+}
+
+type ZfUnmappedElement implements ZfElement & QnrPlainTextSectionElement & QuestionnaireElement {
+  id: String!
+  types: [QnrElementType!]!
+  text: String!
+}
+
+type ZfSingleChoiceOptionElement implements ZfChoiceOptionBaseElement & ZfElement & QnrSingleChoiceOptionElement & QnrChoiceOptionElement & QnrLabeledElement & QuestionnaireElement {
+  id: String!
+  types: [QnrElementType!]!
+  label: String!
+  labelPosition: QnrLabelPosition!
+  attachedOpenQuestionIds: [String!]!
+  formValue: String!
+}
+
+enum QnrLabelPosition {
+  left
+  right
+}
+
+type ZfSingleChoiceMatrixQuestionCategoryElement implements ZfChoiceMatrixQuestionCategoryElement & ZfMatrixQuestionCategoryElement & ZfParentElement & ZfElement & QnrSingleChoiceMatrixQuestionCategoryElement & QnrChoiceMatrixQuestionCategoryElement & QnrMatrixQuestionCategoryElement & QnrParentElement & QnrHasElementChildren & QnrFormControlElement & QuestionnaireElement {
+  id: String!
+  types: [QnrElementType!]!
+  childrenIds: [String!]!
+  children: [QuestionnaireElement!]!
+  label: String!
+  unitLabel: String
+  customLabelElementId: String
+  optionIds: [String!]!
+  formControlId: String!
+  style: QnrSingleChoiceQuestionStyle!
+}
+
+type MaxDateValidator implements QnrQuestionValidator {
+  errorMessage: String!
+  maxValue: Date!
+}
+
+interface QnrLabeledElement implements QuestionnaireElement {
+  id: String!
+  types: [QnrElementType!]!
+  label: String!
+}
+
+type ZfDifferentialQuestionElement implements ZfParentElement & ZfElement & QnrDifferentialQuestionElement & QnrParentElement & QnrHasElementChildren & QuestionnaireElement {
+  id: String!
+  types: [QnrElementType!]!
+  childrenIds: [String!]!
+  children: [QuestionnaireElement!]!
+  partIds: [String!]!
+}
+
+interface ZfSingleChoiceQuestionBaseElement implements ZfFormControlElement & ZfParentElement & ZfElement & QnrSingleChoiceQuestionElement & QnrChoiceQuestionElement & QnrParentElement & QnrHasElementChildren & QnrFormControlElement & QuestionnaireElement {
+  id: String!
+  types: [QnrElementType!]!
+  formControlId: String!
+  childrenIds: [String!]!
+  children: [QuestionnaireElement!]!
+  optionIds: [String!]!
+  style: QnrSingleChoiceQuestionStyle!
+}
+
+type ZfOpenMatrixQuestionElement implements ZfParentElement & ZfElement & QnrOpenMatrixQuestionElement & QnrMatrixQuestionBaseElement & QnrParentElement & QnrHasElementChildren & QuestionnaireElement {
+  id: String!
+  types: [QnrElementType!]!
+  childrenIds: [String!]!
+  children: [QuestionnaireElement!]!
+  categoryIds: [String!]!
+}
+
+interface QnrMultipleChoiceMatrixQuestionElement implements QnrChoiceMatrixQuestionElement & QnrMatrixQuestionBaseElement & QnrParentElement & QnrHasElementChildren & QuestionnaireElement {
+  childrenIds: [String!]!
+  id: String!
+  types: [QnrElementType!]!
+  categoryIds: [String!]!
+}
+
+type AnonymousUser implements BaseUser & Node {
+  """The Globally Unique ID of this object"""
+  id: ID!
+  isAuthenticated: Boolean!
+  hasGuestSession: Boolean!
+  guestHasAccount: Boolean!
+}
+
+interface BaseUser implements Node {
+  """The Globally Unique ID of this object"""
+  id: ID!
+  isAuthenticated: Boolean!
+}
+
+interface QnrSingleChoiceMatrixQuestionElement implements QnrChoiceMatrixQuestionElement & QnrMatrixQuestionBaseElement & QnrParentElement & QnrHasElementChildren & QuestionnaireElement {
+  childrenIds: [String!]!
+  id: String!
+  types: [QnrElementType!]!
+  categoryIds: [String!]!
+}
+
+type QuestionnairePageLayoutFull implements QuestionnairePageLayout {
+  dummy: Boolean!
+}
+
+interface QuestionnairePageLayout {
+  dummy: Boolean!
+}
+
+interface QnrDoubleMatrixQuestionCategoryElement implements QnrMatrixQuestionCategoryElement & QnrParentElement & QnrHasElementChildren & QuestionnaireElement {
+  childrenIds: [String!]!
+  id: String!
+  types: [QnrElementType!]!
+  label: String!
+  unitLabel: String
+  customLabelElementId: String
+}
+
+type ZfContainerElement implements ZfParentElement & ZfElement & QnrContainerElement & QnrParentElement & QnrHasElementChildren & QuestionnaireElement {
+  id: String!
+  types: [QnrElementType!]!
+  childrenIds: [String!]!
+  children: [QuestionnaireElement!]!
+}
+
+type ZfOpenQuestionElement implements ZfFormControlElement & ZfParentElement & ZfElement & QnrOpenQuestionElement & QnrParentElement & QnrHasElementChildren & QnrFormControlElement & QnrLabeledElement & QuestionnaireElement {
+  id: String!
+  types: [QnrElementType!]!
+  formControlId: String!
+  childrenIds: [String!]!
+  children: [QuestionnaireElement!]!
+  label: String!
+  autocomplete: ZfAutocompleteList
+  inputType: QnrOpenQuestionInputType!
+  validators: [QnrQuestionValidator!]!
+  placeholder: String
+  prefix: String
+  postfix: String
+  initialDate: Date
+}
+
+type ZfAutocompleteList implements QnrAutocompleteList & Node {
+  """The Globally Unique ID of this object"""
+  id: ID!
+  items: [ZfAutocompleteListItem!]!
+}
+
+type ZfAutocompleteListItem implements QnrAutocompleteListItem & Node {
+  """The Globally Unique ID of this object"""
+  id: ID!
+  label: String!
+  value: String!
+}
+
+type User implements BaseUser & Node {
+  """The Globally Unique ID of this object"""
+  id: ID!
+  isAuthenticated: Boolean!
+  email: String!
+  firstName: String!
+  lastName: String!
+  street: String!
+  zipCode: String!
+  city: String!
+  country: String!
+  dateOfBirth: Date
+  phone: String!
+}
+
+type ZfUnknownElement implements ZfElement & QnrPlainTextSectionElement & QuestionnaireElement {
+  id: String!
+  types: [QnrElementType!]!
+  text: String!
+}
+
+interface QnrSingleChoiceQuestionElement implements QnrChoiceQuestionElement & QnrParentElement & QnrHasElementChildren & QnrFormControlElement & QuestionnaireElement {
+  childrenIds: [String!]!
+  id: String!
+  types: [QnrElementType!]!
+  optionIds: [String!]!
+  formControlId: String!
+  style: QnrSingleChoiceQuestionStyle!
+}
+
+interface ZfChoiceOptionBaseElement implements ZfElement & QnrChoiceOptionElement & QnrLabeledElement & QuestionnaireElement {
+  id: String!
+  types: [QnrElementType!]!
+  label: String!
+  labelPosition: QnrLabelPosition!
+  attachedOpenQuestionIds: [String!]!
+}
+
+type ZfEpisodesTableElement implements ZfEpisodesBase & ZfElement & QuestionnaireElement {
+  id: String!
+  types: [QnrElementType!]!
+  minDate: Date!
+  maxDate: Date!
+  saveBtnLabel: String!
+  cancelBtnLabel: String!
+  nameFieldLabel: String!
+  typeFieldLabel: String!
+  startFieldLabel: String!
+  endFieldLabel: String!
+  beforeStartFieldLabel: String!
+  afterEndFieldLabel: String!
+  episodeTypes: [ZfEpisodeType!]!
+  episodeCategories: [ZfEpisodeCategory!]!
+  entries: [ZfEpisodeEntry!]!
+}
+
+type ZfDoubleMatrixQuestionCategoryElement implements ZfMatrixQuestionCategoryElement & ZfParentElement & ZfElement & QnrDoubleMatrixQuestionCategoryElement & QnrMatrixQuestionCategoryElement & QnrParentElement & QnrHasElementChildren & QuestionnaireElement {
+  id: String!
+  types: [QnrElementType!]!
+  childrenIds: [String!]!
+  children: [QuestionnaireElement!]!
+  label: String!
+  unitLabel: String
+  customLabelElementId: String
+}
+
+interface QnrMultipleChoiceQuestionElement implements QnrChoiceQuestionElement & QnrParentElement & QnrHasElementChildren & QuestionnaireElement {
+  childrenIds: [String!]!
+  id: String!
+  types: [QnrElementType!]!
+  optionIds: [String!]!
+}
+
+type MinDateValidator implements QnrQuestionValidator {
+  errorMessage: String!
+  minValue: Date!
+}
+
+interface QnrPlainTextSectionElement implements QuestionnaireElement {
+  id: String!
+  types: [QnrElementType!]!
+  text: String!
+}
+
+interface QnrDoubleMatrixQuestionPartElement implements QnrFormControlElement & QnrParentElement & QnrHasElementChildren & QuestionnaireElement {
+  id: String!
+  types: [QnrElementType!]!
+  formControlId: String!
+  childrenIds: [String!]!
+  title: String!
+}
+
+interface QnrContainerElement implements QnrParentElement & QnrHasElementChildren & QuestionnaireElement {
+  childrenIds: [String!]!
+  id: String!
+  types: [QnrElementType!]!
+}
+
+interface QnrOpenMatrixQuestionElement implements QnrMatrixQuestionBaseElement & QnrParentElement & QnrHasElementChildren & QuestionnaireElement {
+  childrenIds: [String!]!
+  id: String!
+  types: [QnrElementType!]!
+  categoryIds: [String!]!
+}
+
+type QuestionnairePageLayoutBoxed implements QuestionnairePageLayout {
+  dummy: Boolean!
+  title: String!
+}
+
+type ZfSingleChoiceMatrixQuestionElement implements ZfParentElement & ZfElement & QnrSingleChoiceMatrixQuestionElement & QnrChoiceMatrixQuestionElement & QnrMatrixQuestionBaseElement & QnrParentElement & QnrHasElementChildren & QuestionnaireElement {
+  id: String!
+  types: [QnrElementType!]!
+  childrenIds: [String!]!
+  children: [QuestionnaireElement!]!
+  categoryIds: [String!]!
+}
+
+type ZfMultipleChoiceMatrixQuestionElement implements ZfParentElement & ZfElement & QnrMultipleChoiceMatrixQuestionElement & QnrChoiceMatrixQuestionElement & QnrMatrixQuestionBaseElement & QnrParentElement & QnrHasElementChildren & QuestionnaireElement {
+  id: String!
+  types: [QnrElementType!]!
+  childrenIds: [String!]!
+  children: [QuestionnaireElement!]!
+  categoryIds: [String!]!
+}
+
+interface QnrMatrixQuestionCategoryElement implements QnrParentElement & QnrHasElementChildren & QuestionnaireElement {
+  childrenIds: [String!]!
+  id: String!
+  types: [QnrElementType!]!
+  label: String!
+  unitLabel: String
+  customLabelElementId: String
+}
+
+interface QnrFormControlElement implements QuestionnaireElement {
+  id: String!
+  types: [QnrElementType!]!
+  formControlId: String!
+}
+
+type ZfQuestionnaireOffsetPaginated {
+  pageInfo: OffsetPaginationInfo!
+  """Total count of existing results."""
+  totalCount: Int!
+  """List of paginated results."""
+  results: [ZfQuestionnaire!]!
+}
+
+type OffsetPaginationInfo {
+  offset: Int!
+  limit: Int
+}
+
+interface QnrChoiceQuestionElement implements QnrParentElement & QnrHasElementChildren & QuestionnaireElement {
+  childrenIds: [String!]!
+  id: String!
+  types: [QnrElementType!]!
+  optionIds: [String!]!
+}
+
+interface QnrMatrixQuestionBaseElement implements QnrParentElement & QnrHasElementChildren & QuestionnaireElement {
+  childrenIds: [String!]!
+  id: String!
+  types: [QnrElementType!]!
+  categoryIds: [String!]!
+}
+
+interface QnrDifferentialQuestionElement implements QnrParentElement & QnrHasElementChildren & QuestionnaireElement {
+  childrenIds: [String!]!
+  id: String!
+  types: [QnrElementType!]!
+  partIds: [String!]!
+}
+
+type ZfQuestionnaire implements Questionnaire & Node {
+  """The Globally Unique ID of this object"""
+  id: ID!
+  name: String!
+  currentPage: ZfPage!
+  status: ZfQuestionnaireStatus!
+}
+
+interface Questionnaire implements Node {
+  """The Globally Unique ID of this object"""
+  id: ID!
+  name: String!
+  currentPage: QuestionnairePage!
+  status: QuestionnaireStatus!
+}
+
+interface QuestionnairePage implements QnrHasElementChildren {
+  childrenIds: [String!]!
+  id: String!
+  layout: QuestionnairePageLayout!
+  headerIds: [String!]!
+  allElements: [QuestionnaireElement!]!
+  buttons: [QuestionnairePageButton!]!
+  formValues: [QuestionnaireFormValue!]!
+  version: Int!
+}
+
+type QuestionnairePageButton {
+  id: String!
+  label: String!
+  type: QuestionnairePageButtonType!
+}
+
+enum QuestionnairePageButtonType {
+  NEXT
+  BACK
+  FINISH
+  CUSTOM
+}
+
+type QuestionnaireFormValue {
+  formControlId: String!
+  value: QuestionnaireFormControlValue
+}
+
+"""
+The QuestionnaireFormControlValue scalar represents a value of a form control.The type of value depends on the type of form control.
+"""
+scalar QuestionnaireFormControlValue
+
+interface QuestionnaireStatus implements Node {
+  """The Globally Unique ID of this object"""
+  id: ID!
+  completionState: QuestionnaireCompletionState!
+  firstVisit: DateTime
+  lastVisit: DateTime
+  hidden: Boolean!
+}
+
+enum QuestionnaireCompletionState {
+  NEW
+  STARTED
+  FINISHED
+}
+
+"""Date with time (isoformat)"""
+scalar DateTime
+
+type ZfPage implements QuestionnairePage & QnrHasElementChildren {
+  childrenIds: [String!]!
+  id: String!
+  layout: QuestionnairePageLayout!
+  headerIds: [String!]!
+  allElements: [QuestionnaireElement!]!
+  buttons: [QuestionnairePageButton!]!
+  formValues: [QuestionnaireFormValue!]!
+  version: Int!
+}
+
+type ZfQuestionnaireStatus implements QuestionnaireStatus & Node {
+  """The Globally Unique ID of this object"""
+  id: ID!
+  completionState: QuestionnaireCompletionState!
+  firstVisit: DateTime
+  lastVisit: DateTime
+  hidden: Boolean!
+}
+
+interface ZfFormControlElement implements ZfElement & QnrFormControlElement & QuestionnaireElement {
+  id: String!
+  types: [QnrElementType!]!
+  formControlId: String!
+}
+
+interface ZfEpisodesBase implements ZfElement & QuestionnaireElement {
+  id: String!
+  types: [QnrElementType!]!
+  minDate: Date!
+  maxDate: Date!
+  saveBtnLabel: String!
+  cancelBtnLabel: String!
+  nameFieldLabel: String!
+  typeFieldLabel: String!
+  startFieldLabel: String!
+  endFieldLabel: String!
+  beforeStartFieldLabel: String!
+  afterEndFieldLabel: String!
+  episodeTypes: [ZfEpisodeType!]!
+  episodeCategories: [ZfEpisodeCategory!]!
+  entries: [ZfEpisodeEntry!]!
+}
+
+type ZfMultipleChoiceOptionElement implements ZfFormControlElement & ZfChoiceOptionBaseElement & ZfElement & QnrMultipleChoiceOptionElement & QnrChoiceOptionElement & QnrLabeledElement & QnrFormControlElement & QuestionnaireElement {
+  id: String!
+  types: [QnrElementType!]!
+  formControlId: String!
+  label: String!
+  labelPosition: QnrLabelPosition!
+  attachedOpenQuestionIds: [String!]!
+  exclusive: Boolean!
+}
+
+type ZfMultipleChoiceMatrixQuestionCategoryElement implements ZfChoiceMatrixQuestionCategoryElement & ZfMatrixQuestionCategoryElement & ZfParentElement & ZfElement & QnrMultipleChoiceMatrixQuestionCategoryElement & QnrChoiceMatrixQuestionCategoryElement & QnrMatrixQuestionCategoryElement & QnrParentElement & QnrHasElementChildren & QuestionnaireElement {
+  id: String!
+  types: [QnrElementType!]!
+  childrenIds: [String!]!
+  children: [QuestionnaireElement!]!
+  label: String!
+  unitLabel: String
+  customLabelElementId: String
+  optionIds: [String!]!
+  formControlId: String!
+}
+
+type ZfHtmlSectionElement implements ZfElement & QnrHtmlSectionElement & QuestionnaireElement {
+  id: String!
+  types: [QnrElementType!]!
+  html: String!
+  kind: QnrTextSectionKind!
+}
+
+interface ZfParentElement implements ZfElement & QnrParentElement & QnrHasElementChildren & QuestionnaireElement {
+  id: String!
+  types: [QnrElementType!]!
+  childrenIds: [String!]!
+  children: [QuestionnaireElement!]!
+}
+
+type MaxValueValidator implements QnrQuestionValidator {
+  errorMessage: String!
+  maxValue: Decimal!
+}
+
+interface QnrChoiceMatrixQuestionCategoryElement implements QnrMatrixQuestionCategoryElement & QnrParentElement & QnrHasElementChildren & QuestionnaireElement {
+  childrenIds: [String!]!
+  id: String!
+  types: [QnrElementType!]!
+  label: String!
+  unitLabel: String
+  customLabelElementId: String
+  optionIds: [String!]!
+}
+
+interface ZfElement implements QuestionnaireElement {
+  id: String!
+  types: [QnrElementType!]!
+}
+
+type MaxTextLengthValidator implements QnrQuestionValidator {
+  errorMessage: String!
+  maxLength: Int!
+}
+
+interface QnrChoiceOptionElement implements QnrLabeledElement & QuestionnaireElement {
+  id: String!
+  types: [QnrElementType!]!
+  label: String!
+  labelPosition: QnrLabelPosition!
+  attachedOpenQuestionIds: [String!]!
+}
+
+type ZfEpisodeBoxedLayout implements QuestionnairePageLayout {
+  dummy: Boolean!
+  episode: ZfEpisodeEntry!
+}
+
+interface QnrSingleChoiceOptionElement implements QnrChoiceOptionElement & QnrLabeledElement & QuestionnaireElement {
+  id: String!
+  types: [QnrElementType!]!
+  label: String!
+  labelPosition: QnrLabelPosition!
+  attachedOpenQuestionIds: [String!]!
+  formValue: String!
+}
+
+type EmailValidator implements QnrQuestionValidator {
+  errorMessage: String!
+}
+
+type ZfDifferentialQuestionPartElement implements ZfParentElement & ZfElement & QnrDifferentialQuestionPartElement & QnrParentElement & QnrHasElementChildren & QnrFormControlElement & QuestionnaireElement {
+  id: String!
+  types: [QnrElementType!]!
+  childrenIds: [String!]!
+  children: [QuestionnaireElement!]!
+  formControlId: String!
+  optionIds: [String!]!
+}
+
+interface QnrMultipleChoiceOptionElement implements QnrChoiceOptionElement & QnrLabeledElement & QnrFormControlElement & QuestionnaireElement {
+  id: String!
+  types: [QnrElementType!]!
+  label: String!
+  labelPosition: QnrLabelPosition!
+  attachedOpenQuestionIds: [String!]!
+  formControlId: String!
+  exclusive: Boolean!
+}
+
+interface QnrDoubleMatrixQuestionElement implements QnrMatrixQuestionBaseElement & QnrParentElement & QnrHasElementChildren & QuestionnaireElement {
+  childrenIds: [String!]!
+  id: String!
+  types: [QnrElementType!]!
+  categoryIds: [String!]!
+}
+
+interface QnrDifferentialQuestionPartElement implements QnrParentElement & QnrHasElementChildren & QnrFormControlElement & QuestionnaireElement {
+  childrenIds: [String!]!
+  id: String!
+  types: [QnrElementType!]!
+  formControlId: String!
+  optionIds: [String!]!
+}
+
+interface ZfMatrixQuestionCategoryElement implements ZfParentElement & ZfElement & QnrMatrixQuestionCategoryElement & QnrParentElement & QnrHasElementChildren & QuestionnaireElement {
+  id: String!
+  types: [QnrElementType!]!
+  childrenIds: [String!]!
+  children: [QuestionnaireElement!]!
+  label: String!
+  unitLabel: String
+  customLabelElementId: String
+}
+
+type Query {
+  questionnaire(
+    """The ID of the object."""
+    id: ID!
+  ): Questionnaire
+  questionnaires(pagination: OffsetPaginationInput): QuestionnaireOffsetPaginated!
+  questionnaireNews(filters: QuestionnaireNewsFilter, ordering: [QuestionnaireNewsOrder!]! = []): [QuestionnaireNews!]!
+  questionnaireFiles(filters: QuestionnaireFileFilter, pagination: OffsetPaginationInput): [QuestionnaireFile!]!
+  user: BaseUser!
+  node(
+    """The ID of the object."""
+    id: ID!
+  ): Node
+  nodes(
+    """The IDs of the objects."""
+    ids: [ID!]!
+  ): [Node]!
+  zofarToken(token: String = null): ZofarToken
+  zofarLookupExternalQuestionnaireId(externalId: String!): ID
+}
+
+type QuestionnaireOffsetPaginated {
+  pageInfo: OffsetPaginationInfo!
+  """Total count of existing results."""
+  totalCount: Int!
+  """List of paginated results."""
+  results: [Questionnaire!]!
+}
+
+input OffsetPaginationInput {
+  offset: Int! = 0
+  limit: Int
+}
+
+type QuestionnaireNews implements Node {
+  """The Globally Unique ID of this object"""
+  id: ID!
+  title: String!
+  description: String!
+  content: String!
+  date: DateTime!
+  seen: Boolean!
+  expired: Boolean!
+}
+
+input QuestionnaireNewsFilter {
+  AND: QuestionnaireNewsFilter
+  OR: QuestionnaireNewsFilter
+  NOT: QuestionnaireNewsFilter
+  DISTINCT: Boolean
+  seen: Boolean
+  expired: Boolean
+}
+
+input QuestionnaireNewsOrder @oneOf {
+  title: Ordering
+  date: Ordering
+}
+
+enum Ordering {
+  ASC
+  ASC_NULLS_FIRST
+  ASC_NULLS_LAST
+  DESC
+  DESC_NULLS_FIRST
+  DESC_NULLS_LAST
+}
+
+type QuestionnaireFile implements Node {
+  """The Globally Unique ID of this object"""
+  id: ID!
+  title: String!
+  description: String!
+  file: File!
+  type: QuestionnaireFileType!
+}
+
+type File {
+  name: String!
+  url: String!
+}
+
+enum QuestionnaireFileType {
+  FILE
+  PRIVACY
+}
+
+input QuestionnaireFileFilter {
+  type: QuestionnaireFileType
+  AND: QuestionnaireFileFilter
+  OR: QuestionnaireFileFilter
+  NOT: QuestionnaireFileFilter
+  DISTINCT: Boolean
+}
+
+type ZofarToken implements Node {
+  """The Globally Unique ID of this object"""
+  id: ID!
+  hasSeenTour: Boolean!
+  token: String!
+  accountState: ZofarTokenAccountState!
+}
+
+enum ZofarTokenAccountState {
+  NO_ACCOUNT
+  ACCOUNT
+}
+
+type Mutation {
+  login(username: String!, password: String!): LoginPayload!
+  logout: AnonymousUser!
+  resendAccountActivation(data: ResendAccountActivationInput!): Void
+  forgotPassword(email: String!): Void
+  resetPassword(
+    """Input data for `resetPassword` mutation"""
+    input: ResetPasswordInput!
+  ): OperationInfo
+  confirmEmail(uid: String!, token: String!): OperationInfoConfirmEmailSuccessResult!
+  triggerUserEmailChange: OperationInfo
+  updateUser(data: UpdateUser!): UpdateUserPayload!
+  updateUserEmail(uid: String!, token: String!, newEmail: String!): OperationInfo
+  zofarRegister(data: ZofarCreateUser!): OperationInfo
+  activateZofarGuestSession(data: ZfGuestSessionInput!): ActivateZofarGuestSessionPayload!
+  zofarSubmit(data: ZfFormSubmit!): ZofarSubmitPayload!
+  saveZofarEpisode(data: ZfSaveEpisodeInput!, continueToDetails: Boolean! = false): SaveZofarEpisodePayload!
+  zofarNavigateToEpisodeDetails(data: ZfNavigateToEpisodeDetailsInput!): ZofarNavigateToEpisodeDetailsPayload!
+  removeZofarEpisode(data: ZfRemoveEpisodeInput!): RemoveZofarEpisodePayload!
+  markZofarGapHidden(data: ZfHideGapInput!): MarkZofarGapHiddenPayload!
+  zofarBack(questionnaireId: ID!): ZofarBackPayload!
+  refreshQuestionnaireStatus(statusIds: [ID!]!): [QuestionnaireStatus!]!
+  updateZofarToken(data: ZofarTokenUpdate!): UpdateZofarTokenPayload!
+  addParadata(data: [ParadataInput!]!): OperationInfo
+  registerWebPush(
+    """Input data for `registerWebPush` mutation"""
+    input: RegisterWebPushInput!
+  ): WebPushDevice!
+  unregisterWebPush(
+    """Input data for `unregisterWebPush` mutation"""
+    input: UnregisterWebPushInput!
+  ): Void
+  setQuestionnaireNewsSeen(newsId: ID!, seen: Boolean! = true): SetQuestionnaireNewsSeenPayload!
+}
+
+union LoginPayload = User | OperationInfo
+
+type OperationInfo {
+  """List of messages returned by the operation."""
+  messages: [OperationMessage!]!
+}
+
+type OperationMessage {
+  """The kind of this message."""
+  kind: OperationMessageKind!
+  """The error message."""
+  message: String!
+  """
+  The field that caused the error, or `null` if it isn't associated with any particular field.
+  """
+  field: String
+  """The error code, or `null` if no error code was set."""
+  code: String
+}
+
+enum OperationMessageKind {
+  INFO
+  WARNING
+  ERROR
+  PERMISSION
+  VALIDATION
+}
+
+"""Represents NULL values"""
+scalar Void
+
+input ResendAccountActivationInput @oneOf {
+  email: String
+  tokenUid: String
+}
+
+input ResetPasswordInput {
+  uid: String!
+  token: String!
+  newPassword: String!
+}
+
+union OperationInfoConfirmEmailSuccessResult = OperationInfo | ConfirmEmailSuccessResult
+
+type ConfirmEmailSuccessResult {
+  activated: Boolean!
+}
+
+union UpdateUserPayload = User | OperationInfo
+
+input UpdateUser {
+  password: String
+  firstName: String
+  lastName: String
+  street: String
+  zipCode: String
+  city: String
+  country: String
+  dateOfBirth: Date
+  phone: String
+}
+
+input ZofarCreateUser {
+  email: String!
+  password: String!
+  token: String!
+  firstName: String = null
+  lastName: String = null
+  street: String = null
+  zipCode: String = null
+  city: String = null
+  country: String = null
+  dateOfBirth: Date = null
+  phone: String = null
+}
+
+union ActivateZofarGuestSessionPayload = AnonymousUser | OperationInfo
+
+input ZfGuestSessionInput {
+  token: String!
+}
+
+union ZofarSubmitPayload = ZfPage | OperationInfo
+
+input ZfFormSubmit {
+  questionnaireId: ID!
+  version: Int!
+  formValues: [ZfFormSubmitItem!]!
+}
+
+input ZfFormSubmitItem {
+  id: String!
+  value: QuestionnaireFormControlValue
+}
+
+union SaveZofarEpisodePayload = ZfPage | OperationInfo
+
+input ZfSaveEpisodeInput {
+  questionnaireId: ID!
+  existingId: String = null
+  version: Int!
+  name: String!
+  type: String!
+  start: Date
+  end: Date
+  event: Boolean!
+  badge: String
+  calendarZoom: Int
+}
+
+union ZofarNavigateToEpisodeDetailsPayload = ZfPage | OperationInfo
+
+input ZfNavigateToEpisodeDetailsInput {
+  questionnaireId: ID!
+  episodeId: String!
+}
+
+union RemoveZofarEpisodePayload = ZfPage | OperationInfo
+
+input ZfRemoveEpisodeInput {
+  questionnaireId: ID!
+  version: Int!
+  id: String!
+}
+
+union MarkZofarGapHiddenPayload = ZfPage | OperationInfo
+
+input ZfHideGapInput {
+  questionnaireId: ID!
+  version: Int!
+  id: String!
+}
+
+union ZofarBackPayload = ZfPage | OperationInfo
+
+union UpdateZofarTokenPayload = ZofarToken | OperationInfo
+
+input ZofarTokenUpdate {
+  markTourSeen: Boolean
+}
+
+input ParadataInput {
+  timeAgo: Duration!
+  value: ParadataValue!
+  questionnaireId: ID = null
+}
+
+scalar Duration
+
+input ParadataValue @oneOf {
+  focus: Boolean
+  userAgent: String
+  windowSize: ParadataWindowSizeValue
+  orientation: ScreenOrientation
+}
+
+input ParadataWindowSizeValue {
+  width: Int!
+  height: Int!
+}
+
+enum ScreenOrientation {
+  PORTRAIT
+  LANDSCAPE
+}
+
+type WebPushDevice implements Node {
+  """The Globally Unique ID of this object"""
+  id: ID!
+}
+
+input RegisterWebPushInput {
+  p256dh: String!
+  auth: String!
+  endpoint: String!
+}
+
+input UnregisterWebPushInput {
+  endpoint: String = null
+}
+
+union SetQuestionnaireNewsSeenPayload = QuestionnaireNews | OperationInfo

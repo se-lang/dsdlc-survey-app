@@ -1,0 +1,322 @@
+@if (tourMode) {
+    <div class="lla-calendar-tour-1" [llaTourHighlightElement]="'zf-calendar-1'"></div>
+}
+
+<div class="view-mode-container">
+    <lla-zf-calendar-view-mode-selector
+        [(mobileTitlesHidden)]="mobileCategoryTitlesHidden"
+        [months]="columns()"
+    />
+</div>
+<ng-container *transloco="let t; prefix: 'zfCalendar'">
+    <div
+        class="calendar-outer-grid"
+        [style.--zf-calendar-rows]="categories().length"
+        [style.--zf-calendar-columns]="columns()"
+        [style.--zf-calendar-months-per-page]="monthsPerPage()"
+    >
+        <div class="calendar-legend-container">
+            @for (category of categories(); track category.id) {
+                <div
+                    class="calendar-legend"
+                    [class.mobileCategoryHidden]="mobileCategoryTitlesHidden()"
+                >
+                    <span>{{ category.label }}</span>
+                    <lla-icon [name]="`episode-categories/${category.id}`" />
+                </div>
+            }
+        </div>
+        <div class="calendar-inner-grid-wrapper" [style.--zf-calendar-current-page]="currentPage()">
+            <div class="calendar-inner-grid">
+                @let forcedAddHighlight = forceAddEpisodeHighlight?.();
+                @let highlightEpisodes = this.highlightEpisodes?.();
+                @let markerGroups = this.markerGroups();
+                @let badgeGroups = this.badgeGroups();
+                @for (category of categories(); track category.id) {
+                    @let categoryIndex = $index;
+                    <div class="calendar-row" [attr.data-index]="categoryIndex">
+                        @for (month of months(); track month.month.toMillis()) {
+                            @let forceHighlight =
+                                forcedAddHighlight?.categoryId === category.id &&
+                                forcedAddHighlight?.monthIndex === $index;
+
+                            @let yearEndMarker = categoryIndex === 0 && month.isLast;
+                            @let yearStartMarker = categoryIndex === 0 && month.isFirst;
+                            <button
+                                [llaTourHighlightElement]="forceHighlight ? 'episode-add' : null"
+                                [disabled]="month.disabled"
+                                type="button"
+                                class="calendar-cell"
+                                aria-label="Add"
+                                (click)="
+                                    newEpisode({ startDate: month.month.toISODate() }, category)
+                                "
+                                [style.grid-column]="$index + 1"
+                                [class.calendar-cell--force-highlight]="forceHighlight"
+                                [class.calendar-cell--end-marker]="yearEndMarker"
+                                [attr.data-lla-calendar-year-start]="
+                                    categoryIndex === 0 && month.isYearStart
+                                        ? month.month.year
+                                        : null
+                                "
+                            >
+                                <lla-icon name="add-circle" />
+                                @if (yearEndMarker) {
+                                    <div
+                                        aria-hidden="true"
+                                        #yearEndMarker
+                                        class="calendar-year-start-end-marker"
+                                    ></div>
+                                }
+                                @if (yearStartMarker) {
+                                    <div
+                                        aria-hidden="true"
+                                        #yearStartMarker
+                                        class="calendar-year-start-end-marker"
+                                        data-lla-year-marker="start"
+                                    ></div>
+                                }
+                            </button>
+                        }
+                        @if (categoryIndex === 0) {
+                            <div class="calendar-gap-container">
+                                @for (gap of gapMarkers(); track $index) {
+                                    <button
+                                        class="gap-marker"
+                                        [attr.aria-label]="
+                                            t('gapMarker', {
+                                                start: gap.start | date: 'longMonthYear',
+                                                end: gap.end | date: 'longMonthYear',
+                                            })
+                                        "
+                                        [style.--zf-marker-start]="gap.cssStart"
+                                        [style.--zf-marker-width]="gap.cssWidth"
+                                        (click)="gapClick(gap.episodeEntry)"
+                                    >
+                                        <lla-icon [name]="'help'" />
+                                    </button>
+                                }
+                            </div>
+                        }
+                        @for (markerGroup of markerGroups[categoryIndex]; track markerGroup.id) {
+                            <div class="calendar-marker-container">
+                                @for (markerRow of markerGroup.rows; track $index) {
+                                    @let rowIndex = $index;
+                                    @for (marker of markerRow; track $index) {
+                                        <button
+                                            [llaTourHighlightElement]="
+                                                highlightEpisodes &&
+                                                highlightEpisodes.includes(marker.episodeEntry.id)
+                                                    ? 'episode-' + marker.episodeEntry.id
+                                                    : null
+                                            "
+                                            [llaTriggerPopover]="episodePopover"
+                                            (dblclick)="
+                                                episodePopover.close();
+                                                editEpisode(marker.episodeEntry)
+                                            "
+                                            class="calendar-marker"
+                                            [class]="
+                                                `calendar-marker--state-${marker.episodeEntry.state.toLowerCase()}`
+                                            "
+                                            [style.--zf-marker-start]="marker.cssStart"
+                                            [style.--zf-marker-width]="marker.cssWidth"
+                                            [llaZfEpisodeColorStyles]="marker.episodeType"
+                                            [style.--zf-marker-row]="rowIndex"
+                                        >
+                                            {{ marker.text }}
+                                            @if (marker.episodeEntry.state === "new") {
+                                                <lla-icon
+                                                    class="new-episode-icon"
+                                                    [class.new-episode-icon--rotate]="
+                                                        categoryIndex === 0
+                                                    "
+                                                    [name]="'attention-bubble'"
+                                                    [shape]="'auto'"
+                                                />
+                                            }
+                                        </button>
+                                        <ng-template
+                                            llaPopover
+                                            #episodePopover="llaPopover"
+                                            [horizontalPosition]="'mouse'"
+                                        >
+                                            <lla-arrow-popover>
+                                                <lla-zf-episode-popover
+                                                    [episode]="marker.episodeEntry"
+                                                    (deleteEpisode)="
+                                                        episodePopover.close();
+                                                        removeEpisode(marker.episodeEntry.id)
+                                                    "
+                                                    (editEpisode)="
+                                                        episodePopover.close();
+                                                        editEpisode(marker.episodeEntry)
+                                                    "
+                                                />
+                                            </lla-arrow-popover>
+                                        </ng-template>
+                                    }
+                                }
+                            </div>
+                        }
+                        <div class="calendar-badge-container">
+                            @for (badgeGroup of badgeGroups[categoryIndex]; track badgeGroup.id) {
+                                <div
+                                    class="calendar-badge-group"
+                                    [style.--calendar-badge-group-offset]="badgeGroup.cssOffset"
+                                >
+                                    @for (badge of badgeGroup.badges; track badge.episodeEntry.id) {
+                                        <button
+                                            [llaTriggerPopover]="episodePopover"
+                                            (dblclick)="
+                                                episodePopover.close();
+                                                editEpisode(badge.episodeEntry)
+                                            "
+                                            class="calendar-badge"
+                                            [class]="
+                                                `calendar-badge--state-${badge.episodeEntry.state.toLowerCase()}`
+                                            "
+                                            [llaZfEpisodeColorStyles]="badge.episodeEntry"
+                                        >
+                                            <lla-icon
+                                                [name]="`episode-badge/${badge.episodeEntry.badge}`"
+                                            />
+                                        </button>
+                                        <ng-template
+                                            llaPopover
+                                            #episodePopover="llaPopover"
+                                            [horizontalPosition]="'mouse'"
+                                        >
+                                            <lla-arrow-popover>
+                                                <lla-zf-episode-popover
+                                                    [episode]="badge.episodeEntry"
+                                                    (deleteEpisode)="
+                                                        episodePopover.close();
+                                                        removeEpisode(badge.episodeEntry.id)
+                                                    "
+                                                    (editEpisode)="
+                                                        episodePopover.close();
+                                                        editEpisode(badge.episodeEntry)
+                                                    "
+                                                />
+                                            </lla-arrow-popover>
+                                        </ng-template>
+                                    }
+                                </div>
+                            }
+                        </div>
+                    </div>
+                }
+            </div>
+            <div class="calendar-column-legends">
+                @if (
+                    (monthsPerPage() <= 24 && !viewportService.isMobile()) || monthsPerPage() <= 12
+                ) {
+                    @for (month of months(); track month.month.toMillis()) {
+                        <div
+                            class="calendar-month-legend"
+                            [class.calendar-month-legend--disabled]="month.disabled"
+                        >
+                            {{ month.month | date: "shortMonth" }}
+                        </div>
+                    }
+                }
+                @for (year of years(); track year.year.toMillis()) {
+                    @if (year.previous) {
+                        @let hideOnFirst = year.previousGoesToFirst && scrollAtStart();
+                        <button
+                            type="button"
+                            class="calendar-year-move-btn calendar-year-move-btn--back"
+                            [class.calendar-year-move-btn--hidden]="hideOnFirst"
+                            [attr.aria-hidden]="hideOnFirst ? 'true' : null"
+                            (click)="scrollToYear(year.previous)"
+                        >
+                            <lla-icon [name]="'arrow-left'" [shape]="'auto'" />
+                            {{ year.previous | date: "year" }}
+                        </button>
+                    }
+                    <div
+                        class="calendar-year-legend"
+                        [style.--zf-calendar-year-legend-w]="year.yearMarkerColWidth"
+                        [style.--zf-calendar-year-legend-w-sub]="year.yearMarkerColWidthSubDesktop"
+                    >
+                        {{ year.year | date: "year" }}
+                    </div>
+
+                    @if (year.next) {
+                        @let hideOnLast = year.nextGoesToLast && scrollAtEnd();
+                        <button
+                            type="button"
+                            class="calendar-year-move-btn calendar-year-move-btn--fwd"
+                            [class.calendar-year-move-btn--hidden]="hideOnLast"
+                            [attr.aria-hidden]="hideOnLast ? 'true' : null"
+                            (click)="scrollToYear(year.next)"
+                        >
+                            {{ year.next | date: "year" }}
+                            <lla-icon [name]="'arrow-left'" [shape]="'auto'" />
+                        </button>
+                    }
+                }
+            </div>
+        </div>
+
+        <div class="calendar-navigation">
+            <lla-zf-episode-navigation [mode]="'calendar'" (newEpisode)="newEpisode()" />
+        </div>
+    </div>
+
+    <dialog llaDialog [(open)]="gapDialogOpen" [size]="'login'" [allowCancel]="false">
+        <ng-template>
+            <lla-dialog-header
+                [enableCloseIcon]="false"
+                [color]="'brand'"
+                [title]="t('gapConfirmation.header')"
+            />
+            <lla-dialog-content>
+                <p>{{ t("gapConfirmation.text") }}</p>
+            </lla-dialog-content>
+            <lla-dialog-footer>
+                <lla-dialog-footer>
+                    <div class="lla-button-row">
+                        <button
+                            type="button"
+                            class="lla-flat-button lla-button--secondary"
+                            [class.lla-button--disabled]="gapDialogNavigating()"
+                            (click)="gapDialogNo()"
+                        >
+                            {{ t("gapConfirmation.no") }}
+                        </button>
+                        <button
+                            type="button"
+                            class="lla-flat-button"
+                            (click)="gapDialogOpen.set(false)"
+                            [class.lla-button--disabled]="gapDialogNavigating()"
+                        >
+                            {{ t("gapConfirmation.yes") }}
+                        </button>
+                    </div>
+                </lla-dialog-footer>
+            </lla-dialog-footer>
+        </ng-template>
+    </dialog>
+</ng-container>
+
+<dialog
+    llaDialog
+    [open]="resolvedDialogOpen()"
+    [style.visibility]="dialogVisiblyHidden() ? 'hidden' : null"
+    (openChange)="dialogOpen.set($event)"
+    [size]="'zf-episode'"
+    [llaTourHighlightElement]="'episode-dialog'"
+>
+    <ng-template>
+        <lla-zf-episode-dialog
+            [element]="element()"
+            [calendarZoom]="calendarZoom()"
+            [editEpisode]="resolvedEditingEpisode()"
+            [newEpisodePrefill]="newEpisodePrefill()"
+            [selectedEpisodeTypeCategory]="newEpisodeTypeCategory()"
+            (closeDialog)="closeDialog()"
+        />
+    </ng-template>
+</dialog>

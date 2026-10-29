@@ -1,0 +1,19 @@
+@use "../../../style/media" as *;
+
+@include desktop-only {
+    :host {
+        display: block;
+        text-align: center;
+
+        --icon-size: 3.25rem;
+    }
+}
+@include mobile-only {
+    :host {
+        display: flex;
+        align-items: center;
+        gap: 0.625rem;
+
+        --icon-size: 1.625rem;
+    }
+}

@@ -1,0 +1,25 @@
+@let currentMode = service.viewMode();
+<ng-container *transloco="let t; prefix: 'zfEpisodeViewMode'">
+    <div class="buttons">
+        <button
+            class="mobile-category-visibility-button"
+            (click)="mobileTitlesHidden.set(!mobileTitlesHidden())"
+        >
+            {{ t("mobileButtonTitleVisible") }}
+            <lla-icon [name]="mobileTitlesHidden() ? 'eye-hidden' : 'eye-show'" />
+        </button>
+        @for (mode of resolvedViewModes(); track mode.vm.monthsPerPage) {
+            <button
+                type="button"
+                [class.active]="currentMode === mode.vm"
+                (click)="service.viewMode.set(mode.vm)"
+                #btn
+            >
+                {{ mode.label }}
+            </button>
+        }
+    </div>
+</ng-container>
+@if (markerReady()) {
+    <div class="active-marker"></div>
+}

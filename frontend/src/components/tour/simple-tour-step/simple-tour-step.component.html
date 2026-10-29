@@ -1,0 +1,27 @@
+<p>
+    @for (part of parsed(); track $index) {
+        @switch (part.type) {
+            @case ("text") {
+                <!--
+                --><span class="linebreaks">{{ part.content }}</span
+                ><!--
+            -->
+            }
+            @case ("strong") {
+                <!--
+                --><strong class="linebreaks">{{ part.content }}</strong
+                ><!--
+            -->
+            }
+            @case ("button") {
+                <!--
+                --><i class="hint-button">{{ part.content }}</i
+                ><!--
+            -->
+            }
+            @case ("icon") {
+                <lla-icon [name]="part.icon" [shape]="'auto'" />
+            }
+        }
+    }
+</p>

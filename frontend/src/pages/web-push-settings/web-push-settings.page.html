@@ -1,0 +1,36 @@
+<ng-container *transloco="let t; prefix: 'webPush'">
+    <div class="page-wrapper">
+        @if (supported) {
+            @let sub = subscription();
+            @if (sub === undefined) {
+                @if (subMissingDebounced()) {
+                    <p>{{ t("loading") }}</p>
+                }
+            } @else if (sub === null) {
+                <p>{{ t("notActive") }}</p>
+                <div>
+                    <button class="lla-flat-button" (click)="createSub()">
+                        @if (loadingDebounced()) {
+                            {{ t("activateButtonLoading") }}
+                        } @else {
+                            {{ t("activateButton") }}
+                        }
+                    </button>
+                </div>
+            } @else {
+                <p>{{ t("active") }}</p>
+                <div>
+                    <button class="lla-flat-button" (click)="unregister()">
+                        @if (loadingDebounced()) {
+                            {{ t("deactivateButtonLoading") }}
+                        } @else {
+                            {{ t("deactivateButton") }}
+                        }
+                    </button>
+                </div>
+            }
+        } @else {
+            <p>{{ t("notSupported") }}</p>
+        }
+    </div>
+</ng-container>

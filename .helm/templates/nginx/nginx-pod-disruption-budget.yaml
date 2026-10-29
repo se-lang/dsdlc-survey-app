@@ -1,0 +1,9 @@
+apiVersion: policy/v1
+kind: PodDisruptionBudget
+metadata:
+  name: {{ include "dsdlc.v1.nginx.fullname" . }}
+spec:
+  minAvailable: {{ .Values.infra.nginx.minAvailable }}
+  selector:
+    matchLabels:
+        app.kubernetes.io/component: reverseProxy

@@ -1,0 +1,30 @@
+<svg [attr.width]="positions.viewport().width" [attr.height]="positions.viewport().height">
+    <defs>
+        <mask [id]="componentId">
+            <rect width="100%" height="100%" fill="white" />
+            @let mainElement = positions.mainElement();
+            <circle
+                class="animated-mask"
+                [class.animated-mask--hidden]="mainElement.hidden"
+                [attr.cx]="mainElement.cx"
+                [attr.cy]="mainElement.cy"
+                [attr.r]="mainElement.r"
+            />
+            @for (element of positions.extraElements(); track $index) {
+                <circle
+                    class="animated-mask"
+                    [attr.cx]="element.cx"
+                    [attr.cy]="element.cy"
+                    [attr.r]="element.r"
+                />
+            }
+        </mask>
+    </defs>
+    <rect
+        width="100%"
+        height="100%"
+        [attr.mask]="'url(#' + componentId + ')'"
+        fill="var(--lla-clr-beige2)"
+        opacity=".6"
+    />
+</svg>

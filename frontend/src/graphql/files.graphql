@@ -1,0 +1,19 @@
+fragment QuestionnaireFile on QuestionnaireFile {
+    id
+    title
+    description
+    file {
+        url
+        name
+    }
+    type
+}
+
+query questionnaireFiles(
+    $filters: QuestionnaireFileFilter = null
+    $pagination: OffsetPaginationInput = null
+) {
+    questionnaireFiles(filters: $filters, pagination: $pagination) {
+        ...QuestionnaireFile
+    }
+}

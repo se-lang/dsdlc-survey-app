@@ -1,0 +1,52 @@
+kind: Deployment
+apiVersion: apps/v1
+metadata:
+    name: {{ include "dsdlc.v1.django.fullname" . }}
+    labels:
+        app.kubernetes.io/component: api
+spec:
+    selector:
+        matchLabels:
+            app.kubernetes.io/component: api
+    revisionHistoryLimit: 1
+{{ if eq .Values.infra.api.minReplicas .Values.infra.api.maxReplicas }}
+    replicas: {{ .Values.infra.api.minReplicas }}
+{{ end }}
+    template:
+        metadata:
+            labels:
+                app.kubernetes.io/component: api
+        spec:
+            imagePullSecrets: {{ toYaml .Values.imagePullSecrets | nindent 16 }}
+            tolerations: {{ toYaml .Values.tolerations | nindent 16 }}
+            nodeSelector: {{ toYaml .Values.nodeSelector | nindent 16 }}
+            topologySpreadConstraints:
+                -   maxSkew: 1
+                    topologyKey: kubernetes.io/hostname
+                    whenUnsatisfiable: ScheduleAnyway
+                    labelSelector:
+                        matchLabels:
+                            app.kubernetes.io/component: api
+            containers:
+                -   name: django
+                    image: {{.Values.werf.image.django }}
+                    env:
+                        -   name: LLA_CONFIG_FILE
+                            value: "/home/app/config/lla.config.yaml"
+                        -   name: LLA_SECRETS_DIR
+                            value: "/home/app/secrets"
+                        -   name: DJANGO_WP_PRIVATE_KEY
+                            value: "/home/app/secret-files/push-private-key.pem"
+                        -   name: GUNICORN_WORKERS
+                            value: "{{ .Values.infra.wsgiWorkers }}"
+                        -   name: GUNICORN_THREADS
+                            value: "{{ .Values.infra.wsgiThreads }}"
+                    volumeMounts: {{ (include "dsdlc.v1.commonVolumeMounts" .) | nindent 24 }}
+                    ports:
+                        -   containerPort: 8000
+                            name: http
+                    resources:
+                        requests:
+                            cpu: "{{ .Values.infra.api.cpuRequests }}"
+                            memory: "170Mi"
+            volumes: {{ (include "dsdlc.v1.commonVolumeConfig" .) | nindent 16 }}

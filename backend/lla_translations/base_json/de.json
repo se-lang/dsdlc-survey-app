@@ -1,0 +1,378 @@
+{
+  "questionnaire": {
+    "unknownError": "Die Umfrage konnte nicht geladen werden. Bitte versuchen Sie es später erneut.",
+    "leaveQuestionTitle": "Zu Home wechseln?",
+    "leaveQuestion": "Ihre Daten auf der Seite wurden noch nicht gespeichert. Wenn Sie jetzt zu Home wechseln, gehen Ihre Daten verloren.",
+    "leaveQuestionYes": "Ja, zu Home wechseln",
+    "leaveQuestionNo": "Nein, zurück zur Seite",
+    "leaveQuestionCalendar": "Ihre Daten auf der Seite wurden gespeichert. Sie können die Befragung jederzeit fortsetzen.",
+    "leaveToTourTitle": "Zur Tour wechseln?",
+    "leaveToTourQuestion": "Ihre Daten auf der Seite wurden noch nicht gespeichert. Wenn Sie jetzt zur Tour wechseln, gehen Ihre Daten verloren.",
+    "leaveToTourYes": "Ja, zur Tour wechseln",
+    "leaveToTourQuestionCalendar": "Ihre Daten auf der Seite wurden gespeichert. Sie können die Befragung danach einfach fortsetzen."
+  },
+  "webPush": {
+    "loading": "Wird geladen...",
+    "notActive": "Push-Benachrichtigungen sind nicht aktiv.",
+    "activateButtonLoading": "Aktivieren...",
+    "activateButton": "Aktivieren",
+    "active": "Push-Benachrichtigungen sind aktiv.",
+    "deactivateButtonLoading": "Deaktivieren...",
+    "deactivateButton": "Deaktivieren",
+    "notSupported": "Leider unterstützt Ihr Gerät keine Push-Benachrichtigungen.",
+    "header": "Push-Benachrichtigungen"
+  },
+  "resetPassword": {
+    "header": "Passwort zurücksetzen",
+    "success": "Ihr Passwort wurde zurückgesetzt.",
+    "backToLogin": "Zurück zur Anmeldung",
+    "label": {
+      "password": "Neues Passwort",
+      "password2": "Passwort wiederholen"
+    },
+    "error": {
+      "password": "Bitte geben Sie ein Passwort ein.",
+      "password2": "Bitte geben Sie das Passwort erneut ein.",
+      "mismatch": "Die Passwörter stimmen nicht überein.",
+      "generic": "Wir konnten Ihr Passwort nicht zurücksetzen. Bitte versuchen Sie es später erneut."
+    },
+    "submitButtonLoading": "Wird zurückgesetzt...",
+    "submitButton": "Passwort zurücksetzen"
+  },
+  "register": {
+    "backLabel": "Zurück zur Übersicht",
+    "title": "Konto erstellen",
+    "alreadyHaveAccount": "Ihr Konto existiert bereits. Bitte melden Sie sich mit Ihrer E-Mail Adresse und Ihrem Passwort an.",
+    "successMessage": "Wir haben Ihnen eine E-Mail mit einem Link zur Aktivierung Ihres Accounts gesendet. Bitte überprüfen Sie Ihr Postfach (und auch den Spam-Ordner, nur für den Fall).",
+    "toLogin": "Anmelden",
+    "labelEmail": "E-Mail Adresse",
+    "error": {
+      "email-invalid": "Bitte prüfen Sie die E-Mail Adresse.",
+      "email": "Bitte geben Sie Ihre E-Mail Adresse ein.",
+      "password": "Bitte geben Sie ein Passwort ein.",
+      "password2": "Bitte geben Sie das Passwort erneut ein.",
+      "passwordMismatch": "Die Passwörter stimmen nicht überein.",
+      "firstName": "Bitte geben Sie Ihren Vornamen ein.",
+      "lastName": "Bitte geben Sie Ihren Nachnamen ein.",
+      "street": "Bitte geben Sie Ihre Straße ein.",
+      "zip": "Bitte geben Sie Ihre Postleitzahl ein.",
+      "city": "Bitte geben Sie Ihren Ort ein.",
+      "country": "Bitte geben Sie Ihr Land ein.",
+      "birthday": "Bitte geben Sie Ihren Geburtstag ein.",
+      "phone": "Bitte geben Sie Ihre Telefonnummer ein.",
+      "generic": "Wir konnten Ihr Konto gerade nicht erstellen. Bitte versuchen Sie es später erneut."
+    },
+    "labelPassword1": "Neues Passwort",
+    "labelPassword2": "Passwort wiederholen",
+    "labelFirstName": "Vorname",
+    "labelLastName": "Name",
+    "labelStreet": "Straße, Nr.",
+    "labelZip": "PLZ",
+    "labelCity": "Ort",
+    "labelCountry": "Land",
+    "labelBirthday": "Geburtsdatum",
+    "labelPhone": "Telefon",
+    "registerButton": "Konto erstellen"
+  },
+  "notFound": {
+    "header": "Seite nicht gefunden",
+    "text": "Die gewünschte Seite existiert nicht.",
+    "backToHome": "Zur Startseite"
+  },
+  "login": {
+    "title": "Anmelden",
+    "pickLoginMethodIntro": "Bitte geben Sie Ihr Token ein oder melden Sie sich mit Ihrem bestehenden Konto an, um an einer Befragung teilzunehmen.",
+    "tokenLabel": "Ihr Token",
+    "error": {
+      "token": "Bitte geben Sie Ihr Token ein.",
+      "serverGeneric": "Wir konnten Sie im Moment nicht anmelden. Bitte versuchen Sie es später erneut.",
+      "email": "Bitte geben Sie Ihre E-Mail Adresse ein.",
+      "password": "Bitte geben Sie Ihr Passwort ein."
+    },
+    "tokenHint": "Wo finde ich mein Token?",
+    "tokenHintText": "Ihren persönlichen Token finden Sie im Einladungsschreiben direkt unter dem Link zur Teilnahme, gekennzeichnet als ‚persönlicher Code‘ oder scannen Sie den QR-Code.",
+    "guestButton": "Anmelden mit Token",
+    "loginButton": "Anmelden mit Konto",
+    "registerButton": "Konto erstellen",
+    "labelEmail": "E-Mail Adresse",
+    "labelPassword": "Passwort",
+    "forgotPassword": "Passwort vergessen?",
+    "resendActivationEmail": "E-Mail erneut senden",
+    "resendActivationEmailCountdown": "Erneut versuchen in {{ remaining }}",
+    "resendActivationEmailError": "Wir konnten die E-Mail im Moment nicht verschicken. Bitte versuchen Sie es später erneut.",
+    "loadingLabel": "Anmelden...",
+    "loginLabel": "Anmelden",
+    "backLabel": "Zurück zur Übersicht"
+  },
+  "forgotPassword": {
+    "backToLogin": "Zurück zur Anmeldung",
+    "header": "Passwort zurücksetzen",
+    "success": {
+      "1": "Wir haben Ihnen eine E-Mail mit einem Link zum Zurücksetzen Ihres Passworts gesendet. Bitte überprüfen Sie Ihr Postfach (und auch den Spam-Ordner, nur für den Fall).",
+      "2": "Folgen Sie den Anweisungen in der E-Mail, um ein neues Passwort festzulegen.",
+      "3": "Wenn Sie die E-Mail nicht erhalten haben, warten Sie einen Moment und versuchen Sie es erneut oder kontaktieren Sie unser Support-Team für Unterstützung."
+    },
+    "labelEmail": "E-Mail Adresse",
+    "error": {
+      "email": "Bitte geben Sie Ihre E-Mail Adresse ein.",
+      "generic": "Wir konnten Ihr Passwort nicht zurücksetzen. Bitte versuchen Sie es später erneut."
+    },
+    "submitButton": "Passwort zurücksetzen"
+  },
+  "emailChange": {
+    "triggerSuccess": "Die E-Mail wurde versandt, bitte prüfen Sie Ihren Posteingang.",
+    "triggerError": "Wir konnten die E-Mail im Moment nicht versenden. Bitte versuchen Sie es später erneut.",
+    "triggerInfo": "Um Ihre E-Mail Adresse zu ändern, senden wir Ihnen einen Link an Ihre aktuelle E-Mail Adresse. Nutzen Sie diesen Link, um die E-Mail Adresse für Ihren Account zu ändern.",
+    "triggerButton": "E-Mail senden",
+    "confirmTitle": "E-Mail ändern",
+    "changeSuccess": "Ihre E-Mail Adresse wurde geändert.",
+    "toLogin": "Zum Login",
+    "changeIntro": "Um die E-Mail Adresse Ihres Accounts zu ändern, bitte geben Sie die gewünschte neue E-Mail Adresse ein.",
+    "labelNewEmail": "Neue E-Mail Adresse",
+    "error": {
+      "email": "Bitte geben Sie eine E-Mail Adresse ein.",
+      "serverGeneric": "Leider konnten wir Ihre E-Mail Adresse im Moment nicht ändern. Bitte versuchen Sie es später erneut."
+    },
+    "confirmButton": "Änderung bestätigen",
+    "triggerTitle": "E-Mail ändern"
+  },
+  "dashboard": {
+    "lastUpdate": "Letzte Aktualisierung:",
+    "stateNewBadge": "Neu",
+    "questionnaireFinished": "Abgeschlossen",
+    "startQuestionnaire": "Starten",
+    "continueQuestionnaire": "Fortsetzen",
+    "closeSideMenu": "Menü schließen",
+    "settingsHeading": "Einstellungen",
+    "logoutButtonLoading": "Ausloggen...",
+    "logoutButton": "Ausloggen",
+    "questionnaires": "Navigation",
+    "support": "Support",
+    "files": "Studienunterlagen",
+    "contact": "Kontakt",
+    "privacy": "Datenschutz",
+    "imprint": "Impressum",
+    "archive": "Newsarchiv",
+    "accountSettings": "Kontoeinstellungen",
+    "passwordChange": "Passwort ändern",
+    "emailChange": "E-Mail-Adresse ändern",
+    "pushNotifications": "Push-Benachrichtigungen",
+    "changeAccount": "Kontaktinformationen ändern",
+    "createAccountFromGuest": "Konto erstellen",
+    "header": "Was möchten Sie tun?",
+    "backButtonLabel": "Zurück zum Dashboard"
+  },
+  "newsDetail": {
+    "updated": "Aktualisiert:"
+  },
+  "archive": {
+    "titleSort": "Titel",
+    "dateSort": "Datum",
+    "header": "Newsarchiv",
+    "backButtonLabel": "Zurück zur Übersicht"
+  },
+  "changePassword": {
+    "success": {
+      "1": "Ihr Passwort wurde erfolgreich geändert."
+    },
+    "backToDashboard": "Zurück zum Account",
+    "password": "Neues Passwort",
+    "error": {
+      "password": "Bitte geben Sie ein Passwort ein.",
+      "password2": "Bitte geben Sie das Passwort erneut ein.",
+      "passwordMismatch": "Die Passwörter stimmen nicht überein.",
+      "generic": "Wir konnten Ihr Passwort nicht ändern. Bitte versuchen Sie es später erneut."
+    },
+    "passwordRepeat": "Neues Passwort wiederholen",
+    "submitButton": "Passwort ändern",
+    "header": "Passwort ändern"
+  },
+  "changeAccount": {
+    "successMessage": "Ihre Kontaktinformationen wurden geändert.",
+    "backLink": "Zurück zum Dashboard",
+    "labelFirstName": "Vorname",
+    "error": {
+      "firstName": "Bitte geben Sie Ihren Vornamen ein.",
+      "lastName": "Bitte geben Sie Ihren Nachnamen ein.",
+      "street": "Bitte geben Sie Ihre Straße ein.",
+      "zip": "Bitte geben Sie Ihre Postleitzahl ein.",
+      "city": "Bitte geben Sie Ihren Ort ein.",
+      "country": "Bitte geben Sie Ihr Land ein.",
+      "birthday": "Bitte geben Sie Ihren Geburtstag ein.",
+      "phone": "Bitte geben Sie Ihre Telefonnummer ein.",
+      "generic": "Wir konnten Ihre Kontaktinformationen gerade nicht ändern. Bitte versuchen Sie es später erneut."
+    },
+    "labelLastName": "Name",
+    "labelStreet": "Straße, Nr.",
+    "labelZip": "PLZ",
+    "labelCity": "Ort",
+    "labelCountry": "Land",
+    "labelBirthday": "Geburtsdatum",
+    "labelPhone": "Telefon",
+    "submitButton": "Speichern",
+    "header": "Kontaktinformationen ändern"
+  },
+  "activateAccount": {
+    "title": "Account bestätigen",
+    "alreadyActivated": "Ihr Account wurde bereits aktiviert.",
+    "success": "Ihr Account wurde aktiviert.",
+    "loginNow": "Jetzt anmelden",
+    "resentInfo": "E-Mail wurde versandt. Bitte prüfen Sie Ihren Posteingang.",
+    "resending": "Wird gesendet...",
+    "resendButton": "E-Mail erneut senden",
+    "resendError": "Die E-Mail konnte nicht versandt werden. Bitte versuchen Sie es später erneut."
+  },
+  "tour": {
+    "btnSkip": "Überspringen",
+    "btnBack": "Zurück",
+    "btnFinish": "Beenden",
+    "btnStart": "Los geht’s",
+    "btnNext": "Weiter",
+    "title": "Tour",
+    "progress": "{{ step }} von {{ total }}",
+    "intro": {
+      "title": "Willkommen zur App-Tour!",
+      "content": "Schön, dass Sie hier sind. In dieser kurzen Tour zeigen wir Ihnen, wie Sie die App nutzen und welche Funktionen sie bietet."
+    },
+    "calendar": {
+      "title": "Kalender: Alles auf einen Blick",
+      "content": "Um Ihren Werdegang besser verstehen zu können, [[strong:fügen Sie bitte im Kalender die Aktivitäten hinzu]], die Sie im angegebenen Zeitraum ausgeübt haben. Ihre Aktivitäten werden automatisch verschiedenen Lebensbereichen zugeordnet. Bei Bedarf lässt sich die Befragung pausieren und später fortsetzen."
+    },
+    "add-entry": {
+      "title": "Neuer Eintrag: Einfach per Klick",
+      "content": "Alternativ können Sie die Buttons [[icon:add-circle]] oder [[button:Neue Aktivität anlegen]] nutzen."
+    },
+    "add-episode": {
+      "title": "Aktivität anlegen und speichern",
+      "content": "Wählen Sie in dem Dropdown-Menü die [[strong:Kategorie]] der Aktivität aus (z. B. Studium) und passen Sie bei Bedarf das [[strong:Datum]] an. Anschließend klicken Sie auf [[button:Speichern]] und geben zunächst weitere Aktivitäten an."
+    },
+    "continue-episode": {
+      "title": "Details zu Aktivitäten eingeben",
+      "content": "Durch Klicken auf [[button:Weiter zu Details]] können Sie direkt [[strong:weitere Angaben zu dieser Aktivität]] machen. Wenn Sie diesen Schritt überspringen, können Sie die Detailfragen später vervollständigen, indem Sie auf [[button:Weiter]] klicken. Noch nicht bearbeitete Aktivitäten erkennen Sie an der Schraffur und dem [[icon:attention-bubble]]."
+    },
+    "calendar2": {
+      "title": "Einträge anpassen oder löschen",
+      "content": "Sie können [[strong:weitere Aktivitäten im Kalender hinzufügen]], auch solche, die parallel oder mit zeitlichen Überschneidungen stattfinden. Machen Sie nach Möglichkeit in jedem Monat mindestens eine Angabe. Bereits angelegte Einträge lassen sich jederzeit bearbeiten [[icon:edit-circle]] oder löschen [[icon:delete-circle]]."
+    },
+    "table": {
+      "title": "Wechsel zwischen Kalender- und Listenansicht",
+      "content": "Sie können zwischen der [[strong:Kalenderansicht und der Listenansicht wechseln]]. In der Listenansicht lassen sich Ihre Aktivitäten gezielt filtern – zum Beispiel nach Kategorie oder Zeitraum."
+    },
+    "finish": {
+      "title": "Tour wiederholen",
+      "content": "Über den [[icon:help]] Button gelangen Sie jederzeit zurück zu dieser Anleitung.\nViel Spaß beim Ausfüllen!"
+    }
+  },
+  "topMenu": {
+    "menu": "Menü",
+    "info": "Tour",
+    "home": "Home",
+    "homeSaveAndExit": "Speichern und verlassen"
+  },
+  "topMenuLastUpdate": {
+    "lastUpdate": "Letzte Aktualisierung:"
+  },
+  "newsInfoBar": {
+    "readMore": "Mehr lesen",
+    "markAsSeen": "Als gelesen markieren"
+  },
+  "dialog": {
+    "closeAriaLabel": "Dialog schließen"
+  },
+  "zofarEpisodesTable": {
+    "headerType": "Typ",
+    "headerTitle": "Titel",
+    "headerStart": "Start",
+    "headerEnd": "Ende",
+    "headerCategory": "Kategorie",
+    "headerActions": "Aktionen",
+    "gapLabel": "Leerer Zeitraum",
+    "headerSort": "Sortieren",
+    "rowDateRange": "{{ startDate }} bis {{ endDate }}",
+    "sidebarSort": "Sortieren",
+    "sidebarType": "Typ",
+    "sidebarTitle": "Titel",
+    "sidebarStart": "Start",
+    "sidebarEnd": "Ende",
+    "sidebarCategory": "Art"
+  },
+  "episodePopover": {
+    "dateRange": "{{start}} bis {{end}}",
+    "editLabel": "Aktivität bearbeiten",
+    "deleteLabel": "Aktivität löschen"
+  },
+  "zofarEpisodes": {
+    "calendarNewEpisodeButton": "Neue Aktivität anlegen",
+    "gapConfirmTitle": "Zeitraum ergänzen",
+    "gapConfirmQuestion": "Für diesen Zeitraum liegen bisher keine Angaben vor. Möchten Sie noch etwas ergänzen?",
+    "gapConfirmYes": "Ja, Aktivität ergänzen",
+    "gapConfirmNo": "Nein",
+    "confirmDeleteTitle": "Aktivität löschen",
+    "confirmDeleteHeader": "Wollen Sie die ausgewählte Aktivität wirklich löschen?",
+    "confirmDelete": "Alle gespeicherten Daten zu dieser Aktivität gehen verloren.",
+    "confirmDeleteYes": "Löschen",
+    "confirmDeleteNo": "Abbrechen",
+    "detailQuestionSubtitle": "{{startDate}} bis {{endDate}}",
+    "viewModeAll": "Alle"
+  },
+  "zfEpisodeViewMode": {
+    "calendar": "Kalender",
+    "list": "Liste",
+    "mobileButtonTitleVisible": "Titel"
+  },
+  "episodeDialog": {
+    "error": {
+      "typeRequired": "Bitte wählen Sie die Art der Aktivität.",
+      "badgeRequired": "Bitte wählen Sie eine Badge.",
+      "startRequired": "Bitte geben Sie das Startdatum an.",
+      "endRequired": "Bitte geben Sie das Enddatum an.",
+      "startEndMismatch": "Das Enddatum darf nicht vor dem Startdatum liegen."
+    },
+    "badgeLabel": "Badge",
+    "namePlaceholder": "z.B. Bachelor BWL, Eisverkäufer/in",
+    "eventCheckbox": "Einzelereignis (kein Ende)",
+    "eventNote": "Hinweis: Einzelereignisse werden ebenfalls nur als Monatsangabe erfasst, das genaue Datum ist für die Befragung nicht relevant.",
+    "saveAndGoToDetails": "Weiter zu Details",
+    "newEpisodeTitle": "Neue Aktivität"
+  },
+  "zfCalendar": {
+    "gapMarker": "Lücke von {{start}} bis {{end}}",
+    "gapConfirmation": {
+      "header": "Lücken",
+      "text": "Sie haben in einigen Monaten keine Aktivitäten eingetragen.\nMöchten Sie für diese Monate jetzt Angaben machen?",
+      "no": "Nein",
+      "yes": "Ja"
+    }
+  },
+  "rootError": {
+    "info": "Die Anwendung ist im Moment leider nicht erreichbar. Bitte versuchen Sie es später erneut.",
+    "retryButton": "Neu laden"
+  },
+  "dashboardFiles": {
+    "header": "Studienunterlagen"
+  },
+  "contact": {
+    "text": "Wenn Sie Fragen haben oder ein Feedback zu der Befragung geben möchten, können Sie uns telefonisch (Ramona Richter, [[tel:+49 (0) 511 450 670-120]]) oder per E-Mail ([[email:mobil@dzhw.eu]]) erreichen.",
+    "header": "Kontakt"
+  },
+  "dateFormatting": {
+    "timeSuffix": " Uhr"
+  },
+  "zofarEpisodeBadge": {
+    "bereavement": "Todesfall",
+    "birth": "Geburt",
+    "breakup": "Trennung",
+    "graduation": "Abschluss",
+    "important-personal-event": "Wichtiges persönliches Ereignis",
+    "move": "Umzug",
+    "partnership": "Partnerschaft",
+    "price": "Preis",
+    "wedding": "Heirat",
+    "world-event": "Weltereignis"
+  },
+  "confirmDialog": {
+    "title": "Sind Sie sicher?",
+    "yes": "Ja",
+    "no": "Nein"
+  }
+}

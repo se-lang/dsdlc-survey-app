@@ -1,0 +1,56 @@
+@if (viewport.isMobile()) {
+    <div class="mobile-tour">
+        <div class="content-mobile">
+            <lla-tour-dialog-header
+                [icon]="controller.currentStep().icon"
+                [title]="controller.currentStep().title"
+            />
+            @let contentComponent = this.contentComponent();
+            <ng-container
+                *ngComponentOutlet="contentComponent.component; inputs: contentComponent.inputs"
+            />
+            <lla-tour-navigation />
+        </div>
+    </div>
+} @else {
+    <lla-dialog [size]="'tour'">
+        <ng-container *transloco="let t; prefix: 'tour'">
+            <lla-dialog-header
+                [title]="t('title')"
+                [enableCloseIcon]="true"
+                (closeIconClick)="controller.skipTour()"
+            />
+            <lla-dialog-content [spacing]="false">
+                <div
+                    class="progress"
+                    [attr.role]="'progressbar'"
+                    [style.--_progress-width]="progressWidthCss()"
+                    [attr.aria-valuemin]="'1'"
+                    [attr.aria-valuemax]="controller.totalSteps()"
+                    [attr.aria-valuenow]="controller.currentStepIndex()"
+                ></div>
+                <div class="progress-label">
+                    {{ t("progress", { step: formattedStep(), total: formattedTotalSteps() }) }}
+                </div>
+
+                <div class="content">
+                    <lla-tour-dialog-header
+                        [icon]="controller.currentStep().icon"
+                        [title]="controller.currentStep().title"
+                    />
+
+                    @let contentComponent = this.contentComponent();
+                    <ng-container
+                        *ngComponentOutlet="
+                            contentComponent.component;
+                            inputs: contentComponent.inputs
+                        "
+                    />
+                </div>
+            </lla-dialog-content>
+            <lla-dialog-footer>
+                <lla-tour-navigation />
+            </lla-dialog-footer>
+        </ng-container>
+    </lla-dialog>
+}

@@ -1,0 +1,11 @@
+lla-month-year-picker-button {
+    position: absolute;
+    right: var(--lla-text-input-font-size);
+    top: 0;
+    bottom: 0;
+    display: flex;
+    align-items: center;
+
+    --icon-size: calc(var(--lla-text-input-font-size) * 1.1666666666);
+    color: var(--lla-clr-form-control-text);
+}

@@ -1,0 +1,23 @@
+<ng-container *transloco="let t; prefix: 'emailChange'">
+    <div class="contents">
+        @if (success()) {
+            <p>{{ t("triggerSuccess") }}</p>
+        } @else if (error()) {
+            <p>{{ t("triggerError") }}</p>
+        } @else {
+            <p>{{ t("triggerInfo") }}</p>
+        }
+    </div>
+    @if (!success()) {
+        <div class="lla-button-grid">
+            <button
+                type="button"
+                class="lla-flat-button"
+                [class.lla-button--disabled]="sending()"
+                (click)="send()"
+            >
+                {{ t("triggerButton") }}
+            </button>
+        </div>
+    }
+</ng-container>

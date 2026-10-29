@@ -1,0 +1,66 @@
+# -- Base -- #
+
+fragment QnrMatrixQuestionCategoryElement on QnrMatrixQuestionCategoryElement {
+    ...QnrElementBase
+    ...QnrParentElement
+    label
+    unitLabel
+    customLabelElementId
+}
+
+fragment QnrMatrixQuestionElement on QnrMatrixQuestionBaseElement {
+    ...QnrElementBase
+    ...QnrParentElement
+
+    categoryIds
+}
+
+# -- Choice Base -- #
+
+fragment QnrChoiceMatrixQuestionCategoryElement on QnrChoiceMatrixQuestionCategoryElement {
+    ...QnrMatrixQuestionCategoryElement
+}
+
+fragment QnrChoiceMatrixQuestionElement on QnrChoiceMatrixQuestionElement {
+    ...QnrMatrixQuestionElement
+}
+
+# -- Single Choice -- #
+
+fragment QnrSingleChoiceMatrixQuestionCategoryElement on QnrSingleChoiceMatrixQuestionCategoryElement {
+    ...QnrFormControlElement
+    ...QnrChoiceMatrixQuestionCategoryElement
+    style
+    optionIds
+}
+
+fragment QnrSingleChoiceMatrixQuestionElement on QnrSingleChoiceMatrixQuestionElement {
+    ...QnrChoiceMatrixQuestionElement
+}
+
+# -- Multiple Choice -- #
+
+fragment QnrMultipleChoiceMatrixQuestionCategoryElement on QnrMultipleChoiceMatrixQuestionCategoryElement {
+    ...QnrChoiceMatrixQuestionCategoryElement
+}
+
+fragment QnrMultipleChoiceMatrixQuestionElement on QnrMultipleChoiceMatrixQuestionElement {
+    ...QnrChoiceMatrixQuestionElement
+}
+
+# -- Double -- #
+
+fragment QnrDoubleMatrixQuestionCategoryElement on QnrDoubleMatrixQuestionCategoryElement {
+    ...QnrParentElement
+    ...QnrMatrixQuestionCategoryElement
+}
+
+fragment QnrDoubleMatrixQuestionPartElement on QnrDoubleMatrixQuestionPartElement {
+    ...QnrParentElement
+    ...QnrFormControlElement
+    title
+}
+
+fragment QnrDoubleMatrixQuestionElement on QnrDoubleMatrixQuestionElement {
+    ...QnrMatrixQuestionElement
+}

@@ -1,0 +1,21 @@
+:host {
+    display: block;
+    border: 1px solid var(--lla-clr-form-control-border);
+    background-color: var(--lla-clr-form-control-bg);
+}
+
+.heading {
+    border-bottom: 1px solid var(--lla-clr-form-control-border);
+    font-weight: var(--lla-bold-font-weight);
+    text-align: center;
+
+    padding: 0.875rem;
+}
+
+.content {
+    --lla-clr-form-control-bg: var(--lla-clr-white);
+    --lla-text-label-font-weight: var(--lla-text-basic-label-font-weight);
+
+    padding-inline: 1.0625rem;
+    padding-block: 0.875rem;
+}

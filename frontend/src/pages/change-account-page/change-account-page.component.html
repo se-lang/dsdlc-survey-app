@@ -1,0 +1,130 @@
+<ng-container *transloco="let t; prefix: 'changeAccount'">
+    @if (success()) {
+        <p>{{ t("successMessage") }}</p>
+        <p>
+            <a class="" [routerLink]="'/'">
+                {{ t("backLink") }}
+            </a>
+        </p>
+    } @else {
+        <form [formGroup]="formGroup" #formElement (ngSubmit)="submit()">
+            <div class="lla-form-row lla-form-row--grid">
+                <div>
+                    <label for="lla-first-name">{{ t("labelFirstName") }}</label>
+                    <input
+                        type="text"
+                        [formControl]="formGroup.controls.firstName"
+                        class="lla-form-control"
+                        id="lla-first-name"
+                    />
+                    <val-errors [control]="formGroup.controls.firstName">
+                        <ng-template valFallback>{{ t("error.firstName") }}</ng-template>
+                    </val-errors>
+                </div>
+                <div>
+                    <label for="lla-last-name">{{ t("labelLastName") }}</label>
+                    <input
+                        type="text"
+                        [formControl]="formGroup.controls.lastName"
+                        class="lla-form-control"
+                        id="lla-last-name"
+                    />
+                    <val-errors [control]="formGroup.controls.lastName">
+                        <ng-template valFallback>{{ t("error.lastName") }}</ng-template>
+                    </val-errors>
+                </div>
+            </div>
+            <div class="lla-form-row street-row">
+                <div>
+                    <label for="lla-street">{{ t("labelStreet") }}</label>
+                    <input
+                        type="text"
+                        [formControl]="formGroup.controls.street"
+                        class="lla-form-control"
+                        id="lla-street"
+                    />
+                    <val-errors [control]="formGroup.controls.lastName">
+                        <ng-template valFallback>{{ t("error.street") }}</ng-template>
+                    </val-errors>
+                </div>
+            </div>
+            <div class="lla-form-row lla-form-row--grid zip-city-country-row">
+                <div>
+                    <label for="lla-zip">{{ t("labelZip") }}</label>
+                    <input
+                        type="text"
+                        inputmode="numeric"
+                        [formControl]="formGroup.controls.zipCode"
+                        class="lla-form-control"
+                        id="lla-zip"
+                    />
+                    <val-errors [control]="formGroup.controls.zipCode">
+                        <ng-template valFallback>{{ t("error.zip") }}</ng-template>
+                    </val-errors>
+                </div>
+                <div>
+                    <label for="lla-city">{{ t("labelCity") }}</label>
+                    <input
+                        type="text"
+                        [formControl]="formGroup.controls.city"
+                        class="lla-form-control"
+                        id="lla-city"
+                    />
+                    <val-errors [control]="formGroup.controls.city">
+                        <ng-template valFallback>{{ t("error.city") }}</ng-template>
+                    </val-errors>
+                </div>
+                <div>
+                    <label for="lla-country">{{ t("labelCountry") }}</label>
+                    <input
+                        type="text"
+                        [formControl]="formGroup.controls.country"
+                        class="lla-form-control"
+                        id="lla-country"
+                    />
+                    <val-errors [control]="formGroup.controls.country">
+                        <ng-template valFallback>{{ t("error.country") }}</ng-template>
+                    </val-errors>
+                </div>
+            </div>
+            <div class="lla-form-row lla-form-row--grid">
+                <div>
+                    <label for="lla-birthday">{{ t("labelBirthday") }}</label>
+                    <input
+                        type="date"
+                        [formControl]="formGroup.controls.dateOfBirth"
+                        class="lla-form-control"
+                        id="lla-birthday"
+                    />
+                    <val-errors [control]="formGroup.controls.dateOfBirth">
+                        <ng-template valFallback>{{ t("error.birthday") }}</ng-template>
+                    </val-errors>
+                </div>
+                <div>
+                    <label for="lla-phone">{{ t("labelPhone") }}</label>
+                    <input
+                        type="text"
+                        [formControl]="formGroup.controls.phone"
+                        class="lla-form-control"
+                        inputmode="tel"
+                        id="lla-phone"
+                    />
+                    <val-errors [control]="formGroup.controls.phone">
+                        <ng-template valFallback>{{ t("error.phone") }}</ng-template>
+                    </val-errors>
+                </div>
+            </div>
+            <div class="lla-button-grid">
+                <button type="submit" class="lla-flat-button" [disabled]="submitting()">
+                    {{ t("submitButton") }}
+                </button>
+            </div>
+            <val-errors [control]="formGroup">
+                <ng-template valError="password_mismatch"></ng-template>
+                <ng-template valFallback>
+                    {{ t("error.generic") }}
+                </ng-template>
+            </val-errors>
+        </form>
+    }
+</ng-container>

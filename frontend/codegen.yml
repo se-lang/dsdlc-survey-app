@@ -1,0 +1,52 @@
+overwrite: true
+schema: ["../schema.graphql"]
+documents:
+    - "src/graphql/*.graphql"
+config:
+    inlineFragmentTypes: combine
+    strictScalars: true
+    addExplicitOverride: true
+    inputMaybeValue: "T | null | undefined"
+    nonOptionalTypename: true
+    enumsAsTypes: true
+    avoidOptionals:
+        field: true
+        inputValue: false
+        object: true,
+        defaultValue: false
+    scalars:
+        GlobalID: "string"
+        Void: "null"
+        Date: "string"
+        DateTime: "string"
+        Decimal: "string"
+        QuestionnaireFormControlValue:
+            input: unknown
+            output: "string | number | boolean | null"
+        Duration:
+            input: "string | number"
+            output: "string"
+        ParadataValue:
+            input: unknown
+            output: "string | number | boolean | object"
+    scalarTypePolicies: {}
+generates:
+    src/generated/graphql.ts:
+        plugins:
+            - "@graphql-codegen/add":
+                  content: "/* eslint-disable */\nimport * as GeneratedHelpers from '../generated-helpers/helpers.js'"
+            - "@thx/graphql-typescript-scalar-type-policies"
+            - "@graphql-codegen/typescript"
+            - "@graphql-codegen/typescript-operations"
+            - "@graphql-codegen/typescript-apollo-angular"
+    src/generated/possibleTypes.ts:
+        plugins:
+            - "@graphql-codegen/add":
+                  content: "/* eslint-disable */"
+            - "@graphql-codegen/fragment-matcher":
+                  useExplicitTyping: true
+    src/generated/apollo-helpers.ts:
+        plugins:
+            - "@graphql-codegen/add":
+                  content: "/* eslint-disable */"
+            - typescript-apollo-client-helpers

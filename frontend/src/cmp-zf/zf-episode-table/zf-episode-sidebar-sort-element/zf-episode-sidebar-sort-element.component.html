@@ -1,0 +1,8 @@
+<button
+    type="button"
+    (click)="service.setSortBy(this.sortKey())"
+    [attr.aria-pressed]="sorted() ? 'true' : null"
+>
+    <ng-content />
+    <lla-icon name="sort-chevron" shape="auto" />
+</button>

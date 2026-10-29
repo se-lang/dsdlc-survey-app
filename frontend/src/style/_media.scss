@@ -1,0 +1,12 @@
+@use "variables" as v;
+
+@mixin mobile-only {
+    @media (max-width: #{v.$mobileWidth - 1}) {
+        @content;
+    }
+}
+@mixin desktop-only {
+    @media (min-width: #{v.$mobileWidth}) {
+        @content;
+    }
+}

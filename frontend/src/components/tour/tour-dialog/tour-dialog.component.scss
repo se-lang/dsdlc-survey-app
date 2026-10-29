@@ -1,0 +1,56 @@
+@use "../../../style/media" as *;
+:host {
+    display: block;
+    --lla-dialog-header-background: var(--lla-clr-neon-green-light);
+    position: fixed;
+    //inset: var(--lla-tour-dialog-inset-desktop);
+    //margin: var(--lla-tour-dialog-margin-desktop);
+    height: fit-content;
+    z-index: 1400;
+
+    top: 0;
+    left: 0;
+
+    @include mobile-only {
+        inset: auto 0 0 0;
+    }
+}
+
+.progress {
+    width: 100%;
+    padding: 0;
+    margin: 0;
+    border: none;
+    background-color: var(--lla-clr-light-beige40);
+    height: 10px;
+
+    &::before {
+        content: "";
+        display: block;
+        height: 100%;
+        background-color: var(--lla-clr-black);
+        width: var(--_progress-width);
+        transition: width 250ms ease 150ms;
+    }
+}
+
+.progress-label {
+    font-size: 0.75rem;
+    text-align: end;
+    padding-inline: 1.25rem;
+    padding-block: 0.5rem;
+}
+
+.content {
+    margin-inline: var(--lla-dialog-content-margin-inline);
+    margin-block-end: var(--lla-dialog-content-margin-inline);
+}
+
+.mobile-tour {
+    background-color: var(--lla-clr-neon-green-light);
+}
+
+.content-mobile {
+    padding-inline: 1.75rem;
+    padding-block: 1.25rem;
+}

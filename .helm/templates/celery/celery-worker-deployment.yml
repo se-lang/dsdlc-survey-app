@@ -1,0 +1,39 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+    name: "{{ include "dsdlc.v1.celery.fullname" . }}-worker"
+    labels:
+        app.kubernetes.io/name: worker-worker
+        app.kubernetes.io/component: worker
+spec:
+    selector:
+        matchLabels:
+            app.kubernetes.io/name: worker-worker
+    replicas: {{.Values.infra.celeryReplicas}}
+    revisionHistoryLimit: 1
+    template:
+        metadata:
+            labels:
+                app.kubernetes.io/name: worker-worker
+                app.kubernetes.io/component: worker
+        spec:
+            imagePullSecrets: {{ toYaml .Values.imagePullSecrets | nindent 16 }}
+            tolerations: {{ toYaml .Values.tolerations | nindent 16 }}
+            nodeSelector: {{ toYaml .Values.nodeSelector | nindent 16 }}
+            containers:
+                -   name: worker
+                    image: "{{.Values.werf.image.django }}"
+                    resources:
+                        requests:
+                            cpu: "0.05"
+                            memory: "280Mi"
+                    args: [ "start_celery" ]
+                    env:
+                        -   name: LLA_CONFIG_FILE
+                            value: "/home/app/config/lla.config.yaml"
+                        -   name: LLA_SECRETS_DIR
+                            value: "/home/app/secrets"
+                        - name: DJANGO_WP_PRIVATE_KEY
+                          value: "/home/app/secret-files/push-private-key.pem"
+                    volumeMounts: {{ (include "dsdlc.v1.commonVolumeMounts" .) | nindent 24 }}
+            volumes: {{ (include "dsdlc.v1.commonVolumeConfig" .) | nindent 16 }}

@@ -1,0 +1,88 @@
+<ng-container *transloco="let t; prefix: 'login'">
+    <lla-dialog-header [color]="'brand'" [title]="t('title')">
+        <lla-back-button
+            [routerLink]="'/login-welcome'"
+            [ariaLabel]="backlinkText"
+            slot="icon-button-left"
+        ></lla-back-button>
+    </lla-dialog-header>
+    <lla-dialog-content>
+        <form (ngSubmit)="submit()" [formGroup]="formGroup" #formElement>
+            <div class="lla-form-row">
+                <label class="lla-large-label" for="username">{{ t("labelEmail") }}</label>
+                <input
+                    class="lla-form-control"
+                    type="text"
+                    inputmode="email"
+                    id="username"
+                    [formControl]="formGroup.controls.username"
+                />
+                <val-errors [control]="formGroup.controls.username">
+                    <ng-template valFallback>
+                        {{ t("error.email") }}
+                    </ng-template>
+                </val-errors>
+            </div>
+            <div class="lla-form-row">
+                <div class="lla-form-row-hint-container">
+                    <label class="lla-large-label" for="password">{{ t("labelPassword") }}</label>
+                    <div class="lla-form-row-hint-input">
+                        <input
+                            class="lla-form-control"
+                            type="password"
+                            id="password"
+                            [formControl]="formGroup.controls.password"
+                        />
+                        <val-errors [control]="formGroup.controls.password">
+                            <ng-template valFallback>
+                                {{ t("error.password") }}
+                            </ng-template>
+                        </val-errors>
+                    </div>
+                    <a class="lla-form-row-hint" routerLink="/forgot-password">
+                        {{ t("forgotPassword") }}
+                    </a>
+                </div>
+            </div>
+            <val-errors [control]="formGroup">
+                <ng-template valFallback>
+                    {{ t("error.serverGeneric") }}
+                </ng-template>
+            </val-errors>
+            @if (showResendOption()) {
+                <p>
+                    @let activationEmailState = this.activationEmailState();
+                    <button
+                        type="button"
+                        class="lla-button-link"
+                        (click)="resendActivationEmail()"
+                        [disabled]="activationEmailState.state !== 'available'"
+                    >
+                        {{ t("resendActivationEmail") }}
+                    </button>
+                    @switch (activationEmailState.state) {
+                        @case ("countdown") {
+                            <br />{{
+                                t("resendActivationEmailCountdown", {
+                                    remaining: formattedActivationEmailRemainingSeconds(),
+                                })
+                            }}
+                        }
+                        @case ("error") {
+                            <br />{{ t("resendActivationEmailError") }}
+                        }
+                    }
+                </p>
+            }
+            <div class="lla-button-grid">
+                <button class="lla-flat-button" type="submit" [disabled]="submitting()">
+                    @if (submitting()) {
+                        {{ t("loadingLabel") }}
+                    } @else {
+                        {{ t("loginLabel") }}
+                    }
+                </button>
+            </div>
+        </form>
+    </lla-dialog-content>
+</ng-container>

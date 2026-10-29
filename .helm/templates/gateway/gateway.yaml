@@ -1,0 +1,48 @@
+{{ if and .Values.gatewayApi.enabled .Values.gatewayApi.gateway.enabled }}
+apiVersion: gateway.networking.k8s.io/v1
+kind: Gateway
+metadata:
+  name: gateway
+spec:
+  gatewayClassName: "{{.Values.gatewayApi.gateway.className}}"
+  listeners:
+{{ range $index, $host := (concat .Values.gatewayApi.frontendHostnames .Values.gatewayApi.apiHostnames .Values.gatewayApi.extraFrontendTlsHostnames .Values.gatewayApi.extraApiTlsHostnames) }}
+    - name: http-{{ $index }}
+      protocol: HTTP
+      hostname: "{{ $host }}"
+      port: {{ $.Values.gatewayApi.gateway.httpPort }}
+      allowedRoutes:
+        namespaces:
+          from: Same
+{{ end }}
+{{ if .Values.gatewayApi.tls.enabled }}
+{{ range $index, $host := (concat .Values.gatewayApi.apiHostnames .Values.gatewayApi.extraApiTlsHostnames) }}
+    - name: https-api-{{ $index }}
+      protocol: HTTPS
+      port: {{ $.Values.gatewayApi.gateway.httpsPort }}
+      hostname: "{{$host}}"
+      tls:
+        mode: Terminate
+        certificateRefs:
+          - kind: Secret
+            name: {{ include "dsdlc.v1.tlsSecretGatewayApi.fullname" $ }}
+      allowedRoutes:
+        namespaces:
+          from: Same
+{{end}}
+{{ range $index, $host := (concat .Values.gatewayApi.frontendHostnames .Values.gatewayApi.extraFrontendTlsHostnames) }}
+    - name: https-frontend-{{ $index }}
+      protocol: HTTPS
+      port: {{ $.Values.gatewayApi.gateway.httpsPort }}
+      hostname: "{{$host}}"
+      tls:
+        mode: Terminate
+        certificateRefs:
+          - kind: Secret
+            name: {{ include "dsdlc.v1.tlsSecretGatewayFrontend.fullname" $ }}
+      allowedRoutes:
+        namespaces:
+          from: Same
+{{ end }}
+{{ end }}
+{{ end }}

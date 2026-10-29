@@ -1,0 +1,15 @@
+apiVersion: v2
+name: 'dsdlc-app'
+version: '1.0.0'
+dependencies:
+    -   name: common
+        repository: "oci://registry-1.docker.io/bitnamicharts"
+        version: "2.x.x"
+    -   name: postgresql
+        repository: "oci://registry-1.docker.io/bitnamicharts"
+        version: "16.x.x"
+        condition: dependencies.postgresql
+    -   repository: https://dandydeveloper.github.io/charts
+        name: redis-ha
+        version: 4.35.3
+        condition: "dependencies.haRedis"

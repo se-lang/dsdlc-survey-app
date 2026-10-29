@@ -1,0 +1,6 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 28 28">
+    <circle cx="14" cy="14" r="14" fill="var(--lla-icon-bg, var(--lla-clr-black, #000))" />
+    <rect width="14" height="2.4" x="7" y="12.801" fill="var(--lla-icon-fg, var(--lla-clr-white, #fff))" rx="1.2"/>
+    <rect width="14" height="2.4" x="7" y="7.801" fill="var(--lla-icon-fg, var(--lla-clr-white, #fff))" rx="1.2"/>
+    <rect width="14" height="2.4" x="7" y="17.801" fill="var(--lla-icon-fg, var(--lla-clr-white, #fff))" rx="1.2"/>
+</svg>

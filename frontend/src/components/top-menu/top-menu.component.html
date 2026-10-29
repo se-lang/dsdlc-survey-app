@@ -1,0 +1,49 @@
+<ng-container *transloco="let t; prefix: 'topMenu'">
+    <div class="lla-button lla-button--inverted lla-stacked-icon-button logo-button">
+        <lla-icon [name]="'dzhw_logo'" [preserveAspectRatio]="'xMidYMax'" [shape]="'auto'" />
+    </div>
+    @if (!viewportService.isMobile()) {
+        <lla-qnr-last-update-info />
+    }
+    <div class="buttons">
+        @if (sideMenuService.showSideMenuButton()) {
+            <button
+                type="button"
+                class="lla-button lla-button--inverted"
+                [class.lla-stacked-icon-button]="!viewportService.isMobile()"
+                (click)="sideMenuService.open()"
+            >
+                <lla-icon name="menu" />
+                <span>{{ t("menu") }}</span>
+            </button>
+        }
+        <!-- Defer this to prevent all the Zofar and Episode logic being in the initial bundle -->
+        @defer {
+            <lla-zf-episode-list-calendar-toggle />
+        }
+        @if (showTourLink()) {
+            <a
+                [llaTourHighlightElement]="'tour-link'"
+                [routerLink]="'/tour'"
+                [queryParams]="tourLinkQueryParams()"
+                [class.lla-stacked-icon-button]="!viewportService.isMobile()"
+                class="lla-button lla-button--inverted"
+            >
+                <lla-icon name="help" />
+                <span>{{ t("info") }}</span>
+            </a>
+        }
+        @if (isLoggedIn()) {
+            <a
+                routerLink="/"
+                [class.lla-stacked-icon-button]="!viewportService.isMobile()"
+                class="lla-button lla-button--inverted"
+                [attr.title]="t('homeSaveAndExit')"
+            >
+                <lla-icon [name]="'home-circle'" />
+                <span>{{ t("home") }}</span>
+            </a>
+        }
+        <lla-language-switcher />
+    </div>
+</ng-container>

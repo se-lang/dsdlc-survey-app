@@ -1,0 +1,245 @@
+@use "sass:color";
+
+:root {
+    // Base colors
+    --lla-clr-blue: #006ab2;
+    --lla-clr-light-blue: #7eb0e6;
+    --lla-clr-teal: #28a195;
+    --lla-clr-purple: #7b4f78;
+    --lla-clr-brown: #a7704b;
+    --lla-clr-orange: #f07630;
+    --lla-clr-light-orange: #fcdcc5;
+    --lla-clr-black: #000;
+    --lla-clr-dark-green: #00472c;
+    --lla-clr-green: #4b8744;
+    --lla-clr-light-green: #87bf39;
+    --lla-clr-ocher: #c2b757;
+    --lla-clr-yellow: #f7d619;
+    --lla-clr-gray: #c7c0bb;
+    --lla-clr-white: #fff;
+    $clrNeonGreen: #6eff00;
+    --lla-clr-neon-green: #{$clrNeonGreen};
+
+    --lla-clr-dark-yellow: #735d06;
+    --lla-clr-dark-orange: #d46220;
+    --lla-clr-dark-grey: #54514f;
+    --lla-clr-red: #d04633;
+    --lla-clr-neon-green-light: #{color.mix($clrNeonGreen, #fff, 20%)};
+
+    $clrBeige: #ede9e6;
+    --lla-clr-beige: #{$clrBeige};
+
+    --lla-clr-light-beige: #{color.mix($clrBeige, #fff, 30%)};
+    --lla-clr-light-beige2: #{color.mix($clrBeige, #fff, 60%)};
+    --lla-clr-light-beige40: #{color.mix($clrBeige, #fff, 40%)};
+
+    --lla-clr-beige2: #c7c0bb;
+    --lla-clr-beige3: #{color.mix(#c7c0bb, #fff, 65%)};
+
+    --lla-clr-gray-50: #{color.mix(#000, #fff, 50%)};
+    --lla-clr-gray-40: #{color.mix(#000, #fff, 40%)};
+    --lla-clr-gray-30: #{color.mix(#000, #fff, 30%)};
+
+    // Backgrounds
+    --lla-clr-body-bg: var(--lla-clr-beige);
+
+    // Text
+    --lla-clr-text: var(--lla-clr-black);
+    --lla-clr-text-form-error: var(--lla-clr-red);
+
+    // Brand
+    --lla-clr-brand: #176fc1;
+    --lla-clr-contrast-brand: var(--lla-clr-white);
+
+    // Modal
+    --lla-clr-modal-bg: #fff;
+    --lla-clr-modal-text: #000;
+    --lla-clr-modal-header-bg: #faf8f8;
+    --lla-clr-modal-header-text: #000;
+
+    // Primary button
+    --lla-clr-primary-btn-bg: var(--lla-clr-black);
+    --lla-clr-primary-btn-text: var(--lla-clr-white);
+    --lla-clr-primary-btn-bg-hover: var(--lla-clr-blue);
+    --lla-clr-primary-btn-text-hover: var(--lla-clr-white);
+    --lla-clr-primary-btn-bg-focus: var(--lla-clr-light-blue);
+    --lla-clr-primary-btn-text-focus: var(--lla-clr-white);
+
+    // Secondary button
+    // TODO: Hover und Focus States sind nicht accessible
+    --lla-clr-secondary-btn-bg: var(--lla-clr-beige);
+    --lla-clr-secondary-btn-text: var(--lla-clr-black);
+    --lla-clr-secondary-btn-bg-hover: var(--lla-clr-beige2);
+    --lla-clr-secondary-btn-text-hover: var(--lla-clr-black);
+    --lla-clr-secondary-btn-bg-focus: var(--lla-clr-beige3);
+    --lla-clr-secondary-btn-text-focus: var(--lla-clr-black);
+
+    // Highlight button
+    --lla-clr-highlight-btn-bg: color-mix(
+        in srgb,
+        var(--lla-clr-neon-green) 20%,
+        var(--lla-clr-white)
+    );
+    --lla-clr-highlight-btn-text: var(--lla-clr-black);
+    --lla-clr-highlight-btn-bg-hover: color-mix(
+        in srgb,
+        var(--lla-clr-neon-green) 40%,
+        transparent
+    );
+    --lla-clr-highlight-btn-text-hover: var(--lla-clr-black);
+    --lla-clr-highlight-btn-bg-focus: color-mix(
+        in srgb,
+        var(--lla-clr-light-green) 50%,
+        transparent
+    );
+    --lla-clr-highlight-btn-text-focus: var(--lla-clr-black);
+
+    // Inverted button
+    --lla-clr-inverted-btn-bg: var(--lla-clr-white);
+    --lla-clr-inverted-btn-text: var(--lla-clr-black);
+    --lla-clr-inverted-btn-bg-hover: var(--lla-clr-blue); // TODO: Fehlende hover states
+    --lla-clr-inverted-btn-text-hover: var(--lla-clr-white);
+    --lla-clr-inverted-btn-bg-focus: var(--lla-clr-light-blue);
+    --lla-clr-inverted-btn-text-focus: var(--lla-clr-white);
+
+    // Loading bar
+    --lla-clr-loading-bar-bg: var(--lla-clr-light-beige);
+    --lla-clr-loading-bar-fg: var(--lla-clr-brand);
+
+    // Forms
+    --lla-clr-form-control-bg: var(--lla-clr-light-beige);
+    --lla-clr-form-control-bg-alternate: var(--lla-clr-light-beige2);
+    --lla-clr-form-control-bg-selected: var(--lla-clr-neon-green-light);
+    --lla-clr-form-control-bg-hover: var(--lla-clr-beige);
+    --lla-clr-form-control-text: var(--lla-clr-black);
+    --lla-clr-form-control-text-disabled: var(--lla-clr-gray);
+    --lla-clr-form-control-border: #ede9e6;
+
+    // Form label
+    --lla-clr-form-label-text: var(--lla-clr-black);
+    --lla-clr-form-label-text-disabled: var(--lla-clr-gray);
+
+    // Calendar
+    --lla-clr-calendar-bg-odd: #fff;
+    --lla-clr-calendar-bg-even: #f9f8f8;
+    --lla-clr-calendar-border: #c9c2be;
+
+    // === Episode types ===
+
+    // Nichtselbstständige Erwerbstätigkeit
+    --lla-clr-episode-emp: var(--lla-clr-blue);
+    --lla-clr-episode-emp-fg: var(--lla-clr-white);
+    --lla-clr-episode-emp-stripe: color-mix(
+        in srgb,
+        var(--lla-clr-white) 20%,
+        var(--lla-clr-episode-emp)
+    );
+
+    // Jobbing
+    --lla-clr-episode-job: var(--lla-clr-light-blue);
+    --lla-clr-episode-job-fg: var(--lla-clr-white);
+    --lla-clr-episode-job-stripe: color-mix(
+        in srgb,
+        var(--lla-clr-white) 20%,
+        var(--lla-clr-episode-job)
+    );
+
+    // Selbstständigkeit
+    --lla-clr-episode-sem: var(--lla-clr-teal);
+    --lla-clr-episode-sem-fg: var(--lla-clr-white);
+    --lla-clr-episode-sem-stripe: color-mix(
+        in srgb,
+        var(--lla-clr-white) 30%,
+        var(--lla-clr-episode-sem)
+    );
+
+    // Arbeitslosigkeit
+    --lla-clr-episode-uem: var(--lla-clr-purple);
+    --lla-clr-episode-uem-fg: var(--lla-clr-white);
+    --lla-clr-episode-uem-stripe: color-mix(
+        in srgb,
+        var(--lla-clr-white) 20%,
+        var(--lla-clr-episode-uem)
+    );
+
+    // Praktikum
+    --lla-clr-episode-int: var(--lla-clr-brown);
+    --lla-clr-episode-int-fg: var(--lla-clr-white);
+    --lla-clr-episode-int-stripe: color-mix(
+        in srgb,
+        var(--lla-clr-white) 20%,
+        var(--lla-clr-episode-int)
+    );
+
+    // Promotion
+    --lla-clr-episode-doc: var(--lla-clr-dark-green);
+    --lla-clr-episode-doc-fg: var(--lla-clr-white);
+    --lla-clr-episode-doc-stripe: color-mix(
+        in srgb,
+        var(--lla-clr-white) 20%,
+        var(--lla-clr-episode-doc)
+    );
+
+    // Studium
+    --lla-clr-episode-stu: var(--lla-clr-green);
+    --lla-clr-episode-stu-fg: var(--lla-clr-white);
+    --lla-clr-episode-stu-stripe: color-mix(
+        in srgb,
+        var(--lla-clr-white) 20%,
+        var(--lla-clr-episode-stu)
+    );
+
+    // Ausbildung / Umschulung
+    --lla-clr-episode-voc: var(--lla-clr-light-green);
+    --lla-clr-episode-voc-fg: var(--lla-clr-white);
+    --lla-clr-episode-voc-stripe: color-mix(
+        in srgb,
+        var(--lla-clr-white) 20%,
+        var(--lla-clr-episode-voc)
+    );
+
+    // Fort- / Weiterbildung
+    --lla-clr-episode-fed: var(--lla-clr-ocher);
+    --lla-clr-episode-fed-fg: var(--lla-clr-white);
+    --lla-clr-episode-fed-stripe: color-mix(
+        in srgb,
+        var(--lla-clr-white) 20%,
+        var(--lla-clr-episode-fed)
+    );
+
+    // Schule
+    --lla-clr-episode-sco: var(--lla-clr-yellow);
+    --lla-clr-episode-sco-fg: var(--lla-clr-dark-yellow);
+    --lla-clr-episode-sco-stripe: color-mix(
+        in srgb,
+        var(--lla-clr-white) 40%,
+        var(--lla-clr-episode-sco)
+    );
+
+    // Elternzeit
+    --lla-clr-episode-mpl: var(--lla-clr-orange);
+    --lla-clr-episode-mpl-fg: var(--lla-clr-white);
+    --lla-clr-episode-mpl-stripe: color-mix(
+        in srgb,
+        var(--lla-clr-white) 20%,
+        var(--lla-clr-episode-mpl)
+    );
+
+    // Hausmann/-frau
+    --lla-clr-episode-fam: var(--lla-clr-light-orange);
+    --lla-clr-episode-fam-fg: var(--lla-clr-dark-orange);
+    --lla-clr-episode-fam-stripe: color-mix(
+        in srgb,
+        var(--lla-clr-white) 40%,
+        var(--lla-clr-episode-fam)
+    );
+
+    // Sonstiges
+    --lla-clr-episode-oth: var(--lla-clr-gray);
+    --lla-clr-episode-oth-fg: var(--lla-clr-dark-grey);
+    --lla-clr-episode-oth-stripe: color-mix(
+        in srgb,
+        var(--lla-clr-white) 30%,
+        var(--lla-clr-episode-oth)
+    );
+}

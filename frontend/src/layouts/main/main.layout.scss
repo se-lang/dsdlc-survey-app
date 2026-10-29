@@ -1,0 +1,19 @@
+@use "../../style/variables" as v;
+
+header {
+    margin-inline: 4.6875rem;
+}
+
+main,
+footer {
+    margin: var(--lla-main-margin);
+}
+@media (width < v.$mobileWidth) {
+    header {
+        margin-inline-start: 0;
+        margin-inline-end: var(--lla-main-margin);
+    }
+    main {
+        margin: 0;
+    }
+}

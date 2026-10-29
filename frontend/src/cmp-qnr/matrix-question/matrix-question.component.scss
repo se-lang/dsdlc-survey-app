@@ -1,0 +1,97 @@
+:host {
+    display: block;
+    margin-block-end: var(--lla-question-space);
+
+    --_header-extra-height: 2rem;
+    --_btn-icon-size: 1.75rem;
+    --_btn-space: calc((var(--lla-matrix-question-header-height) - var(--_btn-icon-size)) / 2);
+
+    --lla-matrix-question-header-height: calc(
+        var(--lla-text-large-label-font-size) + var(--_header-extra-height)
+    );
+    --lla-matrix-question-header-space-inline: calc(var(--_btn-space) * 2 + var(--_btn-icon-size));
+
+    --_btn-border-width: 0px;
+}
+
+:host.is-double-matrix {
+    --_btn-border-width: 1px;
+
+    .swiper {
+        border-top: 1px solid var(--lla-clr-form-control-border);
+    }
+}
+
+:host:not(.is-double-matrix) {
+    .swiper {
+        background-color: var(--lla-clr-form-control-bg);
+        border: 1px solid var(--lla-clr-form-control-border);
+    }
+}
+
+.next-btn,
+.prev-btn {
+    position: absolute;
+    top: 0;
+    z-index: 10;
+    display: flex;
+    --icon-size: var(--_btn-icon-size);
+    --lla-icon-bg: var(--lla-clr-black);
+    // make sure we hide the heading when it goes behind the buttons
+    background-color: var(--lla-clr-form-control-bg);
+}
+
+.next-btn {
+    right: 0;
+    border-right: var(--_btn-border-width) solid var(--lla-clr-form-control-border);
+    padding: var(--_btn-space) calc(var(--_btn-space) - var(--_btn-border-width)) var(--_btn-space)
+        var(--_btn-space);
+
+    lla-icon {
+        transform: rotate(180deg);
+    }
+}
+
+.prev-btn {
+    left: 0;
+    border-left: var(--_btn-border-width) solid var(--lla-clr-form-control-border);
+    padding: var(--_btn-space) var(--_btn-space) var(--_btn-space)
+        calc(var(--_btn-space) - var(--_btn-border-width));
+}
+
+.pagination {
+    margin-block-start: 0.875rem;
+    text-align: center;
+}
+
+.pagination ::ng-deep .pagination-item {
+    display: inline-grid;
+    place-items: center;
+
+    background: none;
+    padding-block: 0;
+    padding-inline: 0.15rem;
+    border: none;
+
+    font-size: var(--lla-matrix-pagination-font-size);
+    font-weight: var(--lla-matrix-pagination-font-weight);
+
+    &::before {
+        content: attr(data-text);
+        font-weight: var(--lla-matrix-pagination-active-font-weight);
+        visibility: hidden;
+    }
+
+    &.pagination-item--active {
+        > span {
+            font-weight: var(--lla-matrix-pagination-active-font-weight);
+            text-decoration: underline;
+            text-underline-offset: 0.1em;
+        }
+    }
+
+    > span,
+    &::before {
+        grid-area: 1/1/1/1;
+    }
+}

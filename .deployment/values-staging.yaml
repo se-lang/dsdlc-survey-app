@@ -1,0 +1,115 @@
+imagePullSecrets:
+    - name: codepartner
+
+tolerations:
+    -   key: 'codepartner/node-pool'
+        value: 'shared'
+        operator: Equal
+        effect: "NoSchedule"
+
+nodeSelector:
+    codepartner/node-pool: "shared"
+
+dependencies:
+    redis: false
+    haRedis: true
+    postgresql: false
+
+redis-ha:
+    haproxy:
+        podDisruptionBudget:
+            minAvailable: 1
+        resources:
+            requests:
+                memory: "90Mi"
+                cpu: "0.007"
+    redis:
+        resources:
+            requests:
+                memory: "20Mi"
+                cpu: "0.049"
+    persistentVolume:
+        size: 1Gi
+    podDisruptionBudget:
+        minAvailable: 2
+    nodeSelector:
+        codepartner/node-pool: "shared"
+    tolerations:
+        - key: 'codepartner/node-pool'
+          value: "shared"
+          operator: Equal
+          effect: "NoSchedule"
+
+databaseConnection:
+    host: "private-shared-pg-2-do-user-3371155-0.k.db.ondigitalocean.com"
+    username: "dzhw_lebenslaeufe_staging"
+    databaseName: "dzhw_lebenslaeufe_staging_pool"
+    port: 25061
+    disableServerSideCursors: true
+    sslmode: "require"
+
+infra:
+    celeryReplicas: 1
+    wsgiWorkers: 1
+    wsgiThreads: 4
+    api:
+        cpuRequests: "100m"
+        minReplicas: 1
+        maxReplicas: 1
+        minAvailable: 0
+    nginx:
+        cpuRequests: "100m"
+        minReplicas: 1
+        maxReplicas: 1
+        minAvailable: 0
+
+ingress:
+    enabled: false
+
+gatewayApi:
+    enabled: true
+    gateway:
+        enabled: true
+        className: traefik
+        httpPort: 8000
+        httpsPort: 8443
+    tls:
+        enabled: true
+        issuerRef:
+            name: letsencrypt
+            kind: ClusterIssuer
+    frontendHostnames: ["dzhw-lla-staging.codepartner.cloud"]
+    apiHostnames: ["api.dzhw-lla-staging.codepartner.cloud"]
+    routeFilters:
+        api:
+            - type: ResponseHeaderModifier
+              responseHeaderModifier:
+                  add:
+                      - name: "X-Robots-Tag"
+                        value: "noindex, nofollow"
+        frontend:
+            - type: ResponseHeaderModifier
+              responseHeaderModifier:
+                  add:
+                      - name: "X-Robots-Tag"
+                        value: "noindex, nofollow"
+
+email:
+    host: "w01315b5.kasserver.com"
+    username: "mailtest-dzhw@codepartner.de"
+    security: "explicit_tls"
+    source_email: "DSDLC App <mailtest-dzhw@codepartner.de>"
+
+storage:
+    type: s3
+    access_key: "TRLNN4ZSFK0I503UJ7HP"
+    bucket_name: "dzhw-lla"
+    region_name: "eu-central-2"
+    endpoint_url: "https://s3.eu-central-2.wasabisys.com"
+    location: "staging/"
+
+applicationConfig:
+    auth:
+        session_cookie_lifetime: "PT2H"
+    zofar:
+        events_enabled: false

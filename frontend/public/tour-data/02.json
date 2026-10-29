@@ -1,0 +1,196 @@
+{
+    "id": "WmZRdWVzdGlvbm5haXJlOmM2ZWRjNjA0LTZlODctNGQ5MS05ZDMwLWU0OTE2NDg0NTdhZA==",
+    "currentPage": {
+        "id": "zf_page:stua013.html",
+        "version": 146,
+        "layout": {
+            "__typename": "ZfEpisodeBoxedLayout",
+            "episode": {
+                "id": "b9ca5734-cdc4-4b81-8111-8f39fc91548c",
+                "startDate": "2023-07-01",
+                "endDate": "2023-11-30",
+                "episodeTypeId": "stu",
+                "gap": false,
+                "label": "Test",
+                "flags": [],
+                "state": "new",
+                "event": false,
+                "badge": null,
+                "__typename": "ZfEpisodeEntry"
+            }
+        },
+        "allElements": [
+            {
+                "id": "zf-element:form:stua013",
+                "types": [
+                    "ZfContainerElement",
+                    "ZfParentElement",
+                    "ZfElement",
+                    "QnrContainerElement",
+                    "QnrParentElement"
+                ],
+                "__typename": "ZfContainerElement",
+                "childrenIds": [
+                    "zf-element:form:stua013:qo1",
+                    "zf-element:form:stua013:qo2",
+                    "zf-element:form:stua013:qo3",
+                    "zf-element:form:stua013:hinweis_backwards"
+                ]
+            },
+            {
+                "id": "zf-element:form:stua013:qo1",
+                "types": [
+                    "ZfOpenQuestionElement",
+                    "ZfFormControlElement",
+                    "ZfParentElement",
+                    "ZfElement",
+                    "QnrOpenQuestionElement",
+                    "QnrParentElement",
+                    "QnrFormControlElement",
+                    "QnrLabeledElement"
+                ],
+                "__typename": "ZfOpenQuestionElement",
+                "childrenIds": [
+                    "zf-element:form:stua013:qo1:intro1",
+                    "zf-element:form:stua013:qo1:q1"
+                ],
+                "formControlId": "form:stua013:qo1",
+                "autocomplete": null,
+                "inputType": "EMAIL",
+                "validators": [
+                    {
+                        "errorMessage": "Der Inhalt dieses Feldes ist auf 2000 Zeichen limitiert.",
+                        "__typename": "MaxTextLengthValidator",
+                        "maxLength": 2000
+                    }
+                ],
+                "placeholder": null,
+                "prefix": null,
+                "postfix": null,
+                "label": "Studiengang:"
+            },
+            {
+                "id": "zf-element:form:stua013:qo1:intro1",
+                "types": ["ZfHtmlSectionElement", "ZfElement", "QnrHtmlSectionElement"],
+                "__typename": "ZfHtmlSectionElement",
+                "html": "Wir beziehen uns hier auf Ihr Studium \"Test\" zwischen Juli 2023 und November 2023.",
+                "kind": "INTRODUCTION"
+            },
+            {
+                "id": "zf-element:form:stua013:qo1:q1",
+                "types": ["ZfHtmlSectionElement", "ZfElement", "QnrHtmlSectionElement"],
+                "__typename": "ZfHtmlSectionElement",
+                "html": "In welchem Studiengang haben Sie im Juli 2023 studiert?<br>",
+                "kind": "QUESTION"
+            },
+            {
+                "id": "zf-element:form:stua013:qo2",
+                "types": [
+                    "ZfOpenQuestionElement",
+                    "ZfFormControlElement",
+                    "ZfParentElement",
+                    "ZfElement",
+                    "QnrOpenQuestionElement",
+                    "QnrParentElement",
+                    "QnrFormControlElement",
+                    "QnrLabeledElement"
+                ],
+                "__typename": "ZfOpenQuestionElement",
+                "childrenIds": ["zf-element:717a5628-c477-531a-9867-43d6180a2868"],
+                "formControlId": "form:stua013:qo2",
+                "autocomplete": null,
+                "inputType": "EMAIL",
+                "validators": [
+                    {
+                        "errorMessage": "Der Inhalt dieses Feldes ist auf 2000 Zeichen limitiert.",
+                        "__typename": "MaxTextLengthValidator",
+                        "maxLength": 2000
+                    }
+                ],
+                "placeholder": null,
+                "prefix": null,
+                "postfix": null,
+                "label": "Hauptfach 1:"
+            },
+            {
+                "id": "zf-element:717a5628-c477-531a-9867-43d6180a2868",
+                "types": ["ZfHtmlSectionElement", "ZfElement", "QnrHtmlSectionElement"],
+                "__typename": "ZfHtmlSectionElement",
+                "html": "Falls dieser Studiengang mehrere Hauptf\u00e4cher umfasst, geben Sie diese bitte im Folgenden an:<br>",
+                "kind": "GENERIC"
+            },
+            {
+                "id": "zf-element:form:stua013:qo3",
+                "types": [
+                    "ZfOpenQuestionElement",
+                    "ZfFormControlElement",
+                    "ZfParentElement",
+                    "ZfElement",
+                    "QnrOpenQuestionElement",
+                    "QnrParentElement",
+                    "QnrFormControlElement",
+                    "QnrLabeledElement"
+                ],
+                "__typename": "ZfOpenQuestionElement",
+                "childrenIds": [],
+                "formControlId": "form:stua013:qo3",
+                "autocomplete": null,
+                "inputType": "EMAIL",
+                "validators": [
+                    {
+                        "errorMessage": "Der Inhalt dieses Feldes ist auf 2000 Zeichen limitiert.",
+                        "__typename": "MaxTextLengthValidator",
+                        "maxLength": 2000
+                    }
+                ],
+                "placeholder": null,
+                "prefix": null,
+                "postfix": null,
+                "label": "Hauptfach 2:"
+            },
+            {
+                "id": "zf-element:form:stua013:hinweis_backwards",
+                "types": [
+                    "ZfContainerElement",
+                    "ZfParentElement",
+                    "ZfElement",
+                    "QnrContainerElement",
+                    "QnrParentElement"
+                ],
+                "__typename": "ZfContainerElement",
+                "childrenIds": []
+            }
+        ],
+        "childrenIds": ["zf-element:form:stua013"],
+        "headerIds": ["zf-element:form:stua013:title"],
+        "buttons": [
+            {
+                "id": "zf-element:form:stua013_btn_form:btPanel:backward:backwardBt",
+                "label": "Zur\u00fcck",
+                "type": "BACK",
+                "__typename": "QuestionnairePageButton"
+            },
+            {
+                "id": "zf-element:form:stua013_btn_form:btPanel:forward:forwardBt",
+                "label": "Weiter",
+                "type": "NEXT",
+                "__typename": "QuestionnairePageButton"
+            }
+        ],
+        "formValues": [
+            {
+                "formControlId": "form:stua013:mcsf:rd2:ao1",
+                "value": false,
+                "__typename": "QuestionnaireFormValue"
+            }
+        ],
+        "__typename": "ZfPage"
+    },
+    "status": {
+        "id": "WmZRdWVzdGlvbm5haXJlU3RhdHVzOmM2ZWRjNjA0LTZlODctNGQ5MS05ZDMwLWU0OTE2NDg0NTdhZA==",
+        "completionState": "STARTED",
+        "lastVisit": "2025-08-15T10:05:09.983000+00:00",
+        "__typename": "ZfQuestionnaireStatus"
+    },
+    "__typename": "ZfQuestionnaire"
+}

@@ -1,0 +1,23 @@
+{% extends "lla_auth/email/base.html" %}
+{% block main %}
+    <p>Hallo {{ name }},</p>
+    <p>
+        vielen Dank für Ihre Registrierung bei der Befragung Dynamische Bildungs- und
+        Erwerbsverläufe. Um Ihre E-Mail-Adresse zu bestätigen und Ihr Konto zu aktivieren, klicken
+        Sie bitte auf den folgenden Link:
+    </p>
+    <p>
+        <a href="{{ link }}" class="button">E-Mail-Adresse bestätigen</a>
+    </p>
+    <p>
+        Sie haben sich nicht für die Erstellung eines Kontos für das Befragungsportal Dynamische
+        Bildungs- und Erwerbsverläufe registriert? Dann ignorieren Sie diese E-Mail bitte einfach.
+    </p>
+    <p>
+        Freundliche Grüße<br />
+        Ihr Befragungsteam Dynamische Bildungs- und Erwerbsverläufe
+    </p>
+{% endblock %}
+{% block title %}
+    Willkommen bei der Befragung Dynamische Bildungs- und Erwerbsverläufe
+{% endblock %}

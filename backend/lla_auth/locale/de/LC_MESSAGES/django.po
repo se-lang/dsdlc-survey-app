@@ -1,0 +1,107 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2025-07-09 09:47+0200\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+#: admin.py:32
+msgid "Personal info"
+msgstr "Persönliche Informationen"
+
+#: admin.py:47
+msgid "Permissions"
+msgstr "Berechtigungen"
+
+#: admin.py:58
+msgid "Important dates"
+msgstr "Wichtigen Daten"
+
+#: admin.py:92
+msgid "Willkommens E-Mail erneut senden"
+msgstr "Willkommens E-Mail erneut senden"
+
+#: apps.py:8
+msgid "Benutzerverwaltung"
+msgstr "Benutzerverwaltung"
+
+#: graphql.py:113
+msgid "E-Mail Adresse oder Passwort sind ungültig."
+msgstr "E-Mail Adresse oder Passwort sind ungültig."
+
+#: graphql.py:119
+msgid "Ihr Account wurde noch nicht aktiviert."
+msgstr "Ihr Account wurde noch nicht aktiviert."
+
+#: graphql.py:160 graphql.py:228
+msgid "Bitte prüfen Sie den Link."
+msgstr "Bitte prüfen Sie den Link."
+
+#: models.py:106
+msgid "E-Mail-Adresse"
+msgstr "E-Mail-Adresse"
+
+#: models.py:113
+msgid "Straße, Nr."
+msgstr "Straße, Nr."
+
+#: models.py:115
+msgid "Postleitzahl"
+msgstr "Postleitzahl"
+
+#: models.py:117
+msgid "Ort"
+msgstr "Ort"
+
+#: models.py:118
+msgid "Land"
+msgstr "Land"
+
+#: models.py:120
+msgid "Geburtsdatum"
+msgstr "Geburtsdatum"
+
+#: models.py:123
+msgid "Telefonnummer"
+msgstr "Telefonnummer"
+
+#: models.py:224
+msgid "user"
+msgstr "Benutzer"
+
+#: models.py:225
+msgid "users"
+msgstr "Benutzer"
+
+#: models.py:235
+msgid "Dies ist bereits Ihre E-Mail-Adresse"
+msgstr "Dies ist bereits Ihre E-Mail-Adresse"
+
+#: models.py:252 models.py:264
+msgid ""
+"Die von Ihnen angegebene E-Mail-Adresse ist bereits mit einem Konto "
+"verknüpft."
+msgstr ""
+"Die von Ihnen angegebene E-Mail-Adresse ist bereits mit einem Konto "
+"verknüpft."
+
+#: models.py:274
+msgid "group"
+msgstr "Gruppe"
+
+#: models.py:275
+msgid "groups"
+msgstr "Gruppen"

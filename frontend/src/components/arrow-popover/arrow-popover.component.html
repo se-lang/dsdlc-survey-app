@@ -1,0 +1,13 @@
+@if (closeButton()) {
+    <button
+        type="button"
+        class="lla-icon-button close-icon"
+        (click)="close()"
+        aria-label="Schließen"
+    >
+        <lla-icon [name]="'close_x'" />
+    </button>
+}
+<div class="content">
+    <ng-content />
+</div>

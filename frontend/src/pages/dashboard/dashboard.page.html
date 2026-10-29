@@ -1,0 +1,61 @@
+<ng-container *transloco="let t; prefix: 'dashboard'">
+    <lla-dialog-header [color]="'brand'">
+        <ng-container slot="icon-button-left"><router-outlet name="backButton" /></ng-container>
+        <h1 class="lla-dialog-title">
+            <!--{{ t("header") }}-->{{ resolvedTitle() ?? resolvedTitleSignal()?.() }}
+        </h1>
+    </lla-dialog-header>
+    <lla-dialog-subheader>
+        <router-outlet name="subheader" />
+    </lla-dialog-subheader>
+    <lla-dialog-content>
+        <router-outlet />
+    </lla-dialog-content>
+    @if (sideMenuService.useSideMenu()) {
+        <lla-mobile-sidebar [(open)]="sidebarOpen">
+            <ng-container slot="top">
+                <span></span>
+                <button (click)="sidebarOpen.set(false)" [attr.aria-label]="t('closeSideMenu')">
+                    <lla-icon [name]="'close_x'" />
+                </button>
+            </ng-container>
+            <div class="mobile-sidebar-inner">
+                <ng-container *ngTemplateOutlet="sidebarContent" />
+                <div class="logout-container">
+                    <ng-container *ngTemplateOutlet="sidebarContentBottom" />
+                </div>
+            </div>
+        </lla-mobile-sidebar>
+    } @else {
+        <lla-dialog-sidebar>
+            <ng-container *ngTemplateOutlet="sidebarContent" />
+            <ng-container slot="bottom">
+                <ng-container *ngTemplateOutlet="sidebarContentBottom" />
+            </ng-container>
+        </lla-dialog-sidebar>
+    }
+    <ng-template #sidebarContent>
+        @let settingsLinks = this.settingsLinks();
+        @if (settingsLinks.length) {
+            <nav [attr.aria-label]="t('settingsHeading')">
+                <lla-dashboard-settings-links [settingsLinks]="settingsLinks" />
+            </nav>
+        }
+    </ng-template>
+    <ng-template #sidebarContentBottom>
+        <div class="lla-button-grid bottom-grid">
+            <button
+                type="button"
+                class="lla-flat-button"
+                llaLogoutTrigger
+                #trigger="llaLogoutTrigger"
+            >
+                @if (trigger.loading()) {
+                    {{ t("logoutButtonLoading") }}
+                } @else {
+                    {{ t("logoutButton") }}
+                }
+            </button>
+        </div>
+    </ng-template>
+</ng-container>

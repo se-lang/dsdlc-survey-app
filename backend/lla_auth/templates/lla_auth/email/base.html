@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>{% block title %}{% endblock %}</title>
+    <style>
+        body {
+            font-family: "Segoe UI", "Helvetica Neue", Arial, sans-serif;
+            background-color: #ede9e6; /* --lla-clr-beige */
+            color: #000; /* --lla-clr-text */
+            margin: 0;
+            padding: 0;
+        }
+        .container {
+            max-width: 37.5em;
+            margin: 2.5em auto;
+            background-color: #fff; /* --lla-clr-white */
+            padding: 2.5em;
+        }
+        h1 {
+            color: #176fc1; /* --lla-clr-brand */
+            font-size: 1.5em;
+            margin-bottom: 1.25em;
+        }
+        p {
+            font-size: 1em;
+            line-height: 1.6;
+            margin-bottom: 1.25em;
+        }
+        .button {
+            display: inline-block;
+            padding: 0.75em 1.5em;
+            background-color: #176fc1; /* --lla-clr-brand */
+            color: #fff; /* --lla-clr-contrast-brand */
+            text-decoration: none;
+            font-weight: bold;
+        }
+        .button:focus-visible,
+        .button:hover {
+            background-color: #0d4e90; /* dunklere Variante von --lla-clr-brand */
+        }
+        .footer {
+            margin-top: 2.2em;
+            font-size: 0.875em;
+            color: #54514f; /* --lla-clr-dark-grey */
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+    <main>
+        {% block main %}{% endblock %}
+    </main>
+    <footer class="footer">
+        <p>Dies ist eine automatisch generierte Nachricht. Bitte antworten Sie nicht auf diese E-Mail.</p>
+    </footer>
+</div>
+</body>
+</html>

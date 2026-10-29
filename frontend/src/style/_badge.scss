@@ -1,0 +1,12 @@
+.lla-badge {
+    display: inline-block;
+    background-color: var(--lla-badge-color, var(--lla-clr-neon-green-light));
+    font-size: var(--lla-text-badge-font-size);
+    font-weight: var(--lla-text-badge-font-weight);
+    letter-spacing: var(--lla-text-badge-letter-spacing);
+    line-height: 1;
+    padding-inline: 0.5em;
+    padding-block: 0.3em;
+
+    text-transform: uppercase;
+}

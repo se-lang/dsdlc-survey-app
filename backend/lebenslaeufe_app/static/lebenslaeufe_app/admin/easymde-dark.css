@@ -1,0 +1,39 @@
+:root {
+    --easymde-border-color: var(--border-color);
+    --easymde-text-color: var(--body-fg);
+    --easymde-selected-background: var(--body-fg);
+    --easymde-selected-color: var(--body-bg);
+}
+
+.EasyMDEContainer, .EasyMDEContainer .editor-toolbar, .EasyMDEContainer .editor-toolbar i.separator, .EasyMDEContainer .CodeMirror {
+    border-color: var(--easymde-border-color);
+}
+
+.EasyMDEContainer .editor-toolbar :is(button:hover, button.active) {
+    color: var(--button-fg);
+    background-color: var(--button-bg);
+}
+
+.EasyMDEContainer .editor-toolbar :is(button:hover) {
+    background-color: var(--button-hover-bg);
+}
+
+.EasyMDEContainer .CodeMirror {
+    background: none;
+}
+
+.EasyMDEContainer .CodeMirror-cursor {
+    border-color: currentColor;
+}
+
+.CodeMirror, .CodeMirror pre.CodeMirror-line, .CodeMirror pre.CodeMirror-line-like {
+    color: var(--easymde-text-color);
+}
+
+.CodeMirror-selected {
+    background-color: var(--easymde-selected-background) !important;
+}
+
+.CodeMirror-selectedtext {
+    color: var(--easymde-selected-color);
+}

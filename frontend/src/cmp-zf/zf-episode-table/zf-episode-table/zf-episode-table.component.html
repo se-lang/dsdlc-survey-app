@@ -1,0 +1,219 @@
+<ng-container *transloco="let t; prefix: 'zofarEpisodesTable'">
+    @let element = this.element();
+    @let episodes = this.episodes();
+
+    <div [llaTourHighlightElement]="'episode-table'">
+        <lla-zf-episode-table-filter [element]="element" />
+        @if (!viewportService.isMobile()) {
+            <table>
+                <thead>
+                    <tr>
+                        <th
+                            llaZfEpisodeTableHeader
+                            sortKey="episodeTypeId"
+                            class="type-cell"
+                            scope="row"
+                        >
+                            {{ t("headerType") }}
+                        </th>
+                        <th llaZfEpisodeTableHeader sortKey="label" class="title-cell" scope="row">
+                            {{ t("headerTitle") }}
+                        </th>
+                        <th llaZfEpisodeTableHeader sortKey="startDate" scope="row">
+                            {{ t("headerStart") }}
+                        </th>
+                        <th llaZfEpisodeTableHeader sortKey="endDate" scope="row">
+                            {{ t("headerEnd") }}
+                        </th>
+                        <th
+                            llaZfEpisodeTableHeader
+                            sortKey="category"
+                            scope="row"
+                            class="category-cell"
+                        >
+                            {{ t("headerCategory") }}
+                        </th>
+                        <th scope="row">
+                            {{ t("headerActions") }}
+                        </th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @for (episode of episodes; track episode.episode.id) {
+                        <tr
+                            [class]="
+                                `episode-state-${episode.episode.state} episode-entry-type-${episode.entryType}`
+                            "
+                        >
+                            <td
+                                class="type-cell"
+                                [llaZfEpisodeColorStyles]="
+                                    episode.entryType === 'gap' ? null : episode.episode
+                                "
+                            >
+                                <span>
+                                    @if (episode.entryType === "gap") {
+                                        <lla-icon [name]="'help'" />
+                                    } @else {
+                                        <lla-icon
+                                            [name]="`episode-categories/${episode.categoryId}`"
+                                        />
+                                    }
+                                </span>
+                            </td>
+                            <td class="title-cell">
+                                <span>
+                                    @if (episode.entryType === "gap") {
+                                        {{ t("gapLabel") }}
+                                    } @else {
+                                        {{ episode.episode.label }}
+                                    }
+                                </span>
+                            </td>
+                            <td>
+                                {{ episode.episode.startDate | date: "shortMonthYear" }}
+                            </td>
+                            <td>
+                                {{ episode.episode.endDate | date: "shortMonthYear" }}
+                            </td>
+                            <td class="category-cell">
+                                @if (episode.entryType === "episode") {
+                                    {{ episode.category.label }}
+                                }
+                            </td>
+                            <td class="actions-cell">
+                                <div class="buttons">
+                                    <button
+                                        type="button"
+                                        class="lla-icon-button"
+                                        aria-label="Episode bearbeiten"
+                                        (click)="editClick(episode)"
+                                    >
+                                        <lla-icon name="edit-circle" />
+                                    </button>
+                                    @if (episode.entryType === "episode") {
+                                        <button
+                                            type="button"
+                                            class="lla-icon-button"
+                                            aria-label="Episode löschen"
+                                            (click)="removeEpisode(episode.episode.id)"
+                                        >
+                                            <lla-icon name="delete-circle" />
+                                        </button>
+                                    }
+                                </div>
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        } @else {
+            <div class="episode-mobile-sort-button-container">
+                <button class="episode-mobile-sort-button" (click)="mobileSidebar.show()">
+                    {{ t("headerSort") }}
+                    <lla-icon class="arrow-up-down" [name]="'arrow-up-down'" />
+                </button>
+            </div>
+            <div class="episode-mobile-list">
+                @for (episode of episodes; track episode.episode.id) {
+                    <div
+                        [class]="
+                            `episode-mobile-list-element episode-state-${episode.episode.state} episode-entry-type-${episode.entryType}`
+                        "
+                    >
+                        <div
+                            class="type"
+                            [llaZfEpisodeColorStyles]="
+                                episode.entryType === 'gap' ? null : episode.episode
+                            "
+                        >
+                            @if (episode.entryType === "gap") {
+                                <lla-icon [name]="'help'" />
+                            } @else {
+                                <lla-icon [name]="`episode-categories/${episode.categoryId}`" />
+                            }
+                        </div>
+                        <div class="title">
+                            <span>
+                                @if (episode.entryType === "gap") {
+                                    {{ t("gapLabel") }}
+                                } @else {
+                                    {{ episode.episode.label }}
+                                }
+                            </span>
+                            <span class="subtitle">
+                                {{
+                                    t("rowDateRange", {
+                                        startDate:
+                                            episode.episode.startDate | date: "shortMonthYear",
+                                        endDate: episode.episode.endDate | date: "shortMonthYear",
+                                    })
+                                }}
+                            </span>
+                        </div>
+                        <div class="actions buttons">
+                            <button
+                                type="button"
+                                class="lla-icon-button"
+                                aria-label="Episode bearbeiten"
+                                (click)="editClick(episode)"
+                            >
+                                <lla-icon name="edit-circle" />
+                            </button>
+                            @if (episode.entryType === "episode") {
+                                <button
+                                    type="button"
+                                    class="lla-icon-button"
+                                    aria-label="Episode löschen"
+                                    (click)="removeEpisode(episode.episode.id)"
+                                >
+                                    <lla-icon name="delete-circle" />
+                                </button>
+                            }
+                        </div>
+                    </div>
+                }
+            </div>
+        }
+        <lla-zf-episode-navigation [mode]="'table'" (newEpisode)="newEpisode()" />
+        <lla-mobile-sidebar #mobileSidebar>
+            <ng-container slot="top">
+                <span
+                    >{{ t("sidebarSort") }}
+                    <lla-icon class="arrow-up-down" [name]="'arrow-up-down'"
+                /></span>
+                <button (click)="mobileSidebar.close()">
+                    <lla-icon [name]="'close_x'" />
+                </button>
+            </ng-container>
+            <ul class="lla-sidebar-sort-list">
+                <li llaZfEpisodeSidebarElement sortKey="episodeTypeId">
+                    {{ t("sidebarType") }}
+                </li>
+                <li llaZfEpisodeSidebarElement sortKey="label">
+                    {{ t("sidebarTitle") }}
+                </li>
+                <li llaZfEpisodeSidebarElement sortKey="startDate">
+                    {{ t("sidebarStart") }}
+                </li>
+                <li llaZfEpisodeSidebarElement sortKey="endDate">
+                    {{ t("sidebarEnd") }}
+                </li>
+                <li llaZfEpisodeSidebarElement sortKey="category">
+                    {{ t("sidebarCategory") }}
+                </li>
+            </ul>
+        </lla-mobile-sidebar>
+    </div>
+</ng-container>
+<dialog llaDialog [(open)]="dialogOpen" [size]="'zf-episode'">
+    <ng-template>
+        <lla-zf-episode-dialog
+            [calendarZoom]="null"
+            [element]="element()"
+            [editEpisode]="editingEpisode()"
+            [newEpisodePrefill]="newEpisodePrefill()"
+            (closeDialog)="dialogOpen.set(false)"
+        />
+    </ng-template>
+</dialog>

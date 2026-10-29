@@ -1,0 +1,22 @@
+.lla-zf-toggled-element {
+    --_episode-toggle-transition-duration: 300ms;
+
+    display: block;
+    interpolate-size: allow-keywords;
+    transition:
+        height var(--_episode-toggle-transition-duration) ease,
+        display var(--_episode-toggle-transition-duration);
+    transition-behavior: allow-discrete;
+    overflow-y: clip;
+
+    &[aria-hidden="true"] {
+        height: 0;
+        display: none;
+    }
+}
+
+@starting-style {
+    .lla-zf-toggled-element--was-hidden-once {
+        height: 0;
+    }
+}

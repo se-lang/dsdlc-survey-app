@@ -1,0 +1,34 @@
+{{ if .Values.ingress.enabled }}
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+    annotations: {{ (deepCopy .Values.ingress.annotations | merge .Values.ingress.frontendAnnotations) | toYaml | nindent 8 }}
+    name: {{ include "dsdlc.v1.ingressFrontend.fullname" . }}
+spec:
+    ingressClassName: "{{ .Values.ingress.className }}"
+    {{ if .Values.ingress.tls.enabled }}
+    tls:
+        -   hosts: {{ (concat .Values.ingress.frontendHostnames .Values.ingress.extraFrontendTlsHostnames) | toYaml | nindent 16 }}
+            secretName: {{ include "dsdlc.v1.tlsSecretFrontend.fullname" . }}
+    {{ end }}
+    rules:
+{{ range .Values.ingress.frontendHostnames }}
+        -   host: "{{ . }}"
+            http:
+                paths:
+                    -   path: /api
+                        pathType: Prefix
+                        backend:
+                            service:
+                                name: {{ include "dsdlc.v1.django.fullname" $ }}
+                                port:
+                                    name: http
+                    -   path: /
+                        pathType: Prefix
+                        backend:
+                            service:
+                                name: {{ include "dsdlc.v1.nginx.fullname" $ }}
+                                port:
+                                    name: http
+{{ end }}
+{{ end }}

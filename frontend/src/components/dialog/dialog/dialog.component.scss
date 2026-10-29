@@ -1,0 +1,102 @@
+@use "../../../style/variables" as v;
+@use "../../../style/media" as *;
+
+:host {
+    --_backdrop-color: rgba(0, 0, 0, 0.4);
+    --_backdrop-filter: grayscale(20%) contrast(50%) blur(0px);
+    --_backdrop-filter-no: grayscale(0%) contrast(1) blur(0px);
+
+    display: block;
+
+    margin-inline: auto;
+
+    padding: 0;
+    border: none;
+    background: var(--lla-clr-modal-bg);
+
+    box-shadow: none;
+
+    --_dialog-fake-modal-mode-left: 0px;
+}
+
+@include desktop-only {
+    :host {
+        --_dialog-fake-modal-mode-left: 350px;
+    }
+}
+
+dialog:host {
+    display: none;
+    &::backdrop {
+        background: var(--_backdrop-color);
+        transition:
+            backdrop-filter calc(var(--lla-dialog-backdrop-transition-duration)) ease,
+            opacity var(--lla-dialog-backdrop-transition-duration) ease;
+    }
+
+    &[open] {
+        display: block;
+        opacity: 1;
+    }
+
+    &[open]::backdrop {
+        opacity: 1;
+        backdrop-filter: var(--_backdrop-filter);
+    }
+
+    &.fake-modal-mode {
+        position: fixed;
+        z-index: 1000;
+        inset: 0;
+        left: var(--_dialog-fake-modal-mode-left);
+        margin-inline-start: 0;
+    }
+}
+
+@include desktop-only {
+    :not(dialog):host.fake-modal-mode:not(.lla-dialog--size-tour) {
+        margin-inline: var(--_dialog-fake-modal-mode-left) 0;
+    }
+}
+
+@supports (backdrop-filter: grayscale(20%)) {
+    :host {
+        --_backdrop-color: transparent;
+    }
+}
+
+@supports (transition-behavior: allow-discrete) {
+    dialog:host {
+        opacity: 0;
+        transition:
+            opacity var(--lla-dialog-transition-duration),
+            display var(--lla-dialog-transition-duration) allow-discrete,
+            overlay var(--lla-dialog-transition-duration) allow-discrete;
+
+        &::backdrop {
+            opacity: 0;
+            backdrop-filter: var(--_backdrop-filter-no);
+        }
+
+        &[open],
+        &[open]::backdrop {
+            opacity: 1;
+        }
+    }
+
+    @starting-style {
+        dialog:host[open] {
+            opacity: 0;
+        }
+        dialog:host[open]::backdrop {
+            opacity: 0;
+            backdrop-filter: var(--_backdrop-filter-no);
+        }
+    }
+}
+
+@media (width >= v.$mobileWidth) {
+    :host {
+        box-shadow: 5px 5px 15px 5px rgba(0, 0, 0, 0.25);
+    }
+}

@@ -1,0 +1,11 @@
+<ng-container *transloco="let t; prefix: 'contact'">
+    <p>
+        @for (part of parts(); track $index) {
+            @if (part.link) {
+                <a [href]="part.link">{{ part.content }}</a>
+            } @else {
+                <span>{{ part.content }}</span>
+            }
+        }
+    </p>
+</ng-container>

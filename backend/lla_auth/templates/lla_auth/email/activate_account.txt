@@ -1,0 +1,14 @@
+Hallo {{ name }},
+
+vielen Dank für Ihre Registrierung bei der Lebensläufe App.
+
+vielen Dank für Ihre Registrierung bei der Befragung Dynamische Bildungs- und Erwerbsverläufe. Um Ihre E-Mail-Adresse zu bestätigen und Ihr Konto zu aktivieren, klicken Sie bitte auf den folgenden Link:
+
+{{ link }}
+
+Sie haben sich nicht für die Erstellung eines Kontos für das Befragungsportal Dynamische Bildungs- und Erwerbsverläufe registriert? Dann ignorieren Sie diese E-Mail bitte einfach.
+
+Freundliche Grüße
+Ihr Befragungsteam Dynamische Bildungs- und Erwerbsverläufe
+
+Dies ist eine automatisch generierte Nachricht. Bitte antworten Sie nicht auf diese E-Mail.

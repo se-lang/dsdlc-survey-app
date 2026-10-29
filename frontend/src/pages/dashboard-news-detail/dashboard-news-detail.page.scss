@@ -1,0 +1,21 @@
+:host {
+    display: block;
+    max-height: 21.875rem;
+    overflow-y: auto;
+    max-width: 50rem;
+}
+h2 {
+    font-size: var(--lla-news-title-font-size);
+    margin-bottom: 0.875rem;
+}
+h3 {
+    font-size: var(--lla-news-sub-title-font-size);
+    margin-bottom: 0.8125rem;
+}
+p {
+    font-size: var(--lla-news-text-font-size);
+}
+.date-text {
+    margin-bottom: 2.75rem;
+    font-style: italic;
+}

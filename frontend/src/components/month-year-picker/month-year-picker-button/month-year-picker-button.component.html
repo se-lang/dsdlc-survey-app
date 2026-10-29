@@ -1,0 +1,14 @@
+<button
+    type="button"
+    class="lla-icon-button"
+    [llaTriggerPopover]="popover"
+    [popoverAction]="'toggle'"
+    [disabled]="directive.disabled()"
+>
+    <lla-icon name="calendar" />
+</button>
+<ng-template llaPopover #popover="llaPopover">
+    <lla-arrow-popover closeButton="false">
+        <lla-month-year-picker-content />
+    </lla-arrow-popover>
+</ng-template>

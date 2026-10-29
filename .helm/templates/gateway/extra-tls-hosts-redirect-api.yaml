@@ -1,0 +1,32 @@
+{{ if and .Values.gatewayApi.enabled .Values.gatewayApi.tls.enabled }}
+{{ range $index, $host := .Values.gatewayApi.extraApiTlsHostnames }}
+apiVersion: gateway.networking.k8s.io/v1
+kind: HTTPRoute
+metadata:
+    name: extra-tls-hosts-redirect-api-{{$index}}
+spec:
+    parentRefs: {{ include "dsdlc.v1.gatewayHttpRef" (dict "root" $ "host" $host) | nindent 8 }}
+    rules:
+        -   filters:
+                -   type: RequestRedirect
+                    requestRedirect:
+                        scheme: https
+                        hostname: {{ index $.Values.gatewayApi.apiHostnames 0 }}
+---
+{{ end }}
+{{ range $index, $host := .Values.gatewayApi.extraApiTlsHostnames }}
+apiVersion: gateway.networking.k8s.io/v1
+kind: HTTPRoute
+metadata:
+    name: extra-tls-hosts-redirect-api-https-{{$index}}
+spec:
+    parentRefs: {{ include "dsdlc.v1.gatewayHttpsRef" (dict "root" $ "host" $host) | nindent 8 }}
+    rules:
+        -   filters:
+                -   type: RequestRedirect
+                    requestRedirect:
+                        scheme: https
+                        hostname: {{ index $.Values.gatewayApi.apiHostnames 0 }}
+---
+{{ end }}
+{{ end }}

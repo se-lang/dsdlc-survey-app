@@ -1,0 +1,51 @@
+fragment QuestionnaireNewsDetail on QuestionnaireNews {
+    id
+    title
+    description
+    content
+    date
+    seen
+    expired
+}
+
+fragment QuestionnaireNewsBase on QuestionnaireNews {
+    id
+    title
+    description
+    date
+    seen
+    expired
+}
+
+query QuestionnaireNews($filters: QuestionnaireNewsFilter, $ordering: [QuestionnaireNewsOrder!]!) {
+    questionnaireNews(ordering: $ordering, filters: $filters) {
+        ... on QuestionnaireNews {
+            ...QuestionnaireNewsBase
+        }
+    }
+}
+
+query QuestionnaireNewsNode($nodeId: ID!) {
+    node(id: $nodeId) {
+        ... on QuestionnaireNews {
+            ...QuestionnaireNewsDetail
+        }
+    }
+}
+
+mutation SetQuestionnaireNewsSeen($newsId: ID!) {
+    setQuestionnaireNewsSeen(newsId: $newsId) {
+        ... on QuestionnaireNews {
+            id
+            seen
+        }
+        ... on OperationInfo {
+            messages {
+                kind
+                message
+                field
+                code
+            }
+        }
+    }
+}

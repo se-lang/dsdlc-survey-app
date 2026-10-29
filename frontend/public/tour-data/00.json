@@ -1,0 +1,457 @@
+{
+    "id": "WmZRdWVzdGlvbm5haXJlOmNhMTk5ODU1LWY5NGUtNDYzYy1iYjA2LWVmMzRiNWI2MTdkNg==",
+    "currentPage": {
+        "id": "zf_page:calendar.html",
+        "version": 1097,
+        "layout": {
+            "__typename": "QuestionnairePageLayoutFull"
+        },
+        "allElements": [
+            {
+                "id": "zf-element:form:calendar",
+                "types": [
+                    "ZfContainerElement",
+                    "ZfParentElement",
+                    "ZfElement",
+                    "QnrContainerElement",
+                    "QnrParentElement",
+                    "QuestionnaireElement"
+                ],
+                "__typename": "ZfContainerElement",
+                "childrenIds": [
+                    "zf-element:form:calendar:graphicalCalendar:data",
+                    "zf-element:form:calendar:tableCalendar:data"
+                ]
+            },
+            {
+                "id": "zf-element:form:calendar:graphicalCalendar:data",
+                "types": [
+                    "ZfEpisodesCalendarElement",
+                    "ZfEpisodesBase",
+                    "ZfElement",
+                    "QuestionnaireElement"
+                ],
+                "__typename": "ZfEpisodesCalendarElement",
+                "episodeCategories": [
+                    {
+                        "id": "employment",
+                        "label": "Berufsleben",
+                        "sortIndex": 0,
+                        "typeIds": ["job", "emp", "sem"],
+                        "__typename": "ZfEpisodeCategory"
+                    },
+                    {
+                        "id": "education",
+                        "label": "Bildung & Weiterbildung",
+                        "sortIndex": 1,
+                        "typeIds": ["voc", "fed", "doc", "sco", "stu"],
+                        "__typename": "ZfEpisodeCategory"
+                    },
+                    {
+                        "id": "internship",
+                        "label": "Praktika",
+                        "sortIndex": 2,
+                        "typeIds": ["int"],
+                        "__typename": "ZfEpisodeCategory"
+                    },
+                    {
+                        "id": "fam",
+                        "label": "Familie & Hausarbeit",
+                        "sortIndex": 3,
+                        "typeIds": ["mpl", "fam"],
+                        "__typename": "ZfEpisodeCategory"
+                    },
+                    {
+                        "id": "other",
+                        "label": "Sonstiges",
+                        "sortIndex": 4,
+                        "typeIds": ["oth", "uem"],
+                        "__typename": "ZfEpisodeCategory"
+                    }
+                ],
+                "episodeTypes": [
+                    {
+                        "id": "sco",
+                        "label": "Schule (Abitur/Fachabitur)",
+                        "description": "Bitte vergeben Sie einen f\u00fcr Sie verst\u00e4ndlichen Namen zur Orientierung.",
+                        "foregroundColor": "#000",
+                        "backgroundColor": "#f69f26",
+                        "allowEvents": false,
+                        "__typename": "ZfEpisodeType"
+                    },
+                    {
+                        "id": "stu",
+                        "label": "Studium",
+                        "description": "Bitte vergeben Sie einen f\u00fcr Sie verst\u00e4ndlichen Namen zur Orientierung.",
+                        "foregroundColor": "#fff",
+                        "backgroundColor": "#0069b2",
+                        "allowEvents": false,
+                        "__typename": "ZfEpisodeType"
+                    },
+                    {
+                        "id": "voc",
+                        "label": "Berufsausbildung, Umschulung, Volontariat",
+                        "description": "Nicht gemeint sind Weiterbildungen (z.B. Facharzt/-\u00e4rztin) oder Aufstiegsfortbildungen. Bitte vergeben Sie einen f\u00fcr Sie verst\u00e4ndlichen Namen zur Orientierung.",
+                        "foregroundColor": "#fff",
+                        "backgroundColor": "#097d95",
+                        "allowEvents": false,
+                        "__typename": "ZfEpisodeType"
+                    },
+                    {
+                        "id": "int",
+                        "label": "Praktikum",
+                        "description": "Bitte vergeben Sie einen f\u00fcr Sie verst\u00e4ndlichen Namen zur Orientierung.",
+                        "foregroundColor": "#000",
+                        "backgroundColor": "#cce1f0",
+                        "allowEvents": false,
+                        "__typename": "ZfEpisodeType"
+                    },
+                    {
+                        "id": "fed",
+                        "label": "Fort-, Weiterbildung (l\u00e4ngerfristig, insgesamt mind. 70h)",
+                        "description": "Bitte vergeben Sie einen f\u00fcr Sie verst\u00e4ndlichen Namen zur Orientierung.",
+                        "foregroundColor": "#000",
+                        "backgroundColor": "#fcd8a7",
+                        "allowEvents": false,
+                        "__typename": "ZfEpisodeType"
+                    },
+                    {
+                        "id": "emp",
+                        "label": "nichtselbst\u00e4ndige Erwerbst\u00e4tigkeit (auch Vorbereitungsdienste wie Referendariat o.\u00c4.)",
+                        "description": "Legen Sie f\u00fcr jede*n Arbeitgeber*in einen eigenen Zeitraum an. Bitte vergeben Sie einen f\u00fcr Sie verst\u00e4ndlichen Namen zur Orientierung.",
+                        "foregroundColor": "#000",
+                        "backgroundColor": "#7ab52a",
+                        "allowEvents": false,
+                        "__typename": "ZfEpisodeType"
+                    },
+                    {
+                        "id": "sem",
+                        "label": "Selbst\u00e4ndigkeit (auch Honorar- und Werksvertr\u00e4ge)",
+                        "description": "Legen Sie f\u00fcr jede Selbst\u00e4ndigkeit einen eigenen Zeitraum an. Bitte vergeben Sie einen f\u00fcr Sie verst\u00e4ndlichen Namen zur Orientierung.",
+                        "foregroundColor": "#000",
+                        "backgroundColor": "#cfc60d",
+                        "allowEvents": false,
+                        "__typename": "ZfEpisodeType"
+                    },
+                    {
+                        "id": "job",
+                        "label": "Jobben",
+                        "description": "Legen Sie f\u00fcr jede*n Arbeitgeber*in einen eigenen Zeitraum an. Bitte vergeben Sie einen f\u00fcr Sie verst\u00e4ndlichen Namen zur Orientierung.",
+                        "foregroundColor": "#000",
+                        "backgroundColor": "#f9f391",
+                        "allowEvents": false,
+                        "__typename": "ZfEpisodeType"
+                    },
+                    {
+                        "id": "doc",
+                        "label": "Promotion",
+                        "description": "Bitte vergeben Sie einen f\u00fcr Sie verst\u00e4ndlichen Namen zur Orientierung.",
+                        "foregroundColor": "#fff",
+                        "backgroundColor": "#b5163f",
+                        "allowEvents": false,
+                        "__typename": "ZfEpisodeType"
+                    },
+                    {
+                        "id": "mpl",
+                        "label": "Elternzeit/Mutterschutz",
+                        "description": "Bitte vergeben Sie einen f\u00fcr Sie verst\u00e4ndlichen Namen zur Orientierung.",
+                        "foregroundColor": "#fff",
+                        "backgroundColor": "#d16021",
+                        "allowEvents": false,
+                        "__typename": "ZfEpisodeType"
+                    },
+                    {
+                        "id": "fam",
+                        "label": "Hausmann/-frau",
+                        "description": "Bitte vergeben Sie einen f\u00fcr Sie verst\u00e4ndlichen Namen zur Orientierung.",
+                        "foregroundColor": "#000",
+                        "backgroundColor": "#79a0c0",
+                        "allowEvents": false,
+                        "__typename": "ZfEpisodeType"
+                    },
+                    {
+                        "id": "uem",
+                        "label": "Arbeitslosigkeit",
+                        "description": "Bitte vergeben Sie einen f\u00fcr Sie verst\u00e4ndlichen Namen zur Orientierung.",
+                        "foregroundColor": "#000",
+                        "backgroundColor": "#dce9c4",
+                        "allowEvents": false,
+                        "__typename": "ZfEpisodeType"
+                    },
+                    {
+                        "id": "oth",
+                        "label": "Sonstiges (z.B. Urlaub/Reisen, Krankheit, Studienvorbereitung, Freiwilligendienst)",
+                        "description": "Geben Sie bitte f\u00fcr die folgenden T\u00e4tigkeiten getrennte Zeitr\u00e4ume an:Freiwilligendienst, AuPair, Work & Travel, l\u00e4ngere Krankheit, Urlaub, Sonstiges. Bitte vergeben Sie einen f\u00fcr Sie verst\u00e4ndlichen Namen zur Orientierung.",
+                        "foregroundColor": "#fff",
+                        "backgroundColor": "#053e49",
+                        "allowEvents": true,
+                        "__typename": "ZfEpisodeType"
+                    }
+                ],
+                "entries": [
+                    {
+                        "id": "episode1",
+                        "startDate": "2018-03-01",
+                        "endDate": "2018-05-31",
+                        "episodeTypeId": "int",
+                        "label": "Meine Aktivität",
+                        "flags": [],
+                        "state": "new",
+                        "event": false,
+                        "badge": null,
+                        "__typename": "ZfEpisodeEntry"
+                    },
+                    {
+                        "id": "426c365b-9a4a-472e-8233-06f1bc0bb864",
+                        "startDate": "2018-03-01",
+                        "endDate": "2018-11-30",
+                        "episodeTypeId": "oth",
+                        "label": "Test",
+                        "flags": [],
+                        "state": "done",
+                        "event": true,
+                        "badge": "test",
+                        "__typename": "ZfEpisodeEntry"
+                    }
+                ],
+                "minDate": "2018-01-01",
+                "maxDate": "2018-11-30",
+                "startFieldLabel": "Beginn",
+                "endFieldLabel": "Ende",
+                "beforeStartFieldLabel": "vor {{date}}",
+                "afterEndFieldLabel": "nach {{date}}",
+                "typeFieldLabel": "Art",
+                "nameFieldLabel": "Name",
+                "saveBtnLabel": "Speichern",
+                "cancelBtnLabel": "Abbrechen"
+            },
+            {
+                "id": "zf-element:form:calendar:tableCalendar:data",
+                "types": [
+                    "ZfEpisodesTableElement",
+                    "ZfEpisodesBase",
+                    "ZfElement",
+                    "QuestionnaireElement"
+                ],
+                "__typename": "ZfEpisodesTableElement",
+                "episodeCategories": [
+                    {
+                        "id": "employment",
+                        "label": "Berufsleben",
+                        "sortIndex": 0,
+                        "typeIds": ["job", "emp", "sem"],
+                        "__typename": "ZfEpisodeCategory"
+                    },
+                    {
+                        "id": "education",
+                        "label": "Bildung & Weiterbildung",
+                        "sortIndex": 1,
+                        "typeIds": ["voc", "fed", "doc", "sco", "stu"],
+                        "__typename": "ZfEpisodeCategory"
+                    },
+                    {
+                        "id": "internship",
+                        "label": "Praktika",
+                        "sortIndex": 2,
+                        "typeIds": ["int"],
+                        "__typename": "ZfEpisodeCategory"
+                    },
+                    {
+                        "id": "fam",
+                        "label": "Familie & Hausarbeit",
+                        "sortIndex": 3,
+                        "typeIds": ["mpl", "fam"],
+                        "__typename": "ZfEpisodeCategory"
+                    },
+                    {
+                        "id": "other",
+                        "label": "Sonstiges",
+                        "sortIndex": 4,
+                        "typeIds": ["oth", "uem"],
+                        "__typename": "ZfEpisodeCategory"
+                    }
+                ],
+                "episodeTypes": [
+                    {
+                        "id": "sco",
+                        "label": "Schule (Abitur/Fachabitur)",
+                        "description": "Bitte vergeben Sie einen f\u00fcr Sie verst\u00e4ndlichen Namen zur Orientierung.",
+                        "foregroundColor": "#fff",
+                        "backgroundColor": "#000",
+                        "allowEvents": false,
+                        "__typename": "ZfEpisodeType"
+                    },
+                    {
+                        "id": "stu",
+                        "label": "Studium",
+                        "description": "Bitte vergeben Sie einen f\u00fcr Sie verst\u00e4ndlichen Namen zur Orientierung.",
+                        "foregroundColor": "#fff",
+                        "backgroundColor": "#000",
+                        "allowEvents": false,
+                        "__typename": "ZfEpisodeType"
+                    },
+                    {
+                        "id": "voc",
+                        "label": "Berufsausbildung, Umschulung, Volontariat",
+                        "description": "Nicht gemeint sind Weiterbildungen (z.B. Facharzt/-\u00e4rztin) oder Aufstiegsfortbildungen. Bitte vergeben Sie einen f\u00fcr Sie verst\u00e4ndlichen Namen zur Orientierung.",
+                        "foregroundColor": "#fff",
+                        "backgroundColor": "#000",
+                        "allowEvents": false,
+                        "__typename": "ZfEpisodeType"
+                    },
+                    {
+                        "id": "int",
+                        "label": "Praktikum",
+                        "description": "Bitte vergeben Sie einen f\u00fcr Sie verst\u00e4ndlichen Namen zur Orientierung.",
+                        "foregroundColor": "#fff",
+                        "backgroundColor": "#000",
+                        "allowEvents": false,
+                        "__typename": "ZfEpisodeType"
+                    },
+                    {
+                        "id": "fed",
+                        "label": "Fort-, Weiterbildung (l\u00e4ngerfristig, insgesamt mind. 70h)",
+                        "description": "Bitte vergeben Sie einen f\u00fcr Sie verst\u00e4ndlichen Namen zur Orientierung.",
+                        "foregroundColor": "#fff",
+                        "backgroundColor": "#000",
+                        "allowEvents": false,
+                        "__typename": "ZfEpisodeType"
+                    },
+                    {
+                        "id": "emp",
+                        "label": "nichtselbst\u00e4ndige Erwerbst\u00e4tigkeit (auch Vorbereitungsdienste wie Referendariat o.\u00c4.)",
+                        "description": "Legen Sie f\u00fcr jede*n Arbeitgeber*in einen eigenen Zeitraum an. Bitte vergeben Sie einen f\u00fcr Sie verst\u00e4ndlichen Namen zur Orientierung.",
+                        "foregroundColor": "#fff",
+                        "backgroundColor": "#000",
+                        "allowEvents": false,
+                        "__typename": "ZfEpisodeType"
+                    },
+                    {
+                        "id": "sem",
+                        "label": "Selbst\u00e4ndigkeit (auch Honorar- und Werksvertr\u00e4ge)",
+                        "description": "Legen Sie f\u00fcr jede Selbst\u00e4ndigkeit einen eigenen Zeitraum an. Bitte vergeben Sie einen f\u00fcr Sie verst\u00e4ndlichen Namen zur Orientierung.",
+                        "foregroundColor": "#fff",
+                        "backgroundColor": "#000",
+                        "allowEvents": false,
+                        "__typename": "ZfEpisodeType"
+                    },
+                    {
+                        "id": "job",
+                        "label": "Jobben",
+                        "description": "Legen Sie f\u00fcr jede*n Arbeitgeber*in einen eigenen Zeitraum an. Bitte vergeben Sie einen f\u00fcr Sie verst\u00e4ndlichen Namen zur Orientierung.",
+                        "foregroundColor": "#fff",
+                        "backgroundColor": "#000",
+                        "allowEvents": false,
+                        "__typename": "ZfEpisodeType"
+                    },
+                    {
+                        "id": "doc",
+                        "label": "Promotion",
+                        "description": "Bitte vergeben Sie einen f\u00fcr Sie verst\u00e4ndlichen Namen zur Orientierung.",
+                        "foregroundColor": "#fff",
+                        "backgroundColor": "#000",
+                        "allowEvents": false,
+                        "__typename": "ZfEpisodeType"
+                    },
+                    {
+                        "id": "mpl",
+                        "label": "Elternzeit/Mutterschutz",
+                        "description": "Bitte vergeben Sie einen f\u00fcr Sie verst\u00e4ndlichen Namen zur Orientierung.",
+                        "foregroundColor": "#fff",
+                        "backgroundColor": "#000",
+                        "allowEvents": false,
+                        "__typename": "ZfEpisodeType"
+                    },
+                    {
+                        "id": "fam",
+                        "label": "Hausmann/-frau",
+                        "description": "Bitte vergeben Sie einen f\u00fcr Sie verst\u00e4ndlichen Namen zur Orientierung.",
+                        "foregroundColor": "#fff",
+                        "backgroundColor": "#000",
+                        "allowEvents": false,
+                        "__typename": "ZfEpisodeType"
+                    },
+                    {
+                        "id": "uem",
+                        "label": "Arbeitslosigkeit",
+                        "description": "Bitte vergeben Sie einen f\u00fcr Sie verst\u00e4ndlichen Namen zur Orientierung.",
+                        "foregroundColor": "#fff",
+                        "backgroundColor": "#000",
+                        "allowEvents": false,
+                        "__typename": "ZfEpisodeType"
+                    },
+                    {
+                        "id": "oth",
+                        "label": "Sonstiges (z.B. Urlaub/Reisen, Krankheit, Studienvorbereitung, Freiwilligendienst)",
+                        "description": "Geben Sie bitte f\u00fcr die folgenden T\u00e4tigkeiten getrennte Zeitr\u00e4ume an:Freiwilligendienst, AuPair, Work & Travel, l\u00e4ngere Krankheit, Urlaub, Sonstiges. Bitte vergeben Sie einen f\u00fcr Sie verst\u00e4ndlichen Namen zur Orientierung.",
+                        "foregroundColor": "#fff",
+                        "backgroundColor": "#000",
+                        "allowEvents": true,
+                        "__typename": "ZfEpisodeType"
+                    }
+                ],
+                "entries": [
+                    {
+                        "id": "episode1",
+                        "startDate": "2018-03-01",
+                        "endDate": "2018-05-31",
+                        "episodeTypeId": "int",
+                        "label": "Meine Episode",
+                        "flags": [],
+                        "state": "new",
+                        "event": false,
+                        "badge": null,
+                        "__typename": "ZfEpisodeEntry"
+                    },
+                    {
+                        "id": "426c365b-9a4a-472e-8233-06f1bc0bb864",
+                        "startDate": "2018-03-01",
+                        "endDate": "2018-11-30",
+                        "episodeTypeId": "oth",
+                        "label": "Test",
+                        "flags": [],
+                        "state": "done",
+                        "event": true,
+                        "badge": "test",
+                        "__typename": "ZfEpisodeEntry"
+                    }
+                ],
+                "minDate": "2018-01-01",
+                "maxDate": "2018-11-30",
+                "startFieldLabel": "Beginn",
+                "endFieldLabel": "Ende",
+                "beforeStartFieldLabel": "vor {{date}}",
+                "afterEndFieldLabel": "nach {{date}}",
+                "typeFieldLabel": "Art",
+                "nameFieldLabel": "Name",
+                "saveBtnLabel": "Speichern",
+                "cancelBtnLabel": "Abbrechen"
+            }
+        ],
+        "childrenIds": ["zf-element:form:calendar"],
+        "headerIds": [],
+        "buttons": [
+            {
+                "id": "zf-element:form:calendar_btn_form:btPanel:backward:backwardBt",
+                "label": "Zur\u00fcck",
+                "type": "BACK",
+                "__typename": "QuestionnairePageButton"
+            },
+            {
+                "id": "zf-element:form:calendar_btn_form:btPanel:forward:forwardBt",
+                "label": "Weiter",
+                "type": "NEXT",
+                "__typename": "QuestionnairePageButton"
+            }
+        ],
+        "formValues": [],
+        "__typename": "ZfPage"
+    },
+    "status": {
+        "id": "WmZRdWVzdGlvbm5haXJlU3RhdHVzOmNhMTk5ODU1LWY5NGUtNDYzYy1iYjA2LWVmMzRiNWI2MTdkNg==",
+        "completionState": "FINISHED",
+        "lastVisit": "2025-07-08T06:48:30.737000+00:00",
+        "__typename": "ZfQuestionnaireStatus"
+    },
+    "__typename": "ZfQuestionnaire"
+}

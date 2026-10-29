@@ -1,0 +1,6 @@
+/static/
+push_private_key.pem
+**/__pycache__
+zofar_api.json
+zofar_api_parsed.json
+/lla.config.toml

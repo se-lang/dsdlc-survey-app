@@ -1,0 +1,153 @@
+@use "variables" as v;
+
+:root {
+    --lla-text-font-family: "Fira Sans", "system-ui", sans-serif;
+
+    --lla-thin-font-weight: 300;
+    --lla-base-font-weight: 400;
+    --lla-medium-font-weight: 500;
+    --lla-bold-font-weight: 600;
+
+    --lla-text-body-font-weight: var(--lla-base-font-weight);
+    --lla-text-body-font-size: 100%;
+    --lla-text-body-line-height: 1.5;
+    --lla-text-body-letter-spacing: 0.025em;
+
+    --lla-text-flow-font-size: 0.8125rem;
+
+    --lla-text-h1-font-size: 2.5rem;
+    --lla-text-h1-font-weight: var(--lla-medium-font-weight);
+    --lla-text-h1-letter-spacing: 0.05em;
+
+    --lla-text-h2-font-size: 1.25rem;
+    --lla-text-h2-font-weight: var(--lla-medium-font-weight);
+    --lla-text-h2-letter-spacing: 0.05em;
+
+    --lla-text-h3-font-size: 1.125rem;
+    --lla-text-h3-font-weight: var(--lla-bold-font-weight);
+    --lla-text-h3-letter-spacing: 3%;
+
+    --lla-text-h4-font-size: 1.375rem;
+    --lla-text-h4-font-weight: var(--lla-medium-font-weight);
+    --lla-text-h4-letter-spacing: 3%;
+
+    --lla-dialog-subtitle-font-size: 0.9375rem;
+
+    --lla-text-dialog-sidebar-heading-font-size: 0.875rem;
+    --lla-text-dialog-sidebar-heading-font-weight: var(--lla-medium-font-weight);
+    --lla-text-dialog-sidebar-heading-letter-spacing: 10%;
+
+    --lla-text-badge-font-size: 1.125rem;
+    --lla-text-badge-font-weight: var(--lla-medium-font-weight);
+    --lla-text-badge-letter-spacing: 10%;
+
+    --lla-text-buttons-font-size: 1rem;
+    --lla-text-buttons-small-font-size: 0.8125rem;
+    --lla-text-buttons-font-weight: var(--lla-bold-font-weight);
+    --lla-text-buttons-letter-spacing: 2%;
+    --lla-text-flat-buttons-letter-spacing: 10%;
+    --lla-text-rounded-buttons-font-size: 0.8125rem;
+
+    --lla-text-calendar-view-buttons-font-size: 1.25rem;
+    --lla-text-calendar-view-buttons-font-size-mobile: 0.8125rem;
+    --lla-text-calendar-view-buttons-letter-spacing: 0.025em;
+    --lla-text-calendar-view-buttons-font-weight: var(--lla-base-font-weight);
+    --lla-text-calendar-view-buttons-font-weight-active: 700;
+    --lla-text-calendar-view-legend-font-size: 0.8125rem;
+
+    --lla-text-calendar-year-legend-font-size: 1.5rem;
+    --lla-text-calendar-year-move-btns-font-size: 1rem;
+    --lla-text-calendar-year-legend-font-weight: var(--lla-bold-font-weight);
+
+    --lla-text-calendar-view-mode-display-title-font-size: 0.5625rem;
+    --lla-text-calendar-view-mobile-category-font-size: 0.6875rem;
+
+    --lla-text-calendar-episode-large: 0.8rem;
+    --lla-text-calendar-episode-small: 0.6rem;
+
+    --lla-text-calendar-episode-popover-title-font-size: 1rem;
+    --lla-text-calendar-episode-popover-title-letter-spacing: 2%;
+    --lla-text-calendar-episode-popover-title-font-weight: var(--lla-medium-font-weight);
+    --lla-text-calendar-episode-popover-text-font-size: 0.75rem;
+    --lla-text-calendar-episode-popover-text-letter-spacing: 2%;
+    --lla-text-calendar-episode-popover-text-font-weight: var(--lla-medium-font-weight);
+
+    --lla-text-input-font-size: 0.9375rem;
+    --lla-text-input-line-height: 1.375rem;
+    --lla-text-input-font-weight: var(--lla-base-font-weight);
+    --lla-text-input-letter-spacing: 2%;
+
+    --lla-last-update-mobile-font-size: 0.8125rem;
+
+    --lla-form-control-padding-block: 0.8125rem;
+    --lla-form-control-padding-inline: 1.125rem;
+
+    --lla-form-control-small-padding-block: 0.46875rem;
+    --lla-form-control-small-padding-inline: 1.125rem;
+
+    --lla-text-input-small-font-size: 1rem;
+    --lla-text-input-small-line-height: 1rem;
+    --lla-text-input-small-letter-spacing: 2%;
+
+    --lla-text-input-font-weight-selected: var(--lla-bold-font-weight);
+
+    --lla-text-label-font-size: 0.9375rem;
+    --lla-text-label-font-weight: var(--lla-base-font-weight);
+    --lla-text-label-letter-spacing: 0.02em;
+
+    --lla-text-large-label-font-size: 1.125rem;
+    --lla-text-large-label-letter-spacing: 0.1em;
+
+    --lla-text-basic-label-font-weight: var(--lla-base-font-weight);
+
+    --lla-checkbox-size: 1.25rem;
+
+    --lla-month-picker-font-size: 0.875rem;
+    --lla-month-picker-font-weight: var(--lla-thin-font-weight);
+    --lla-month-picker-selected-font-weight: var(--lla-medium-font-weight);
+
+    --lla-episode-table-header-font-size: 0.75rem;
+    --lla-episode-table-header-font-weight: var(--lla-medium-font-weight);
+    --lla-episode-table-header-letter-spacing: 10%;
+
+    --lla-episode-table-font-size: 1rem;
+    --lla-episode-table-font-weight: var(--lla-base-font-weight);
+    --lla-episode-table-font-weight-active: var(--lla-medium-font-weight);
+    --lla-episode-table-line-height: 1;
+    --lla-episode-table-letter-spacing: 2%;
+
+    --lla-episode-mobile-list-element-title-font-size: 0.8125rem;
+    --lla-episode-mobile-list-element-small-font-size: 0.6875rem;
+    --lla-episode-mobile-header-font-weight: var(--lla-bold-font-weight);
+
+    --lla-matrix-pagination-font-size: 1.125rem;
+    --lla-matrix-pagination-font-weight: var(--lla-base-font-weight);
+    --lla-matrix-pagination-active-font-weight: var(--lla-bold-font-weight);
+    --lla-matrix-pagination-letter-spacing: 2%;
+
+    --lla-archive-sort-button-font-size: 0.75rem;
+    --lla-archive-title-font-size: 1rem;
+
+    --lla-news-title-font-size: 1.75rem;
+    --lla-news-sub-title-font-size: 1.125rem;
+    --lla-news-text-font-size: 0.9375rem;
+
+    --lla-news-info-bar-font-size: 0.9375rem;
+}
+
+@media (width >= v.$mobileWidth) {
+    :root {
+        --lla-text-flow-font-size: 1.125rem;
+
+        --lla-text-h2-font-size: 1.75rem;
+
+        --lla-text-buttons-small-font-size: 1rem;
+
+        --lla-text-input-font-size: 1.125rem;
+        --lla-text-input-line-height: 1.375rem;
+
+        --lla-text-label-font-size: 1.125rem;
+
+        --lla-dialog-subtitle-font-size: 1rem;
+    }
+}

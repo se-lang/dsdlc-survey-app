@@ -1,0 +1,63 @@
+@let element = this.element();
+@let style = this.resolvedStyle();
+
+<lla-qnr-element-children [parentElement]="element" />
+
+@if (element.autocomplete; as autocomplete) {
+    <datalist [id]="dataListId">
+        @for (item of autocomplete.items; track item.id) {
+            <option [value]="item.label"></option>
+        }
+    </datalist>
+}
+<div
+    class="maybe-form-row"
+    [class.lla-form-row]="!matrixHeaderCustomLabelMode() && !openMatrixMode()"
+>
+    <label [for]="formControlId" [class.lla-basic-label]="style === 'basic'">
+        {{ element.label }}
+    </label>
+    <div class="wrap">
+        @if (element.prefix) {
+            <span>{{ element.prefix }}</span>
+        }
+        @switch (inputType()) {
+            @case ("year-month") {
+                <lla-month-year-picker>
+                    <input
+                        llaMonthYearPickerInput
+                        class="lla-form-control"
+                        [id]="formControlId"
+                        [formControl]="formControl()"
+                        [min]="minDate()"
+                        [max]="maxDate()"
+                        [initialDate]="element.initialDate"
+                    />
+                </lla-month-year-picker>
+            }
+            @default {
+                <input
+                    class="lla-form-control"
+                    [id]="formControlId"
+                    [formControl]="formControl()"
+                    type="text"
+                    [attr.form]="pageForm()"
+                    [attr.list]="element.autocomplete ? dataListId : null"
+                    [attr.inputmode]="inputmode()"
+                    [attr.placeholder]="element.placeholder"
+                    (input)="onTextInput()"
+                    #textInput
+                />
+            }
+        }
+
+        @if (element.postfix) {
+            <span>{{ element.postfix }}</span>
+        }
+    </div>
+    <val-errors [control]="formControl()">
+        <ng-template valFallback let-error="error">
+            {{ error }}
+        </ng-template>
+    </val-errors>
+</div>

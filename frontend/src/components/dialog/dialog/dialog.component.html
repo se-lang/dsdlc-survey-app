@@ -1,0 +1,13 @@
+<div class="lla-dialog-wrapper">
+    <ng-content />
+    @if (renderContents()) {
+        @if (resolvedTemplate(); as tpl) {
+            <ng-container *ngTemplateOutlet="tpl" />
+        } @else {
+            @let cmp = component();
+            @if (cmp) {
+                <ng-container *ngComponentOutlet="cmp" />
+            }
+        }
+    }
+</div>

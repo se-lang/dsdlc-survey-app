@@ -1,0 +1,52 @@
+<ng-container *transloco="let t; prefix: 'activateAccount'">
+    <lla-dialog-header [color]="'brand'" [title]="t('title')" />
+    <lla-dialog-content>
+        @if (this.success(); as success) {
+            @if (!success.activated) {
+                <p>{{ t("alreadyActivated") }}</p>
+            } @else {
+                <p>{{ t("success") }}</p>
+            }
+            <!-- Link to / to handle being logged in already for whatever reason -->
+            <a [routerLink]="['/']" class="lla-button lla-flat-button">
+                {{ t("loginNow") }}
+            </a>
+        }
+
+        @if (this.validationError(); as validationError) {
+            @if (!resent()) {
+                <p>
+                    @for (err of validationError.messages; track $index) {
+                        {{ err.message }}
+                        @if (!$last) {
+                            <br />
+                        }
+                    }
+                </p>
+            }
+
+            @if (canResend()) {
+                @if (resent()) {
+                    <p>
+                        {{ t("resentInfo") }}
+                    </p>
+                } @else {
+                    <div class="lla-button-row">
+                        <button type="button" class="lla-flat-button" (click)="resend()">
+                            @if (resending()) {
+                                {{ t("resending") }}
+                            } @else {
+                                {{ t("resendButton") }}
+                            }
+                        </button>
+                    </div>
+                    @if (resendError()) {
+                        <p>
+                            {{ t("resendError") }}
+                        </p>
+                    }
+                }
+            }
+        }
+    </lla-dialog-content>
+</ng-container>

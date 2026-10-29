@@ -1,0 +1,88 @@
+imagePullSecrets:
+    - name: codepartner
+
+tolerations:
+    -   key: 'project'
+        value: 'geteilt'
+        operator: Equal
+        effect: "NoSchedule"
+
+nodeSelector:
+    project: "geteilt"
+
+dependencies:
+    redis: false
+    haRedis: true
+    postgresql: false
+
+redis:
+    architecture: standalone
+    auth:
+        enabled: false
+    master:
+        persistence:
+            enabled: false
+        tolerations:
+            -   key: 'project'
+                value: 'geteilt'
+                operator: Equal
+                effect: "NoSchedule"
+        nodeSelector:
+            project: "geteilt"
+
+databaseConnection:
+    host: "private-dzhw-lebenslaeufe-prod-do-user-3371155-0.m.db.ondigitalocean.com"
+    username: "dzhw_lebenslaeufe_prod"
+    databaseName: "dzhw_lebenslaeufe_prod_pool"
+    port: 25061
+    disableServerSideCursors: true
+    sslmode: "require"
+
+infra:
+    celeryReplicas: 1
+    wsgiWorkers: 1
+    wsgiThreads: 4
+    api:
+        cpuRequests: "300m"
+        minReplicas: 3
+        maxReplicas: 6
+        minAvailable: 2
+    nginx:
+        cpuRequests: "300m"
+        minReplicas: 3
+        maxReplicas: 6
+        minAvailable: 2
+
+ingress:
+    tls:
+        enabled: true
+    frontendHostnames: ["mobil-app-dzhw.codepartner.cloud"]
+    extraFrontendTlsHostnames: []
+    apiHostnames: ["api.mobil-app-dzhw.codepartner.cloud"]
+    annotations:
+        cert-manager.io/cluster-issuer: letsencrypt
+        nginx.ingress.kubernetes.io/server-snippet: |-
+            add_header X-Robots-Tag "noindex, nofollow";
+    frontendAnnotations:
+        nginx.ingress.kubernetes.io/from-to-www-redirect: "true"
+
+email:
+    host: "w01315b5.kasserver.com"
+    username: "mailtest-dzhw@codepartner.de"
+    security: "explicit_tls"
+    source_email: "DSDLC App <mailtest-dzhw@codepartner.de>"
+
+storage:
+    type: s3
+    access_key: "TRLNN4ZSFK0I503UJ7HP"
+    bucket_name: "dzhw-lla"
+    region_name: "eu-central-2"
+    endpoint_url: "https://s3.eu-central-2.wasabisys.com"
+    location: "production/"
+
+applicationConfig:
+    auth:
+        login_enabled: false
+        register_enabled: false
+    zofar:
+        events_enabled: false

@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 19 24">
+    <g style="transform: rotate(calc(180deg * var(--lla-icon-rotate, 0))); transform-origin: center;">
+        <path d="M0 0h19.091v19.091H0Z" />
+        <path d="m9.546 12.41 5.796 5.796L9.546 24l-5.795-5.795Z" />
+        <circle cx="9.546" cy="9.545" r="6.205" fill="#fff"/>
+    </g>
+        <path
+            style="transform: translateY(calc(4.85px * var(--lla-icon-rotate, 0)));"
+            d="m10.813 5.727-.307 4.444H8.67l-.318-4.444h2.46zm-1.23 5.292c.647 0 1.167.53 1.167 1.167a1.18 1.18 0 0 1-1.167 1.177c-.647 0-1.177-.54-1.177-1.177 0-.636.53-1.167 1.177-1.167z"/>
+</svg>

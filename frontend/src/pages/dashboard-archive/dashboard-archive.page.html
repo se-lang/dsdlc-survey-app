@@ -1,0 +1,63 @@
+<ng-container *transloco="let t; prefix: 'archive'">
+    <table>
+        <thead>
+            <tr>
+                <th>
+                    <button
+                        class="archive-sort-button"
+                        (click)="
+                            sortOption().title === 'ASC'
+                                ? sortOption.set({ title: 'DESC' })
+                                : sortOption.set({ title: 'ASC' })
+                        "
+                    >
+                        {{ t("titleSort") }}
+                        @if (sortOption().title) {
+                            <lla-icon
+                                [class]="`sort-chevron-${sortOption().title?.toLowerCase()}`"
+                                class="arrow-up-down"
+                                name="sort-chevron"
+                                shape="auto"
+                            />
+                        }
+                    </button>
+                </th>
+                <th>
+                    <button
+                        class="archive-sort-button"
+                        (click)="
+                            sortOption().date === 'ASC'
+                                ? sortOption.set({ date: 'DESC' })
+                                : sortOption.set({ date: 'ASC' })
+                        "
+                    >
+                        {{ t("dateSort") }}
+                        @if (sortOption().date) {
+                            <lla-icon
+                                [class]="`sort-chevron-${sortOption().date?.toLowerCase()}`"
+                                class="arrow-up-down"
+                                name="sort-chevron"
+                                shape="auto"
+                            />
+                        }
+                    </button>
+                </th>
+            </tr>
+        </thead>
+        <tbody>
+            @for (newsElement of news.value()?.questionnaireNews; track newsElement.id) {
+                <tr>
+                    <td>
+                        <a [routerLink]="'/news/' + newsElement.id">
+                            <h3>{{ newsElement.title }}</h3>
+                            <p>{{ newsElement.description }}</p>
+                        </a>
+                    </td>
+                    <td class="news-date">
+                        {{ newsElement.date | date: "dayMonthYear" }}
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</ng-container>

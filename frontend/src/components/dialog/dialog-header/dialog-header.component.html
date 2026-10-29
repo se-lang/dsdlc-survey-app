@@ -1,0 +1,27 @@
+<ng-container *transloco="let t; prefix: 'dialog'">
+    <div class="left">
+        <ng-content select="[slot=icon-button-left]" />
+    </div>
+    <div class="middle">
+        <ng-content>
+            <h1 class="lla-dialog-title">{{ title() }}</h1>
+        </ng-content>
+        @if (subtitle(); as sub) {
+            <p class="lla-dialog-subtitle">{{ sub }}</p>
+        }
+    </div>
+    <div class="right">
+        <ng-content select="[slot=icon-button-right]" />
+    </div>
+    @if (resolvedEnableCloseIcon()) {
+        <button
+            type="button"
+            llaDialogClose
+            class="close-button lla-icon-button"
+            [attr.aria-label]="t('closeAriaLabel')"
+            (click)="closeIconClick.emit()"
+        >
+            <lla-icon [name]="'close_x'" />
+        </button>
+    }
+</ng-container>

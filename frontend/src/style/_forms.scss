@@ -1,0 +1,384 @@
+@use "sass:list";
+@use "sass:math";
+@use "variables" as v;
+
+:root {
+    --lla-form-check-label-distance: 1rem;
+    --lla-form-row-spacing: 1.25rem;
+    --lla-form-input-margin: 0.5rem;
+}
+
+@media (width >= v.$mobileWidth) {
+    :root {
+        --lla-form-row-spacing: 1.5rem;
+    }
+}
+
+label {
+    cursor: pointer;
+    color: var(--lla-clr-form-label-text);
+    font-size: var(--lla-text-label-font-size);
+    font-weight: var(--lla-text-label-font-weight);
+    letter-spacing: var(--lla-text-label-letter-spacing);
+
+    &.lla-form-label--disabled {
+        cursor: default;
+        color: var(--lla-clr-form-label-text-disabled);
+    }
+}
+
+label.lla-large-label {
+    font-size: var(--lla-text-large-label-font-size);
+    letter-spacing: var(--lla-text-large-label-letter-spacing);
+    text-transform: uppercase;
+}
+
+label.lla-basic-label {
+    font-weight: var(--lla-text-basic-label-font-weight);
+}
+
+.lla-label-required {
+    &::after {
+        content: "*";
+        color: var(--lla-clr-text-form-error);
+    }
+}
+
+val-errors {
+    display: block;
+    color: var(--lla-clr-text-form-error);
+    font-size: 0.9em;
+    margin-block-end: 1em;
+    white-space: pre-line;
+
+    p {
+        margin-block: 0.3em;
+    }
+}
+
+.lla-form-row {
+    margin-block-end: var(--lla-form-row-spacing);
+
+    label {
+        display: block;
+    }
+
+    :where(:not(lla-month-year-picker) > .lla-form-control:not(input[type="checkbox"])) {
+        display: block;
+        width: 100%;
+        margin-block-start: var(--lla-form-input-margin);
+    }
+
+    :where(lla-month-year-picker) {
+        margin-block-start: var(--lla-form-input-margin);
+    }
+}
+
+.lla-form-row-hint-container {
+    display: grid;
+    grid-template-columns: auto auto;
+    grid-template-rows: auto auto;
+    grid-template-areas: "label hint" "input input";
+
+    .lla-form-row-hint {
+        grid-area: hint;
+        text-align: end;
+    }
+
+    label {
+        grid-area: label;
+    }
+
+    .lla-form-row-hint-input {
+        grid-area: input;
+    }
+}
+
+.lla-form-row-hint {
+    font-size: 0.9375rem;
+    font-style: italic;
+    font-weight: var(--lla-base-font-weight);
+    color: inherit;
+    background: none;
+    border: none;
+    padding: 0;
+    margin: 0;
+    margin-inline-start: auto;
+    display: inline-block;
+    width: fit-content;
+
+    &:is(a, button):hover {
+        text-decoration: underline;
+    }
+}
+
+@media (width >= v.$mobileWidth) {
+    .lla-form-row--grid {
+        display: grid;
+        grid-auto-flow: column;
+        grid-auto-columns: 1fr;
+        gap: 0.5rem;
+
+        > * {
+            min-width: 0;
+        }
+    }
+}
+
+@media (width < v.$mobileWidth) {
+    .lla-form-row--grid > * + * {
+        margin-block-start: var(--lla-form-row-spacing);
+    }
+}
+
+.lla-form-control:where(:not(input[type="checkbox"], input[type="radio"])) {
+    font-family: inherit;
+    font-size: var(--lla-text-input-font-size);
+    font-weight: var(--lla-text-input-font-weight);
+    line-height: var(--lla-text-input-line-height);
+    letter-spacing: var(--lla-text-input-letter-spacing);
+
+    border: 1px solid var(--lla-clr-form-control-border);
+    background-color: var(--lla-clr-form-control-bg);
+    color: var(--lla-clr-form-control-text);
+    background-image: none;
+    padding-block: var(--lla-form-control-padding-block);
+    padding-inline: var(--lla-form-control-padding-inline);
+    border-radius: 0;
+
+    &:disabled {
+        color: var(--lla-clr-form-control-text-disabled);
+    }
+}
+
+select.lla-form-control {
+    appearance: none;
+    background-image: url('data:image/svg+xml,<svg width="10" height="5" viewBox="0 0 10 5" xmlns="http://www.w3.org/2000/svg"><path fill="currentColor" d="M5 5 0 0h10z"/></svg>');
+    background-repeat: no-repeat;
+    background-position: calc(100% - var(--lla-form-control-padding-inline)) center;
+    padding-inline-end: calc(var(--lla-form-control-padding-inline) * 2 + 10px);
+
+    &:not(:disabled) {
+        cursor: pointer;
+    }
+}
+
+@supports (appearance: base-select) {
+    select.lla-custom-select {
+        min-height: calc(var(--lla-form-control-padding-block) * 2 + 1lh + 2px);
+        white-space: nowrap;
+
+        &,
+        &::picker(select) {
+            appearance: base-select;
+        }
+
+        &::picker(select) {
+            border: 1px solid var(--lla-clr-form-control-border);
+        }
+
+        option::checkmark,
+        &::picker-icon {
+            display: none;
+        }
+
+        option {
+            display: flex;
+            padding-block: var(--lla-form-control-padding-block);
+            padding-inline: var(--lla-form-control-padding-inline);
+            background-color: var(--lla-clr-form-control-bg);
+
+            &:checked {
+                background-color: var(--lla-clr-form-control-bg-selected);
+            }
+
+            &:hover {
+                background-color: var(--lla-clr-form-control-bg-hover);
+            }
+        }
+    }
+}
+
+input[type="checkbox"].lla-form-control,
+input[type="radio"].lla-form-control {
+    display: inline-block;
+    font-size: var(--lla-checkbox-size);
+    font-family: inherit;
+
+    appearance: none;
+    border: 1px solid var(--lla-clr-form-control-border);
+    background-color: var(--lla-clr-form-control-bg);
+    aspect-ratio: 1;
+    height: 1em;
+    margin: 0;
+    //vertical-align: middle;
+    //margin: calc(1ex - 1cap) 0 0 0;
+
+    position: relative;
+
+    &:not(:disabled) {
+        cursor: pointer;
+    }
+
+    &::before,
+    &::after {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        margin: auto;
+        aspect-ratio: 1;
+        background-color: currentColor;
+    }
+}
+
+input[type="radio"].lla-form-control {
+    border-radius: 100%;
+
+    --_radio-scale: 0;
+
+    &::before,
+    &::after {
+        width: 100%;
+        border-radius: 50%;
+        transform: scale(var(--_radio-scale));
+        transition: transform 90ms cubic-bezier(0, 0, 0.2, 1);
+    }
+
+    &:checked {
+        --_radio-scale: 0.5;
+    }
+}
+
+input[type="checkbox"].lla-form-control {
+    --_check-opacity: 0;
+    --_check-anim-func1: step-end;
+    --_check-anim-func2: step-end;
+    --_check-anim-time1: 90ms;
+    --_check-anim-time2: var(--_check-anim-time1);
+
+    &::before,
+    &::after {
+        width: 75%;
+        opacity: var(--_check-opacity);
+        transition:
+            opacity var(--_check-anim-time) ease 0s,
+            clip-path var(--_check-anim-time) var(--_check-anim-func) var(--_check-anim-delay);
+    }
+
+    &:checked {
+        --_check-anim-time1: 50ms;
+        --_check-anim-time2: calc(var(--_check-anim-time1) * 0.8);
+        --_check-anim-func1: cubic-bezier(0.32, 0, 0.67, 0);
+        --_check-anim-func2: linear;
+    }
+
+    // $pathSize is the size of the coordinate system of the clip path coordinates
+    // The points lists are lists of lists with the inner list being (x, y)
+    // points1 and points2 are the two lines of the checkmark, so we can animate them separately
+    // points1Checked and points2Checked are the "checkbox is checked" marks of the same
+    // this is currently based on Material Symbols "check" icon
+    $pathSize: 120;
+    $points1: ((0, 67), (14, 53), (14, 53), (0, 67));
+    $points1Checked: ((0, 67), (14, 53), (40, 79), (40, 107));
+    $points2: ((40, 79), (40, 79), (40, 107), (40, 107));
+    $points2Checked: ((40, 79), (106, 13), (120, 27), (40, 107));
+
+    @mixin build-clip-path($points) {
+        $newPoints: ();
+        @each $point in $points {
+            $newCoords: ();
+            @each $coord in $point {
+                $newCoords: list.append(
+                    $newCoords,
+                    math.div($coord * 100%, $pathSize),
+                    $separator: space
+                );
+            }
+            $newPoints: list.append($newPoints, $newCoords, $separator: comma);
+        }
+        clip-path: polygon(#{$newPoints});
+    }
+
+    &::before {
+        @include build-clip-path($points1);
+        --_check-anim-func: var(--_check-anim-func2);
+        --_check-anim-time: var(--_check-anim-time2);
+        --_check-anim-delay: var(--_check-anim-time1);
+    }
+
+    &::after {
+        @include build-clip-path($points2);
+        --_check-anim-func: var(--_check-anim-func1);
+        --_check-anim-time: var(--_check-anim-time1);
+        --_check-anim-delay: 0s;
+    }
+
+    &:checked {
+        --_check-opacity: 1;
+
+        &::before {
+            @include build-clip-path($points1Checked);
+            --_check-anim-func: var(--_check-anim-func1);
+            --_check-anim-time: var(--_check-anim-time1);
+            --_check-anim-delay: 0s;
+        }
+
+        &::after {
+            @include build-clip-path($points2Checked);
+            --_check-anim-func: var(--_check-anim-func2);
+            --_check-anim-time: var(--_check-anim-time2);
+            --_check-anim-delay: var(--_check-anim-time1);
+        }
+    }
+}
+
+.lla-form-check {
+    display: flex;
+
+    > label,
+    .lla-form-check__attached {
+        padding-inline-start: var(--lla-form-check-label-distance);
+    }
+
+    .lla-form-check__attached {
+    }
+}
+
+.lla-form-button-check {
+    input[type="checkbox"],
+    input[type="radio"] {
+        position: absolute;
+        clip: rect(0, 0, 0, 0);
+        pointer-events: none;
+    }
+
+    label {
+        display: block;
+        font-size: var(--lla-text-input-font-size);
+        font-weight: var(--lla-text-input-font-weight);
+        line-height: var(--lla-text-input-line-height);
+        letter-spacing: var(--lla-text-input-letter-spacing);
+
+        border: 1px solid var(--lla-clr-form-control-border);
+        background-color: var(--lla-clr-form-control-bg);
+        color: var(--lla-clr-form-control-text);
+        padding-block: var(--lla-form-control-padding-block);
+        padding-inline: var(--lla-form-control-padding-inline);
+
+        text-align: center;
+
+        transition: background-color 250ms ease;
+    }
+
+    :checked + label {
+        font-weight: var(--lla-text-input-font-weight-selected);
+        background-color: var(--lla-clr-form-control-bg-selected);
+    }
+}
+
+.lla-month-year-picker {
+    width: 100%;
+}

@@ -1,0 +1,465 @@
+@use "../../../style/variables" as v;
+@use "../../../style/media" as *;
+
+:host {
+    display: block;
+    margin-inline: auto;
+    position: relative;
+
+    --zf-calendar-scrollbar-space: 2rem;
+    --zf-badge-width: 2.25rem;
+    --zf-calendar-aspect-ratio-width: 6;
+}
+
+@include desktop-only {
+    :host {
+        --zf-calendar-aspect-ratio-width: 12;
+        max-width: 90%;
+    }
+}
+
+.view-mode-container {
+    display: flex;
+    justify-content: end;
+}
+
+.calendar-outer-grid {
+    width: 100%;
+    overflow-x: hidden;
+
+    margin-top: 2rem;
+
+    display: grid;
+    grid-template-rows:
+        repeat(var(--zf-calendar-rows), 1fr) auto var(--zf-calendar-scrollbar-space)
+        auto;
+    grid-template-columns: max-content auto;
+}
+
+.calendar-outer-grid::before {
+    // this exists to force the grid into the correct aspect ratio
+    // we cannot set the aspect ratio on the individual cells, because the width of the rows
+    // is animated during view switching and that would not work with a fixed aspect ratio
+    content: "";
+    grid-column: 2;
+    grid-row: 1 / span var(--zf-calendar-rows);
+    aspect-ratio: var(--zf-calendar-aspect-ratio-width) / var(--zf-calendar-rows);
+    z-index: -1;
+}
+
+.calendar-legend-container {
+    grid-column: 2;
+    grid-row: 1 / span var(--zf-calendar-rows);
+    display: grid;
+    grid-template-rows: subgrid;
+    height: 100%;
+    pointer-events: none;
+
+    .calendar-legend {
+        align-self: center;
+        text-align: end;
+        max-width: 30ch;
+        max-height: 3lh;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        padding-inline-end: 0;
+        font-weight: var(--lla-bold-font-weight);
+        display: flex;
+        justify-content: end;
+        align-items: center;
+
+        lla-icon {
+            --icon-size: 1.6rem;
+            margin-inline-start: 0.3rem;
+        }
+    }
+}
+
+.calendar-inner-grid-wrapper {
+    position: relative;
+    grid-column: 2;
+    grid-row: 1 / span calc(var(--zf-calendar-rows) + 2);
+    display: grid;
+    grid-template-rows: subgrid;
+    grid-template-columns: 100%;
+    width: 100%;
+    overflow-x: auto;
+}
+
+.calendar-inner-grid {
+    position: relative;
+    grid-column: 1;
+    grid-row: 1 / span var(--zf-calendar-rows);
+    display: grid;
+    grid-template-rows: subgrid;
+    height: 100%;
+}
+
+.calendar-column-legends {
+    display: grid;
+    grid-template-columns: repeat(var(--zf-calendar-columns), 1fr);
+    grid-template-rows: auto auto;
+    gap: 1.5rem 0.5rem;
+    place-items: center;
+    text-transform: uppercase;
+    padding-top: 1rem;
+}
+
+.calendar-inner-grid,
+.calendar-column-legends {
+    width: calc(100% * var(--zf-calendar-columns) / var(--zf-calendar-months-per-page));
+    transition: width 300ms ease;
+}
+
+.calendar-month-legend {
+    min-width: 0;
+}
+
+.calendar-month-legend--disabled {
+    opacity: 0.3;
+}
+
+.calendar-year-legend {
+    --zf-calendar-year-legend-w-sub-factor: 0;
+    grid-column: span
+        calc(
+            var(--zf-calendar-year-legend-w) - var(--zf-calendar-year-legend-w-sub) *
+                var(--zf-calendar-year-legend-w-sub-factor)
+        );
+
+    font-size: var(--lla-text-calendar-year-legend-font-size);
+    padding: 0.375rem 0.75rem;
+
+    @include desktop-only {
+        --zf-calendar-year-legend-w-sub-factor: 1;
+    }
+}
+
+.calendar-year-move-btn,
+.calendar-year-legend {
+    display: block;
+    border: none;
+    border-radius: 6px;
+
+    color: var(--lla-clr-inverted-btn-text);
+    background-color: var(--lla-clr-inverted-btn-bg);
+    font-weight: var(--lla-text-calendar-year-legend-font-weight);
+}
+
+.calendar-year-move-btn {
+    opacity: 1;
+    transition-property: opacity, visibility;
+    transition-duration: 200ms;
+    transition-behavior: allow-discrete;
+
+    font-size: var(--lla-text-calendar-year-move-btns-font-size);
+    padding: 0.375rem 0.5rem;
+    min-width: 0;
+
+    --icon-size: 0.875em;
+
+    @include mobile-only {
+        display: none;
+    }
+}
+
+.calendar-year-move-btn--fwd {
+    lla-icon {
+        transform: rotate(180deg);
+    }
+}
+
+.calendar-year-move-btn--hidden {
+    opacity: 0;
+    visibility: hidden;
+}
+
+.calendar-row {
+    display: grid;
+    grid-template-rows: subgrid;
+    grid-template-columns: repeat(var(--zf-calendar-columns), 1fr);
+    background-color: var(--lla-clr-calendar-bg-odd);
+    position: relative;
+    &:nth-child(even) {
+        background-color: var(--lla-clr-calendar-bg-even);
+    }
+}
+
+.calendar-cell {
+    width: 100%;
+    min-width: 0; // prevent blowing out the grid
+
+    border: none;
+    background: none;
+
+    align-content: center;
+    justify-content: center;
+    text-align: center;
+
+    transition: background-color 100ms ease;
+
+    display: grid;
+    place-items: center;
+
+    &:first-child {
+        grid-column: 1;
+    }
+
+    &:not(:last-of-type) {
+        border-right: 1px dashed var(--lla-clr-calendar-border);
+    }
+
+    lla-icon {
+        --icon-size: 2rem;
+        opacity: 0;
+        transition: opacity 100ms ease;
+        z-index: 5;
+        pointer-events: none;
+
+        --lla-icon-fg: var(--lla-clr-highlight-btn-bg);
+    }
+
+    &:not(:disabled):hover,
+    &.calendar-cell--force-highlight {
+        background-color: var(--lla-clr-highlight-btn-bg);
+
+        lla-icon {
+            opacity: 1;
+        }
+    }
+    &:disabled {
+        cursor: not-allowed;
+    }
+}
+
+.calendar-cell--end-marker {
+    position: relative;
+}
+
+.calendar-year-start-end-marker {
+    position: absolute;
+    inset: 0 auto 0 0;
+    width: 1px;
+    z-index: -1;
+    pointer-events: none;
+}
+
+lla-arrow-popover {
+    pointer-events: auto;
+}
+
+.calendar-marker-container,
+.calendar-badge-container,
+.calendar-gap-container {
+    grid-row: 1;
+    grid-column: 1 / span 12;
+
+    // Move this container out of the row's grid calculation
+    // otherwise it can blow out the whole grid when it gets too large
+    // TODO: instead we have to figure out some overflow strategy locally instead of
+    // blowing out the whole grid
+    position: absolute;
+    left: 0;
+    right: 0;
+    height: 100%;
+    pointer-events: none;
+}
+
+.calendar-marker-container {
+    display: grid;
+    grid-auto-flow: row;
+    align-content: center;
+    gap: 3px;
+}
+
+.calendar-gap-container {
+    pointer-events: none;
+    height: calc(100% * var(--zf-calendar-rows));
+    z-index: 5;
+}
+
+.gap-marker {
+    pointer-events: auto;
+    position: absolute;
+    top: 0;
+    left: var(--zf-marker-start);
+    height: 100%;
+    width: var(--zf-marker-width);
+    border: 1px solid var(--lla-clr-red);
+    background-color: color-mix(in srgb, var(--lla-clr-red) 5%, transparent);
+
+    --icon-size: 1.625rem;
+
+    display: grid;
+    place-items: center;
+}
+
+.calendar-marker {
+    pointer-events: auto;
+
+    display: block;
+    position: relative;
+    left: var(--zf-marker-start);
+
+    grid-column: 1;
+    grid-row: calc(var(--zf-marker-row) + 1);
+
+    min-width: var(--zf-marker-width);
+    width: var(--zf-marker-width);
+    padding: 0.5em;
+    min-height: calc(1cap + 1em);
+
+    background-color: var(--lla-zf-episode-clr);
+    color: var(--lla-zf-episode-clr-fg);
+    border: none;
+    font-size: var(--lla-text-calendar-episode-small);
+    line-height: 1;
+    white-space: nowrap;
+    overflow-x: clip;
+    overflow-y: visible;
+    text-overflow: ellipsis;
+    text-align: left;
+
+    transition:
+        width 100ms ease,
+        min-width 100ms ease,
+        left 100ms ease;
+    interpolate-size: allow-keywords;
+
+    &:only-of-type {
+        font-size: var(--lla-text-calendar-episode-large);
+    }
+
+    &:hover {
+        width: max-content;
+    }
+}
+
+.new-episode-icon {
+    position: absolute;
+    z-index: 2; // make sure it goes above the next row
+    left: 50%;
+    bottom: 50%;
+    transform: translateX(-50%);
+    --icon-size: 2.5rem;
+    pointer-events: none;
+}
+
+.new-episode-icon--rotate {
+    --lla-icon-rotate: 1;
+    top: 50%;
+    bottom: auto;
+}
+
+.calendar-badge-group {
+    display: grid;
+    grid-auto-flow: column;
+    align-items: center;
+    justify-content: center;
+    gap: 0.25rem;
+    pointer-events: none;
+
+    position: absolute;
+    top: 0;
+    left: var(--calendar-badge-group-offset);
+    height: 100%;
+    width: 8.333333333%;
+}
+
+.calendar-badge {
+    border: none;
+    width: var(--zf-badge-width);
+    min-width: var(--zf-badge-width);
+    left: calc(
+        var(--zf-badge-start) - (var(--zf-badge-width) / 2) +
+            (var(--zf-badge-offset) * var(--zf-badge-width) / 1.5)
+    );
+    height: var(--zf-badge-width);
+    background: transparent;
+    --icon-size: var(--zf-badge-width);
+    padding: 0;
+
+    pointer-events: auto;
+}
+
+.calendar-marker--state-new {
+    --zf-marker-stripe-width: 10px;
+    background: repeating-linear-gradient(
+        135deg,
+        var(--lla-zf-episode-clr),
+        var(--lla-zf-episode-clr) var(--zf-marker-stripe-width),
+        var(--lla-zf-episode-clr-stripe) var(--zf-marker-stripe-width),
+        var(--lla-zf-episode-clr-stripe) calc(var(--zf-marker-stripe-width) * 2)
+    );
+}
+
+.calendar-navigation {
+    grid-column: 2;
+    grid-row: -1;
+}
+
+@media (width >= v.$mobileWidth) {
+    .calendar-legend-container {
+        grid-column: 1;
+
+        .calendar-legend {
+            padding-inline-end: 1rem;
+
+            lla-icon {
+                --icon-size: 2.1rem;
+            }
+        }
+    }
+}
+
+@media (width < v.$mobileWidth) {
+    .view-mode-container {
+        lla-zf-calendar-view-mode-selector {
+            width: 100%;
+        }
+    }
+    .calendar-legend-container {
+        z-index: 1;
+        justify-content: start;
+        padding-inline-start: 1rem;
+        .calendar-legend {
+            width: fit-content;
+            direction: rtl;
+            background-color: var(--lla-clr-beige);
+            border-radius: 100vw;
+            font-size: var(--lla-text-calendar-view-mobile-category-font-size);
+            padding-right: 1rem;
+        }
+        .calendar-legend.mobileCategoryHidden {
+            padding-right: 0;
+            span {
+                display: none;
+            }
+            lla-icon {
+                margin-inline-start: 0;
+            }
+        }
+    }
+    .calendar-month-legend {
+        font-size: var(--lla-text-calendar-view-legend-font-size);
+    }
+}
+
+/* Tour elements */
+.lla-calendar-tour-1 {
+    position: absolute;
+    top: 0;
+    left: 0;
+
+    @include desktop-only {
+        bottom: 0;
+        right: 50%;
+        aspect-ratio: 1;
+    }
+
+    @include mobile-only {
+        right: 0;
+        bottom: auto;
+        height: 30%;
+    }
+}

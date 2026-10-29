@@ -1,0 +1,16 @@
+@use "../../style/variables" as v;
+
+:host {
+    display: block;
+}
+
+lla-dialog-header {
+    --lla-dialog-header-background: var(--lla-zf-episode-clr, var(--lla-clr-modal-header-bg));
+    --lla-dialog-header-color: var(--lla-zf-episode-clr-fg, var(--lla-clr-modal-header-text));
+}
+
+@media (width < v.$mobileWidth) {
+    :host {
+        margin-block-start: 0;
+    }
+}

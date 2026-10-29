@@ -1,0 +1,18 @@
+@use "../../style/variables" as v;
+
+:host {
+    display: block;
+}
+
+@media (width < v.$mobileWidth) {
+    .full-view {
+        margin: var(--lla-main-margin);
+    }
+}
+
+@media (width >= v.$mobileWidth) {
+    .full-view {
+        width: fit-content;
+        margin-inline-start: auto;
+    }
+}

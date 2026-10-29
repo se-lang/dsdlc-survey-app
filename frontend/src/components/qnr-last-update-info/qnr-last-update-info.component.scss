@@ -1,0 +1,16 @@
+@use "../../style/variables" as v;
+
+:host {
+    color: var(--lla-clr-gray-50);
+    text-align: end;
+}
+@media (width < v.$mobileWidth) {
+    p {
+        font-size: var(--lla-last-update-mobile-font-size);
+        text-align: left;
+        margin: 0.75rem var(--lla-main-margin) 1.25rem;
+        br {
+            display: none;
+        }
+    }
+}

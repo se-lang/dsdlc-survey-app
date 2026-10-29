@@ -1,0 +1,32 @@
+:host {
+    display: block;
+}
+
+.content {
+    display: grid;
+    grid-auto-flow: column;
+    grid-auto-columns: 1fr;
+    padding-inline: 1.125rem;
+    padding-block: 0.8125rem;
+    gap: 2.5rem;
+    align-items: center;
+}
+
+.options {
+    --lla-clr-form-control-bg: var(--lla-clr-white);
+
+    display: grid;
+    grid-auto-flow: column;
+    grid-auto-columns: 1fr;
+    gap: 2.5rem;
+}
+
+.last-label {
+    text-align: end;
+}
+
+label {
+    min-width: 0;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}

@@ -1,0 +1,12 @@
+<ul class="files">
+    @for (file of files.value()?.questionnaireFiles; track file.id) {
+        <li>
+            <lla-icon [name]="'pdf-circle'" />
+            <h3>{{ file.title }}</h3>
+            <p class="lla-keep-linebreaks">{{ file.description }}</p>
+            <a class="lla-button lla-flat-button" [href]="file.file.url" target="_blank">
+                Download
+            </a>
+        </li>
+    }
+</ul>

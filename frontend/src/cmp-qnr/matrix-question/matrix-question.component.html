@@ -1,0 +1,22 @@
+@let element = this.element();
+
+<lla-qnr-element-children [parentElement]="element" />
+
+<div class="swiper" #swiper>
+    <div class="swiper-wrapper">
+        @for (categoryId of element.categoryIds; track categoryId) {
+            <div class="swiper-slide">
+                <lla-qnr-element [elementId]="categoryId" />
+            </div>
+        }
+    </div>
+    @if (element.categoryIds.length > 1) {
+        <button type="button" class="next-btn lla-icon-button">
+            <lla-icon [name]="'arrow-left-circle'" />
+        </button>
+        <button type="button" class="prev-btn lla-icon-button">
+            <lla-icon [name]="'arrow-left-circle'" />
+        </button>
+    }
+</div>
+<div class="pagination" #swiperPagination></div>

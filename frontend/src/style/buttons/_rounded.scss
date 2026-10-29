@@ -1,0 +1,27 @@
+.lla-rounded-button {
+    border-radius: 1000vw;
+    background: var(--_btn-bg-resolved);
+    color: var(--_btn-text-resolved);
+    border: none;
+    transition:
+        color var(--_btn-transition-duration) var(--_btn-transition-function),
+        background-color var(--_btn-transition-duration) var(--_btn-transition-function);
+
+    --icon-size: 2rem;
+    font-size: var(--lla-text-rounded-buttons-font-size);
+    line-height: var(--icon-size);
+    padding-inline: 0.8125rem;
+
+    &:focus-visible {
+        outline: none;
+    }
+
+    lla-icon {
+        vertical-align: middle;
+        margin-inline: 2px;
+    }
+
+    &:has(lla-icon) {
+        padding-inline-start: 0;
+    }
+}

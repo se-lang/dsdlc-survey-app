@@ -1,0 +1,14 @@
+:host {
+    display: flex;
+    flex-direction: column;
+
+    background-color: var(--lla-clr-beige);
+
+    min-width: 250px;
+    padding-inline: 1.875rem;
+    padding-block: 2.1875rem 3.125rem;
+}
+
+.bottom {
+    margin-block-start: auto;
+}

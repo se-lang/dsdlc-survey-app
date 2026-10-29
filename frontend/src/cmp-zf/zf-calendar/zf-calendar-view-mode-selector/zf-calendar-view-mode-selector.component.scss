@@ -1,0 +1,67 @@
+@use "../../../style/variables" as v;
+
+:host {
+    display: block;
+}
+
+.buttons {
+    display: flex;
+    gap: 0;
+}
+
+button {
+    font-size: var(--lla-text-calendar-view-buttons-font-size);
+    font-weight: var(--lla-text-calendar-view-buttons-font-weight);
+    letter-spacing: var(--lla-text-calendar-view-buttons-letter-spacing);
+    background: none;
+    border: none;
+    padding: 0.2rem 0.5rem;
+
+    &.active {
+        font-weight: var(--lla-text-calendar-view-buttons-font-weight-active);
+    }
+}
+.active-marker {
+    transform: translateX(var(--_zf-active-marker-position));
+    width: var(--_zf-active-marker-width);
+    height: 2px;
+    background-color: currentColor;
+    transition:
+        transform 200ms ease,
+        width 200ms ease;
+}
+
+.mobile-category-visibility-button {
+    display: none;
+    background-color: var(--lla-clr-black);
+    color: white;
+    border-radius: 50%;
+    aspect-ratio: 1/1;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    font-size: var(--lla-text-calendar-view-mode-display-title-font-size);
+    font-weight: var(--lla-bold-font-weight);
+    padding: 0.375rem 0.625rem;
+    lla-icon {
+        --icon-size: 1rem;
+    }
+}
+
+@media (width >= v.$mobileWidth) {
+    .buttons {
+        gap: 2rem;
+    }
+}
+
+@media (width < v.$mobileWidth) {
+    .buttons {
+        justify-content: space-around;
+    }
+    button {
+        font-size: var(--lla-text-calendar-view-buttons-font-size-mobile);
+    }
+    .mobile-category-visibility-button {
+        display: flex;
+    }
+}

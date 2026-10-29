@@ -1,0 +1,90 @@
+button {
+    font-family: inherit;
+    text-transform: inherit;
+    color: inherit;
+}
+
+// styles common to all buttons, this uses custom properties to manage
+// hover and focus states
+// Available either via button element or .lla-button class
+
+// Available properties for button types to use (in addition to above)
+// - --_btn-bg-resolved: background-color according to focus/hover state
+// - --_btn-text-resolved: text color according to focus/hover state
+// - --_btn-base-bg: background color, only affected by focus, not hover
+// - --_btn-hover: 0 by default, 1 when hovered
+
+button,
+.lla-button {
+    display: inline-block;
+    text-align: center;
+    text-decoration: none;
+    font-size: var(--lla-text-buttons-font-size);
+    font-weight: var(--lla-text-buttons-font-weight);
+    letter-spacing: var(--lla-text-buttons-letter-spacing);
+
+    // Available for configuration by modifier classes:
+    // Background color
+    --_btn-background: var(--lla-clr-primary-btn-bg);
+    // Foreground color
+    --_btn-text: var(--lla-clr-primary-btn-text);
+
+    // Background color (hover)
+    --_btn-background-hover: var(--lla-clr-primary-btn-bg-hover);
+    // Foreground color (hover)
+    --_btn-text-hover: var(--lla-clr-primary-btn-text-hover);
+
+    // Background color (focus)
+    --_btn-background-focus: var(--lla-clr-primary-btn-bg-focus);
+    // Foreground color (focus)
+    --_btn-text-focus: var(--lla-clr-primary-btn-text-focus);
+
+    --_btn-transition-duration: 200ms;
+    --_btn-transition-function: cubic-bezier(0.44, 0, 0.56, 1);
+
+    // Available for button styles to use in addition
+    // Current background color according to hover/focus
+    --_btn-bg-resolved: var(--_btn-background);
+    // Current foreground color according to hover/focus
+    --_btn-text-resolved: var(--_btn-text);
+    // Current background color according, affected by focus, but not hover
+    --_btn-base-bg: var(--_btn-background);
+    // 1 when hovered, 0 otherwise
+    --_btn-hover: 0;
+
+    &:is(button:not(:disabled, .lla-button--disabled)),
+    &:is(a:link:not(.lla-button--disabled)) {
+        cursor: pointer;
+    }
+
+    &:disabled,
+    &.lla-button--disabled {
+        opacity: 0.3;
+    }
+
+    &:is(button:not(:disabled, .lla-button--disabled)),
+    &:is(:link:not(.lla-button--disabled)) {
+        &:hover:not(:focus-visible),
+        &[aria-pressed="true"] {
+            --_btn-bg-resolved: var(--_btn-background-hover);
+            --_btn-text-resolved: var(--_btn-text-hover);
+            --_btn-hover: 1;
+        }
+    }
+
+    &:where([aria-current="page"]) {
+        --_btn-base-bg: var(--_btn-background-focus);
+        --_btn-text-resolved: var(--_btn-text-focus);
+        --_btn-hover: 0;
+    }
+
+    &:focus-visible {
+        --_btn-bg-resolved: var(--_btn-background-focus);
+        --_btn-text-resolved: var(--_btn-text-focus);
+        --_btn-base-bg: var(--_btn-background-focus);
+    }
+}
+
+.lla-button--small {
+    font-size: var(--lla-text-buttons-small-font-size);
+}

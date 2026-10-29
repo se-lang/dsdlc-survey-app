@@ -1,0 +1,36 @@
+project: lebenslaeufe-app
+configVersion: 1
+cleanup:
+    disableKubernetesBasedPolicy: false
+    disableBuiltWithinLastNHoursPolicy: true
+    disableGitHistoryBasedPolicy: false
+    keepPolicies:
+        - references:
+              tag: '/^\d+\.\d+\.\d+/'
+        -   references:
+                branch: /^(main|master|staging|production)$/
+---
+image: django
+dockerfile: Dockerfile
+context: .
+target: django
+---
+image: frontend
+final: false
+dockerfile: Dockerfile
+context: .
+target: frontend-builder
+---
+image: nginx
+dockerfile: Dockerfile
+context: .
+target: nginx
+dependencies:
+    -   image: django
+        imports:
+            -   type: ImageName
+                targetBuildArg: DJANGO_IMAGE
+    -   image: frontend
+        imports:
+            -   type: ImageName
+                targetBuildArg: FRONTEND_IMAGE

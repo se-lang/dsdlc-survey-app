@@ -1,0 +1,40 @@
+<ng-container *transloco="let t; prefix: 'dashboard'">
+    <div class="questionnaire-list">
+        @for (questionnaire of visibleQuestionnaires(); track questionnaire.id) {
+            <div
+                class="questionnaire-item"
+                [class]="`questionnaire-item--state-${questionnaire.status.completionState}`"
+            >
+                <lla-icon [name]="'questionnaire'" />
+                <h3>{{ questionnaire.name }}</h3>
+                @if (questionnaire.status.lastVisit) {
+                    <p class="questionnaire-status">
+                        <strong>{{ t("lastUpdate") }}</strong>
+                        {{ questionnaire.status.lastVisit | date: "shortDateTime" }}
+                    </p>
+                } @else if (questionnaire.status.completionState === "NEW") {
+                    <span class="lla-badge">{{ t("stateNewBadge") }}</span>
+                }
+                @if (
+                    !environment.forceAllowJoinQuestionnaire &&
+                    questionnaire.status.completionState === "FINISHED"
+                ) {
+                    <p>{{ t("questionnaireFinished") }}</p>
+                } @else {
+                    <a
+                        class="lla-button lla-flat-button"
+                        [routerLink]="['umfrage', questionnaire.id]"
+                    >
+                        {{
+                            t(
+                                questionnaire.status.completionState === "NEW"
+                                    ? "startQuestionnaire"
+                                    : "continueQuestionnaire"
+                            )
+                        }}
+                    </a>
+                }
+            </div>
+        }
+    </div>
+</ng-container>

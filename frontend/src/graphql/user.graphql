@@ -1,0 +1,80 @@
+fragment CurrentUser on BaseUser {
+    id
+    isAuthenticated
+    ... on User {
+        email
+        firstName
+        lastName
+        street
+        zipCode
+        city
+        country
+        dateOfBirth
+        phone
+    }
+    ... on AnonymousUser {
+        hasGuestSession
+        guestHasAccount
+    }
+}
+
+query User {
+    user {
+        ...CurrentUser
+    }
+}
+
+mutation login($username: String!, $password: String!) {
+    login(username: $username, password: $password) {
+        ...OperationInfo
+        ...CurrentUser
+    }
+}
+
+mutation logout {
+    logout {
+        ...CurrentUser
+    }
+}
+
+mutation resendActivationEmail($data: ResendAccountActivationInput!) {
+    resendAccountActivation(data: $data)
+}
+
+mutation forgotPassword($email: String!) {
+    forgotPassword(email: $email)
+}
+
+mutation resetPassword($uid: String!, $token: String!, $newPassword: String!) {
+    resetPassword(input: { uid: $uid, token: $token, newPassword: $newPassword }) {
+        ...OperationInfo
+    }
+}
+
+mutation updateUser($data: UpdateUser!) {
+    updateUser(data: $data) {
+        ...OperationInfo
+        ...CurrentUser
+    }
+}
+
+mutation confirmUserAccount($uid: String!, $token: String!) {
+    confirmEmail(uid: $uid, token: $token) {
+        ...OperationInfo
+        ... on ConfirmEmailSuccessResult {
+            activated
+        }
+    }
+}
+
+mutation triggerEmailChange {
+    triggerUserEmailChange {
+        ...OperationInfo
+    }
+}
+
+mutation updateUserEmail($uid: String!, $token: String!, $newEmail: String!) {
+    updateUserEmail(uid: $uid, token: $token, newEmail: $newEmail) {
+        ...OperationInfo
+    }
+}

@@ -1,0 +1,7 @@
+.idea
+node_modules
+.venv
+.werf_secret_key
+.angular
+/.docker-data
+backend/.media

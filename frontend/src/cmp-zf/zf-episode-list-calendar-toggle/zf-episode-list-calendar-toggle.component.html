@@ -1,0 +1,18 @@
+<ng-container *transloco="let t; prefix: 'zfEpisodeViewMode'">
+    @let service = zfEpisodeService();
+    @if (service && service.showViewTypeSwitcher()) {
+        <button
+            [llaTourHighlightElement]="'episode-mode-toggle'"
+            llaIconToggleButton
+            class="lla-button--inverted mobile-navigation"
+            [(selectedId)]="service.viewType"
+        >
+            <ng-template [llaIconToggleButtonOption]="'calendar'" [icon]="'calendar-circle'">
+                {{ viewportService.isMobile() ? "" : t("calendar") }}
+            </ng-template>
+            <ng-template [llaIconToggleButtonOption]="'list'" [icon]="'list-circle'">
+                {{ viewportService.isMobile() ? "" : t("list") }}
+            </ng-template>
+        </button>
+    }
+</ng-container>

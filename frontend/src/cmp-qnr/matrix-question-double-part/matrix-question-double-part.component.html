@@ -1,0 +1,8 @@
+<div role="radiogroup" [attr.aria-labelledby]="headingId">
+    <div class="heading" [id]="headingId">
+        {{ element().title }}
+    </div>
+    <div class="content">
+        <lla-qnr-element-children [parentElement]="element()" />
+    </div>
+</div>

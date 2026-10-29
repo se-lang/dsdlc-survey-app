@@ -1,0 +1,110 @@
+@use "../../style/media" as *;
+
+:host {
+    display: contents;
+    --_badge-column-width: 1fr;
+    --_badge-column-width0: 0fr;
+}
+
+lla-dialog-header {
+    --lla-dialog-header-background: var(--lla-zf-episode-clr, var(--lla-clr-modal-header-bg));
+    --lla-dialog-header-color: var(--lla-zf-episode-clr-fg, var(--lla-clr-modal-header-text));
+}
+
+.button-checkbox {
+    display: grid;
+    align-items: center;
+    justify-items: stretch;
+    margin-block-end: 0.5rem;
+
+    > * {
+        grid-area: 1/1/1/1;
+    }
+
+    input {
+        opacity: 0;
+        z-index: -1;
+        pointer-events: none;
+    }
+
+    label {
+        font-weight: var(--lla-thin-font-weight);
+        padding: 0.5em 1em;
+        border: 1px solid var(--lla-clr-form-control-border);
+        background: var(--lla-clr-form-control-bg) right center no-repeat;
+        background-size: 2rem auto;
+
+        transition: background-color 150ms ease;
+    }
+
+    :checked + label {
+        font-weight: var(--lla-bold-font-weight);
+        background-color: var(--lla-clr-highlight-btn-bg);
+        background-image: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path fill="currentColor" d="m9.55 18l-5.7-5.7l1.425-1.425L9.55 15.15l9.175-9.175L20.15 7.4z"/></svg>');
+    }
+
+    :focus-visible + label {
+        outline: 2px solid;
+    }
+}
+
+.date-range-checkbox-container {
+    margin-block-start: 0.5rem;
+}
+
+.type-badge-grid {
+    grid-template-columns: 1fr var(--_badge-column-width0);
+    overflow: hidden;
+
+    transition:
+        grid-template-columns 200ms ease,
+        gap 200ms ease 150ms;
+
+    &:not(.badge-visible) {
+        gap: 0;
+    }
+}
+
+.badge-visible {
+    grid-template-columns: 1fr var(--_badge-column-width);
+    transition:
+        grid-template-columns 200ms ease,
+        gap 200ms ease;
+}
+
+@include mobile-only {
+    // TODO: Remove this when we enable badges again
+    .badge-container {
+        display: none;
+    }
+
+    .badge-visible .badge-container {
+        display: block;
+    }
+}
+
+.badge-container {
+    overflow: hidden;
+}
+
+@supports (appearance: base-select) {
+    :host {
+        --_badge-column-width: 5.625rem;
+        --_badge-column-width0: 0px;
+    }
+
+    .badge-container {
+        width: var(--_badge-column-width);
+    }
+
+    .lla-form-control.lla-icon-select {
+        --lla-form-control-padding-block: 0.5625rem;
+        min-height: calc(var(--lla-form-control-padding-block) * 2 + 2rem);
+        display: flex;
+        align-items: center;
+
+        button {
+            display: flex;
+        }
+    }
+}

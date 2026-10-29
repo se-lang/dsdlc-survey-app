@@ -1,0 +1,42 @@
+<ng-container *transloco="let t; prefix: 'tour'">
+    <div class="lla-button-row">
+        @if (controller.firstStep()) {
+            <button
+                type="button"
+                class="lla-flat-button lla-button--secondary lla-button--small"
+                (click)="controller.skipTour()"
+            >
+                {{ t("btnSkip") }}
+            </button>
+        } @else {
+            <button
+                type="button"
+                class="lla-flat-button lla-button--secondary lla-button--small"
+                (click)="controller.previous()"
+            >
+                {{ t("btnBack") }}
+            </button>
+        }
+        @if (controller.lastStep()) {
+            <button
+                type="button"
+                class="lla-flat-button lla-button--small"
+                (click)="controller.endTour()"
+            >
+                {{ t("btnFinish") }}
+            </button>
+        } @else {
+            <button
+                type="button"
+                class="lla-flat-button lla-button--small"
+                (click)="controller.next()"
+            >
+                @if (controller.firstStep()) {
+                    {{ t("btnStart") }}
+                } @else {
+                    {{ t("btnNext") }}
+                }
+            </button>
+        }
+    </div>
+</ng-container>

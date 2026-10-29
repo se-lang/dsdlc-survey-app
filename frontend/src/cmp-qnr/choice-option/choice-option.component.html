@@ -1,0 +1,61 @@
+@let c = element();
+@let formControlName = this.formControlName();
+@let formControl = this.formControl();
+@let useButtons = this.useButtons();
+@let hiddenLabels = this.hiddenLabels();
+@let overriddenElementId = this.overriddenElementId();
+@let elementId = overriddenElementId ?? defaultElementId;
+@let addAriaLabel = hiddenLabels && !overriddenElementId;
+
+<div [class]="useButtons ? 'lla-form-button-check' : 'lla-form-check'">
+    @if (c.labelPosition === "left") {
+        <ng-container *ngTemplateOutlet="labelTpl" />
+    }
+    @if (formControl !== null) {
+        <!-- We can't have [type] as a binding to input, because then Angular cannot
+             select the correct CVA -->
+        @if (isSingleChoice()) {
+            <input
+                class="lla-form-control"
+                type="radio"
+                [attr.form]="pageForm()"
+                [id]="elementId"
+                [name]="formControlName!"
+                [formControl]="formControl"
+                [value]="singleChoiceOptionFormValue(c)"
+                [attr.aria-label]="addAriaLabel ? c.label : null"
+            />
+        } @else {
+            <input
+                class="lla-form-control"
+                type="checkbox"
+                [attr.form]="pageForm()"
+                [id]="elementId"
+                [name]="formControlName"
+                [formControl]="formControl"
+                [attr.aria-label]="addAriaLabel ? c.label : null"
+            />
+        }
+    } @else {
+        <strong style="color: red">!! Choice Element Without Parent !!</strong>
+    }
+    @if (c.labelPosition === "right") {
+        <ng-container *ngTemplateOutlet="labelTpl" />
+    }
+</div>
+@if (useButtons) {
+    <lla-qnr-elements [elementIds]="c.attachedOpenQuestionIds" />
+}
+
+<ng-template #labelTpl>
+    @if (!hiddenLabels) {
+        @if (!useButtons && c.attachedOpenQuestionIds.length !== 0) {
+            <div class="lla-form-check__attached">
+                <label [for]="elementId">{{ c.label }}</label>
+                <lla-qnr-elements [elementIds]="c.attachedOpenQuestionIds" />
+            </div>
+        } @else {
+            <label [for]="elementId">{{ c.label }}</label>
+        }
+    }
+</ng-template>

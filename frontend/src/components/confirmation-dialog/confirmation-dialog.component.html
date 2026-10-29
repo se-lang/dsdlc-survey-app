@@ -1,0 +1,23 @@
+<ng-container *transloco="let t">
+    <lla-dialog-header [color]="'brand'" [title]="t(context.options.title ?? titleFallback)" />
+    <lla-dialog-content>
+        @if (context.options.questionHeader) {
+            <h3>{{ t(context.options.questionHeader) }}</h3>
+        }
+        <p>{{ t(context.options.question) }}</p>
+    </lla-dialog-content>
+    <lla-dialog-footer>
+        <div class="lla-button-row">
+            <button
+                type="button"
+                class="lla-flat-button lla-button--secondary"
+                (click)="context.confirm(false)"
+            >
+                {{ t(context.options.no ?? noFallback) }}
+            </button>
+            <button type="button" class="lla-flat-button" (click)="context.confirm(true)">
+                {{ t(context.options.yes ?? yesFallback) }}
+            </button>
+        </div>
+    </lla-dialog-footer>
+</ng-container>

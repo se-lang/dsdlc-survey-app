@@ -1,0 +1,35 @@
+@let episode = this.episode();
+
+<ng-container *transloco="let t; prefix: 'episodePopover'">
+    <h4 class="ep-title">{{ episode.label }}</h4>
+    <p class="ep-text">
+        @if (episode.event) {
+            {{ episode.startDate | date: "longMonthYear" }}
+        } @else {
+            {{
+                t("dateRange", {
+                    start: episode.startDate | date: "longMonthYear",
+                    end: episode.endDate | date: "longMonthYear",
+                })
+            }}
+        }
+    </p>
+    <div class="buttons">
+        <button
+            type="button"
+            class="lla-icon-button"
+            [attr.aria-label]="t('editLabel')"
+            (click)="editEpisode.emit()"
+        >
+            <lla-icon [name]="'edit-circle'" />
+        </button>
+        <button
+            type="button"
+            class="lla-icon-button"
+            [attr.aria-label]="t('deleteLabel')"
+            (click)="deleteEpisode.emit()"
+        >
+            <lla-icon [name]="'delete-circle'" />
+        </button>
+    </div>
+</ng-container>

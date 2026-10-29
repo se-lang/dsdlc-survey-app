@@ -1,0 +1,5 @@
+@if (this.header(); as header) {
+    <h3 class="lla-dialog-sidebar-heading">{{ header }}</h3>
+}
+<div class="content"><ng-content /></div>
+<div class="bottom"><ng-content select="[slot=bottom]" /></div>

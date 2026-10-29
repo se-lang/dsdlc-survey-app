@@ -1,0 +1,14 @@
+- model: lla_auth.user
+  pk: cf6b1798-ada0-4966-b5a0-89ce74502349
+  fields:
+      password: pbkdf2_sha256$870000$2ODOwKGOkBWSftUpJ5MYdy$U6KVOjKeTDA6ovmnRwcLwRRJmHIYj0VZF03tzf4HcaQ=
+      last_login: '2025-01-15T08:45:05.227Z'
+      is_superuser: false
+      username: e2euser@example.com
+      first_name: ''
+      last_name: ''
+      is_staff: false
+      is_active: true
+      date_joined: '2025-01-13T09:57:33.424Z'
+      email: e2euser@example.com
+      zofar_token: ''

@@ -1,0 +1,71 @@
+<ng-container *transloco="let t; prefix: 'login'">
+    <lla-dialog-header [color]="'brand'" [title]="t('title')" />
+    <lla-dialog-content>
+        <form [formGroup]="formGroup" (ngSubmit)="submit($event)" #formElement>
+            <p>{{ t("pickLoginMethodIntro") }}</p>
+            <div class="lla-form-row">
+                <div class="lla-form-row-hint-container">
+                    <label class="lla-large-label" for="lla-input-token">{{
+                        t("tokenLabel")
+                    }}</label>
+                    <div class="lla-form-row-hint-input">
+                        <input
+                            class="lla-form-control token-input"
+                            id="lla-input-token"
+                            placeholder="XXXX-XXXX-XXXX-XXXX"
+                            spellcheck="false"
+                            [formControl]="formGroup.controls.token"
+                        />
+                        <val-errors [control]="formGroup.controls.token">
+                            <ng-template valFallback>
+                                {{ t("error.token") }}
+                            </ng-template>
+                        </val-errors>
+                    </div>
+                    <button
+                        type="button"
+                        class="lla-form-row-hint"
+                        [llaTriggerPopover]="tokenHintPopover"
+                    >
+                        {{ t("tokenHint") }}
+                    </button>
+                    <ng-template llaPopover #tokenHintPopover="llaPopover">
+                        <lla-arrow-popover>
+                            <p>
+                                {{ t("tokenHintText") }}
+                            </p>
+                        </lla-arrow-popover>
+                    </ng-template>
+                </div>
+            </div>
+            <val-errors [control]="formGroup">
+                <ng-template valFallback>
+                    {{ t("error.serverGeneric") }}
+                </ng-template>
+            </val-errors>
+            <div class="lla-button-grid">
+                <button type="submit" class="lla-button lla-flat-button" data-lla-submit="guest">
+                    {{ t("guestButton") }}
+                </button>
+                @if (environment.loginEnabled ?? true) {
+                    <a
+                        [routerLink]="'/login'"
+                        [queryParamsHandling]="'merge'"
+                        class="lla-button lla-flat-button login-btn"
+                    >
+                        {{ t("loginButton") }}
+                    </a>
+                }
+                @if (environment.registerEnabled ?? true) {
+                    <button
+                        type="submit"
+                        class="lla-button lla-flat-button"
+                        data-lla-submit="register"
+                    >
+                        {{ t("registerButton") }}
+                    </button>
+                }
+            </div>
+        </form>
+    </lla-dialog-content>
+</ng-container>

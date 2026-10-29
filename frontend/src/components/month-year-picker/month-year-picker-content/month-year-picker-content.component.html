@@ -1,0 +1,37 @@
+<div class="current">
+    <lla-icon name="calendar" />
+    <span>{{ date() | date: "longMonthYear" }}</span>
+</div>
+<div class="year">
+    <button
+        [disabled]="prevYearDisabled()"
+        class="lla-icon-button"
+        type="button"
+        aria-label="Vorheriges Jahr"
+        (click)="updateYear(-1)"
+    >
+        <lla-icon name="arrow-left" />
+    </button>
+    <span>{{ date() | date: "year" }}</span>
+    <button
+        [disabled]="nextYearDisabled()"
+        class="lla-icon-button next-year"
+        type="button"
+        aria-label="Nächstes Jahr"
+        (click)="updateYear(1)"
+    >
+        <lla-icon name="arrow-left" />
+    </button>
+</div>
+<div class="months">
+    @for (month of months(); track $index) {
+        <button
+            type="button"
+            [attr.aria-current]="$index + 1 === directive.date()?.month ? 'date' : 'false'"
+            (click)="setMonth($index + 1)"
+            [disabled]="$index + 1 < minMonth() || $index + 1 > maxMonth()"
+        >
+            {{ month }}
+        </button>
+    }
+</div>

@@ -1,0 +1,56 @@
+<ng-container *transloco="let t; prefix: 'emailChange'">
+    <lla-dialog-header [color]="'brand'" [title]="t('confirmTitle')" />
+    <lla-dialog-content>
+        <form #form (ngSubmit)="submit()" [id]="formId">
+            @if (success()) {
+                <p>{{ t("changeSuccess") }}</p>
+                <p>
+                    <a [routerLink]="['/login']">
+                        {{ t("toLogin") }}
+                    </a>
+                </p>
+            } @else {
+                <p>{{ t("changeIntro") }}</p>
+                <div class="lla-form-row">
+                    <label class="lla-large-label" [for]="formId + 'email'">
+                        {{ t("labelNewEmail") }}
+                    </label>
+                    <input
+                        class="lla-form-control"
+                        type="text"
+                        inputmode="email"
+                        [id]="formId + 'email'"
+                        [formControl]="formGroup.controls.email"
+                    />
+                    <val-errors [control]="formGroup.controls.email">
+                        <ng-template [valError]="'required'">
+                            {{ t("error.email") }}
+                        </ng-template>
+                        <ng-template [valError]="'email'">
+                            {{ t("error.email") }}
+                        </ng-template>
+                    </val-errors>
+                </div>
+                <val-errors [control]="formGroup">
+                    <ng-template valFallback>
+                        {{ t("error.serverGeneric") }}
+                    </ng-template>
+                </val-errors>
+            }
+        </form>
+    </lla-dialog-content>
+    <lla-dialog-footer>
+        @if (!success()) {
+            <div class="lla-button-grid">
+                <button
+                    type="submit"
+                    [attr.form]="formId"
+                    class="lla-flat-button"
+                    [class.lla-button--disabled]="submitting()"
+                >
+                    {{ t("confirmButton") }}
+                </button>
+            </div>
+        }
+    </lla-dialog-footer>
+</ng-container>

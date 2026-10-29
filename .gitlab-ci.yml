@@ -1,0 +1,24 @@
+variables:
+    WERF_SECRET_VALUES_BRANCH: ".deployment/secret-values-$CI_COMMIT_BRANCH.yaml"
+    WERF_VALUES_BRANCH: ".deployment/values-$CI_COMMIT_BRANCH.yaml"
+
+include:
+    - component: "$CI_SERVER_FQDN/dezign/infra/werf-deployment/werf-deployment@1.3"
+      inputs:
+          production-url: https://dzhw-lebenslaeufe.codepartner.cloud
+          staging-url: https://dzhw-lla-staging.codepartner.cloud
+          kube-context: codepartner-cluster-2
+
+stages:
+    - deploy
+    - dismiss
+    - cleanup
+    - publish
+
+Publish Version:
+    stage: publish
+    image: registry.dezign-api.de/dezign/infra/werf-deployment:1.1.1
+    script:
+        - werf bundle publish --repo docker.io/xxxx/xxxx --tag $CI_COMMIT_TAG --add-custom-tag '$CI_COMMIT_TAG-%image%'
+    rules:
+        - if: '$CI_COMMIT_TAG =~ /^\d+\.\d+\.\d+/'

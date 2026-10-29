@@ -1,0 +1,9 @@
+<ng-container *transloco="let t; prefix: 'newsDetail'">
+    @let news = newsDetail();
+    @if (news) {
+        <h2>{{ news.title }}</h2>
+        <h3>{{ news.description }}</h3>
+        <p class="date-text">{{ t("updated") }} {{ news.date | date: "dayMonthYear" }}</p>
+        <div [innerHTML]="news.content"></div>
+    }
+</ng-container>

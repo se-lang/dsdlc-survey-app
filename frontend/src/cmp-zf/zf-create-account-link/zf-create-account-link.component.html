@@ -1,0 +1,6 @@
+<a routerLink="/register">
+    @if (htmlContents(); as html) {
+        <div class="html-wrapper" [innerHTML]="html"></div>
+    }
+    <ng-content />
+</a>

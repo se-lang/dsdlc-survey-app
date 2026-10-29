@@ -1,0 +1,12 @@
+fragment OperationMessage on OperationMessage {
+    code
+    field
+    kind
+    message
+}
+
+fragment OperationInfo on OperationInfo {
+    messages {
+        ...OperationMessage
+    }
+}

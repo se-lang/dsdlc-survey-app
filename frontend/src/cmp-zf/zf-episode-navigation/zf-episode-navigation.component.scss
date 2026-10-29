@@ -1,0 +1,27 @@
+@use "../../style/variables" as v;
+
+@media (width >= v.$mobileWidth) {
+    :host {
+        display: flex;
+        justify-content: space-between;
+
+        position: fixed;
+        inset: auto 0 0 0;
+        background-color: var(--lla-clr-body-bg);
+        padding: 1rem 2rem;
+        border-top: 2px solid var(--lla-clr-gray-30);
+        z-index: 50;
+        box-shadow: 5px 5px 15px 5px rgba(0, 0, 0, 0.25);
+    }
+}
+
+@media (width < v.$mobileWidth) {
+    :host {
+        display: block;
+        margin: var(--lla-main-margin);
+    }
+
+    .lla-button-row {
+        margin-block-end: var(--lla-button-grid-gap);
+    }
+}

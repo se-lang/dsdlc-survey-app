@@ -1,0 +1,216 @@
+@use "../style/variables" as v;
+
+:root {
+    --lla-dialog-transition-duration: 150ms;
+    --lla-dialog-backdrop-transition-duration: calc(var(--lla-dialog-transition-duration) * 2);
+
+    --lla-dialog-content-margin-block: 1.5rem;
+    --lla-dialog-content-margin-inline: 1.5rem;
+    --lla-dialog-boxed-width: 600px;
+    --lla-dialog-boxed-tight-width: 720px;
+
+    --lla-dialog-content-margin-block-with-subheader: 4.0625rem;
+
+    --lla-dialog-content-margin-block-composed: var(--lla-dialog-content-margin-block);
+
+    --lla-dialog-viewport-margin: 2rem;
+}
+
+@media (width >= v.$mobileWidth) {
+    :root {
+        --lla-dialog-content-margin-block: 3.75rem;
+        --lla-dialog-content-margin-inline: 3.75rem;
+    }
+}
+
+body {
+    overflow: auto;
+    transition: overflow calc(var(--lla-dialog-backdrop-transition-duration)) step-end;
+    transition-behavior: allow-discrete;
+}
+
+body:has(dialog[open]) {
+    overflow: hidden;
+    transition: none;
+}
+
+dialog {
+    touch-action: manipulation;
+
+    max-width: none;
+    max-height: none;
+
+    // this is needed to allow non-native popovers in dialogs
+    overflow-x: visible;
+    overflow-y: auto;
+}
+
+[popover] {
+    padding: 0;
+    border: none;
+    overflow: visible;
+    background: none;
+}
+
+@supports (transition-behavior: allow-discrete) {
+    [popover],
+    lla-popover-fallback {
+        opacity: 0;
+        transition:
+            opacity var(--lla-dialog-transition-duration),
+            display var(--lla-dialog-transition-duration) allow-discrete,
+            overlay var(--lla-dialog-transition-duration) allow-discrete;
+    }
+
+    [popover]:popover-open,
+    lla-popover-fallback.popover-open {
+        opacity: 1;
+    }
+
+    @starting-style {
+        [popover]:popover-open,
+        lla-popover-fallback.popover-open {
+            opacity: 0;
+        }
+    }
+}
+
+.lla-dialog {
+    width: fit-content;
+    // make sure popovers can grow out of the dialog
+    overflow: visible;
+}
+
+.lla-dialog-wrapper {
+    min-width: 500px;
+    min-height: 500px;
+
+    display: grid;
+    grid-template-rows: auto 1fr auto;
+
+    grid-template-columns: 1fr;
+    grid-template-areas: "header" "content" "footer";
+    overflow: visible;
+
+    &:has(:where(:not(.mobile-sidebar-wrapper) > lla-dialog-sidebar)) {
+        grid-template-columns: 1fr 1fr;
+        grid-template-areas: "header header" "content sidebar" "footer sidebar";
+    }
+
+    &:has(:where(lla-dialog-subheader)) {
+        grid-template-rows: auto auto 1fr auto;
+        grid-template-areas: "header" "subheader" "content" "footer";
+    }
+    &:has(:where(:not(.mobile-sidebar-wrapper) > lla-dialog-sidebar)):has(
+            :where(lla-dialog-subheader)
+        ) {
+        grid-template-areas: "header header" "subheader sidebar" "content sidebar" "footer sidebar";
+    }
+    &:has(:where(.news-info-bar-wrapper)) {
+        --lla-dialog-content-margin-block-composed: var(
+            --lla-dialog-content-margin-block-with-subheader
+        );
+    }
+}
+
+dialog .lla-dialog-wrapper {
+    max-width: calc(100vw - var(--lla-dialog-viewport-margin));
+    max-height: calc(100vh - var(--lla-dialog-viewport-margin));
+}
+
+dialog .lla-dialog-wrapper {
+    max-width: calc(100vw - var(--lla-dialog-viewport-margin));
+    max-height: calc(100vh - var(--lla-dialog-viewport-margin));
+}
+
+lla-dialog-header {
+    grid-area: header;
+}
+
+lla-dialog-subheader {
+    grid-area: subheader;
+}
+
+lla-dialog-content {
+    width: 100%;
+    min-height: 0;
+    overflow: auto;
+    grid-area: content;
+
+    &.lla-dialog-content--space {
+        margin-block: var(--lla-dialog-content-margin-block-composed);
+        padding-inline: var(--lla-dialog-content-margin-inline);
+    }
+}
+
+lla-dialog-sidebar {
+    grid-area: sidebar;
+}
+
+lla-dialog-footer {
+    grid-area: footer;
+    margin-inline: var(--lla-dialog-content-margin-inline);
+    margin-block-end: var(--lla-dialog-content-margin-block-composed);
+}
+
+lla-dialog-header,
+lla-dialog-content,
+lla-dialog-footer {
+    min-width: 0;
+}
+
+.lla-dialog--size-login {
+    width: 600px;
+}
+
+.lla-dialog--size-zf-episode {
+    width: 720px;
+}
+
+.lla-dialog--size-questionnaire-box {
+    width: 800px;
+}
+.lla-dialog--size-tour {
+    width: 500px;
+}
+
+.lla-dialog.lla-dialog--boxed-tight {
+    .lla-dialog-wrapper {
+        width: calc(var(--lla-dialog-boxed-tight-width));
+    }
+    lla-dialog-content {
+        margin-block: 0;
+    }
+}
+
+.lla-dialog-title {
+    margin: 0;
+    text-transform: uppercase;
+    font-size: var(--lla-text-h2-font-size);
+    font-weight: var(--lla-text-h2-font-weight);
+    letter-spacing: var(--lla-text-h2-letter-spacing);
+
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+@media (width >= v.$mobileWidth) {
+    .lla-dialog-wrapper {
+        grid-template-columns: auto;
+
+        &:has(lla-dialog-sidebar) {
+            grid-template-columns: 1fr auto;
+        }
+    }
+}
+
+@media (width < v.$mobileWidth) {
+    .lla-dialog-wrapper {
+        min-width: initial;
+    }
+    .lla-dialog--size-login,
+    .lla-dialog--size-zf-episode,
+    .lla-dialog--size-questionnaire-box {
+        width: auto;
+    }
+}

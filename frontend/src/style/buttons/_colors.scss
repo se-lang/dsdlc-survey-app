@@ -1,0 +1,26 @@
+.lla-button--secondary {
+    --_btn-background: var(--lla-clr-secondary-btn-bg);
+    --_btn-text: var(--lla-clr-secondary-btn-text);
+    --_btn-background-hover: var(--lla-clr-secondary-btn-bg-hover);
+    --_btn-text-hover: var(--lla-clr-secondary-btn-text-hover);
+    --_btn-background-focus: var(--lla-clr-secondary-btn-bg-focus);
+    --_btn-text-focus: var(--lla-clr-secondary-btn-text-focus);
+}
+
+.lla-button--highlight {
+    --_btn-background: var(--lla-clr-highlight-btn-bg);
+    --_btn-text: var(--lla-clr-highlight-btn-text);
+    --_btn-background-hover: var(--lla-clr-highlight-btn-bg-hover);
+    --_btn-text-hover: var(--lla-clr-highlight-btn-text-hover);
+    --_btn-background-focus: var(--lla-clr-highlight-btn-bg-focus);
+    --_btn-text-focus: var(--lla-clr-highlight-btn-text-focus);
+}
+
+.lla-button--inverted {
+    --_btn-background: var(--lla-clr-inverted-btn-bg);
+    --_btn-text: var(--lla-clr-inverted-btn-text);
+    --_btn-background-hover: var(--lla-clr-inverted-btn-bg-hover);
+    --_btn-text-hover: var(--lla-clr-inverted-btn-text-hover);
+    --_btn-background-focus: var(--lla-clr-inverted-btn-bg-focus);
+    --_btn-text-focus: var(--lla-clr-inverted-btn-text-focus);
+}

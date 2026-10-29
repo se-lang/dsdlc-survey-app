@@ -1,0 +1,58 @@
+:host {
+    --arrow-width: 2.625rem;
+    --arrow-height: 1.5rem;
+    --popover-padding-x: 1.5625rem;
+    --popover-padding-y: 1.375rem;
+
+    --arrow-width-bottom: 0px;
+    --arrow-height-bottom: 0px;
+    --arrow-width-top: 0px;
+    --arrow-height-top: 0px;
+
+    display: block;
+    filter: drop-shadow(0 4px 16px rgba(0, 0, 0, 0.15));
+    position: relative;
+    max-width: 45rem;
+}
+
+:host.placement--bottom {
+    --arrow-width-top: var(--arrow-width);
+    --arrow-height-top: var(--arrow-height);
+}
+:host.placement--top {
+    --arrow-width-bottom: var(--arrow-width);
+    --arrow-height-bottom: var(--arrow-height);
+}
+
+.content {
+    background-color: var(--lla-clr-modal-bg);
+    min-width: calc(var(--popover-padding-x) * 2 + var(--arrow-width));
+    padding: calc(var(--popover-padding-y) + var(--arrow-height-top)) var(--popover-padding-x)
+        calc(var(--arrow-height-bottom) + var(--popover-padding-y)) var(--popover-padding-x);
+    color: var(--lla-clr-modal-text);
+    clip-path: polygon(
+        0% calc(100% - var(--arrow-height-bottom)),
+        0% var(--arrow-height-top),
+        calc(50% - var(--arrow-width-top) / 2) var(--arrow-height-top),
+        50% 0%,
+        calc(50% + var(--arrow-width-top) / 2) var(--arrow-height-top),
+        100% var(--arrow-height-top),
+        100% calc(100% - var(--arrow-height-bottom)),
+        calc(50% + var(--arrow-width-bottom) / 2) calc(100% - var(--arrow-height-bottom)),
+        50% 100%,
+        calc(50% - var(--arrow-width-bottom) / 2) calc(100% - var(--arrow-height-bottom))
+    );
+}
+
+.close-icon {
+    --close-icon-size: 0.75rem;
+
+    lla-icon {
+        --icon-size: var(--close-icon-size);
+    }
+
+    position: absolute;
+    top: calc(var(--arrow-height-top) + (var(--popover-padding-y) - var(--close-icon-size)) / 2);
+    right: calc((var(--popover-padding-y) - var(--close-icon-size)) / 2);
+    z-index: 1;
+}

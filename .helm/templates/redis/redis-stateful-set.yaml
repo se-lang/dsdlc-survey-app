@@ -1,0 +1,32 @@
+{{ if .Values.dependencies.redis }}
+apiVersion: apps/v1
+kind: StatefulSet
+metadata:
+  name: "redis"
+  labels:
+    app: "redis"
+spec:
+  selector:
+    matchLabels:
+      app: redis
+  serviceName: "redis-service"
+  template:
+    metadata:
+      labels:
+        app: redis
+    spec:
+      tolerations: {{ toYaml .Values.tolerations | nindent 16 }}
+      nodeSelector: {{ toYaml .Values.nodeSelector | nindent 16 }}
+      containers:
+        - name: "redis"
+          image: redis:7-alpine
+          resources:
+            requests:
+              cpu: "0.01"
+              memory: "10Mi"
+            limits:
+              memory: "50Mi"
+          ports:
+            - containerPort: 6379
+              name: redis
+{{ end }}

@@ -1,0 +1,26 @@
+@if (globalLoading()) {
+    <lla-loading-bar />
+}
+
+@if (error()) {
+    <div class="lla-root-error">
+        <p>
+            {{ ("rootError.info" | transloco) || "Unfortunately the app is currently unavailable" }}
+        </p>
+        <div>
+            <button class="lla-flat-button" type="button" (click)="retry()">
+                {{ ("rootError.retryButton" | transloco) || "Retry" }}
+            </button>
+        </div>
+    </div>
+} @else {
+    <div class="app-container" [style.margin-bottom.px]="marginBottomService.bodyBottomMargin()">
+        <router-outlet />
+    </div>
+}
+
+<val-default-errors>
+    <ng-template valError="server.generic" let-errors="error">
+        <lla-server-error-list [errors]="errors" />
+    </ng-template>
+</val-default-errors>

@@ -1,0 +1,7 @@
+#groupproxy_form .selector, #user_form [data-model-ref="permission"] .selector {
+    min-height: 40rem;
+}
+
+#user_form [data-model-ref="group"] .selector {
+    min-height: 25rem;
+}

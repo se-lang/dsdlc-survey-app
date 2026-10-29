@@ -1,0 +1,378 @@
+{
+  "questionnaire": {
+    "unknownError": "The survey could not be loaded. Please try again later.",
+    "leaveQuestionTitle": "Switch to Home?",
+    "leaveQuestion": "Your data on the page has not yet been saved. If you switch to home now, your data will be lost.",
+    "leaveQuestionYes": "Yes, switch to home",
+    "leaveQuestionNo": "No, return to the page",
+    "leaveQuestionCalendar": "Missing value for 'questionnaire.leaveQuestionCalendar'",
+    "leaveToTourTitle": "Switch to the tour?",
+    "leaveToTourQuestion": "Your data on the page has not yet been saved. If you switch to your account now, your data will be lost.",
+    "leaveToTourYes": "Yes, switch to tour",
+    "leaveToTourQuestionCalendar": "Missing value for 'questionnaire.leaveToTourQuestionCalendar'"
+  },
+  "webPush": {
+    "loading": "Loading...",
+    "notActive": "Push notifications are not active.",
+    "activateButtonLoading": "Missing value for 'webPush.activateButtonLoading'",
+    "activateButton": "Activate",
+    "active": "Activating...",
+    "deactivateButtonLoading": "Deactivating...",
+    "deactivateButton": "Deactivate",
+    "notSupported": "Unfortunately, push notifications are not supported by your device.",
+    "header": "Push notifications"
+  },
+  "resetPassword": {
+    "header": "Reset Password",
+    "success": "Your password was successfully reset.",
+    "backToLogin": "Back to login",
+    "label": {
+      "password": "New Password",
+      "password2": "Repeat Password"
+    },
+    "error": {
+      "password": "Please enter a password.",
+      "password2": "Please re-enter the password.",
+      "mismatch": "The passwords do not match.",
+      "generic": "We couldn't reset your password. Please try again later."
+    },
+    "submitButtonLoading": "Resetting...",
+    "submitButton": "Reset Password"
+  },
+  "register": {
+    "backLabel": "Back to overview",
+    "title": "Create account",
+    "alreadyHaveAccount": "Missing value for 'register.alreadyHaveAccount'",
+    "successMessage": "Your account has been created successfully.",
+    "toLogin": "Log in",
+    "labelEmail": "Email address",
+    "error": {
+      "email-invalid": "Please check the email address.",
+      "email": "Please enter your email address.",
+      "password": "Please enter a password.",
+      "password2": "Please repeat the password.",
+      "passwordMismatch": "The passwords do not match",
+      "firstName": "Please enter your first name.",
+      "lastName": "Please enter your last name.",
+      "street": "Please enter your street.",
+      "zip": "Please enter your zip code.",
+      "city": "Please enter your city.",
+      "country": "Please enter your country.",
+      "birthday": "Please enter your birthday.",
+      "phone": "Please enter your phone number.",
+      "generic": "We were unable to create your account right now. Please try again later."
+    },
+    "labelPassword1": "New password",
+    "labelPassword2": "Repeat password",
+    "labelFirstName": "First name",
+    "labelLastName": "Last name",
+    "labelStreet": "Street",
+    "labelZip": "Zip code",
+    "labelCity": "City",
+    "labelCountry": "Country",
+    "labelBirthday": "Date of birth",
+    "labelPhone": "Phone",
+    "registerButton": "Create account"
+  },
+  "notFound": {
+    "header": "Page not found",
+    "text": "The page you requested does not exist.",
+    "backToHome": "Back to home page"
+  },
+  "login": {
+    "title": "Login",
+    "pickLoginMethodIntro": "Please enter your token or log in with your existing account to participate in a survey.",
+    "tokenLabel": "Your token",
+    "error": {
+      "token": "Please enter your token.",
+      "serverGeneric": "We are currently unable to log you in. Please try again later.",
+      "email": "Please enter your email address.",
+      "password": "Please enter your password."
+    },
+    "tokenHint": "Where can I find my token?",
+    "tokenHintText": "You will find your personal token in the invitation letter directly below the link to participate, marked as ‘personal code’, or you can scan the QR code.",
+    "guestButton": "Log in using token",
+    "loginButton": "Log in using account",
+    "registerButton": "Create account",
+    "labelEmail": "Email address",
+    "labelPassword": "Password",
+    "forgotPassword": "Forgot password?",
+    "resendActivationEmail": "Resend email",
+    "resendActivationEmailCountdown": "Try again in {{ remaining }}",
+    "resendActivationEmailError": "We couldn't send the email at the moment. Please try again later.",
+    "loadingLabel": "Logging in...",
+    "loginLabel": "Log in",
+    "backLabel": "Back to overview"
+  },
+  "forgotPassword": {
+    "backToLogin": "Back to login",
+    "header": "Forgot password",
+    "success": {
+      "1": "We've sent you an email with a link to reset your password. Please check your inbox (and your spam folder just in case).",
+      "2": "Follow the instructions in the email to set a new password.",
+      "3": "If you don't receive the email, wait a moment and try again or contact our support team for assistance."
+    },
+    "labelEmail": "Email address",
+    "error": {
+      "email": "Please enter your email address.",
+      "generic": "We could not reset your password right now. Please try again later."
+    },
+    "submitButton": "Reset password"
+  },
+  "emailChange": {
+    "triggerSuccess": "The email has been sent, please check your inbox.",
+    "triggerError": "We were unable to send the email right now. Please try again later.",
+    "triggerInfo": "To change your email address, we will send a link to your current email address. Use this link to change the email address for your account.",
+    "triggerButton": "Send email",
+    "confirmTitle": "Change email",
+    "changeSuccess": "Your email address has been changed.",
+    "toLogin": "To login",
+    "changeIntro": "To change the email address for your account, please enter the new email address you want to use.",
+    "labelNewEmail": "New email address",
+    "error": {
+      "email": "Please enter an email address.",
+      "serverGeneric": "Unfortunately, we were unable to change your email address right now. Please try again later."
+    },
+    "confirmButton": "Confirm change",
+    "triggerTitle": "Change email"
+  },
+  "dashboard": {
+    "lastUpdate": "Last update",
+    "stateNewBadge": "New",
+    "questionnaireFinished": "Completed",
+    "startQuestionnaire": "Start",
+    "continueQuestionnaire": "Continue",
+    "closeSideMenu": "Missing value for 'dashboard.closeSideMenu'",
+    "settingsHeading": "Settings",
+    "logoutButtonLoading": "Logging out...",
+    "logoutButton": "Logout",
+    "questionnaires": "Navigation",
+    "support": "Support",
+    "files": "study documents",
+    "contact": "Contact",
+    "privacy": "Data protection",
+    "imprint": "Legal notice",
+    "archive": "News archive",
+    "accountSettings": "Missing value for 'dashboard.accountSettings'",
+    "passwordChange": "Password",
+    "emailChange": "Email address",
+    "pushNotifications": "Notifications",
+    "changeAccount": "Missing value for 'dashboard.changeAccount'",
+    "createAccountFromGuest": "Missing value for 'dashboard.createAccountFromGuest'",
+    "header": "What would you like to do?",
+    "backButtonLabel": "Back to dashboard"
+  },
+  "newsDetail": {
+    "updated": "Updated:"
+  },
+  "archive": {
+    "titleSort": "Title",
+    "dateSort": "Date",
+    "header": "News archive",
+    "backButtonLabel": "Back to overview"
+  },
+  "changePassword": {
+    "success": {
+      "1": "Your password has been successfully changed."
+    },
+    "backToDashboard": "Back to account",
+    "password": "password",
+    "error": {
+      "password": "Please enter a password.",
+      "password2": "Please re-enter the password.",
+      "passwordMismatch": "The passwords do not match.",
+      "generic": "We couldn't change your password. Please try again later."
+    },
+    "passwordRepeat": "Repeat password",
+    "submitButton": "Change password",
+    "header": "Change password"
+  },
+  "changeAccount": {
+    "successMessage": "Missing value for 'changeAccount.successMessage'",
+    "backLink": "Missing value for 'changeAccount.backLink'",
+    "labelFirstName": "Missing value for 'changeAccount.labelFirstName'",
+    "error": {
+      "firstName": "Missing value for 'changeAccount.error.firstName'",
+      "lastName": "Missing value for 'changeAccount.error.lastName'",
+      "street": "Missing value for 'changeAccount.error.street'",
+      "zip": "Missing value for 'changeAccount.error.zip'",
+      "city": "Missing value for 'changeAccount.error.city'",
+      "country": "Missing value for 'changeAccount.error.country'",
+      "birthday": "Missing value for 'changeAccount.error.birthday'",
+      "phone": "Missing value for 'changeAccount.error.phone'",
+      "generic": "Missing value for 'changeAccount.error.generic'"
+    },
+    "labelLastName": "Missing value for 'changeAccount.labelLastName'",
+    "labelStreet": "Missing value for 'changeAccount.labelStreet'",
+    "labelZip": "Missing value for 'changeAccount.labelZip'",
+    "labelCity": "Missing value for 'changeAccount.labelCity'",
+    "labelCountry": "Missing value for 'changeAccount.labelCountry'",
+    "labelBirthday": "Missing value for 'changeAccount.labelBirthday'",
+    "labelPhone": "Missing value for 'changeAccount.labelPhone'",
+    "submitButton": "Missing value for 'changeAccount.submitButton'",
+    "header": "Missing value for 'changeAccount.header'"
+  },
+  "activateAccount": {
+    "title": "Confirm account",
+    "alreadyActivated": "Your account has already been activated.",
+    "success": "Your account has been activated.",
+    "loginNow": "Register now",
+    "resentInfo": "Email has been sent. Please check your inbox.",
+    "resending": "Being sent...",
+    "resendButton": "Resend email",
+    "resendError": "The email could not be sent. Please try again later."
+  },
+  "tour": {
+    "btnSkip": "Skip",
+    "btnBack": "Back",
+    "btnFinish": "Finish",
+    "btnStart": "Let's go!",
+    "btnNext": "Next",
+    "title": "Tour",
+    "progress": "{{ step }} of {{ total }}",
+    "intro": {
+      "title": "Welcome to the app tour!",
+      "content": "We're glad you're here. In this short tour, we'll show you how to use the app and what features it offers."
+    },
+    "calendar": {
+      "title": "Calendar: Everything at a glance",
+      "content": "To help us better understand your career path, [[strong:please add the activities]] you have carried out during the specified period to the calendar. Your activities will be automatically assigned to different areas of life. If necessary, you can pause the survey and continue later."
+    },
+    "add-entry": {
+      "title": "New entry: Simply click or drag",
+      "content": "Alternatively, you can use the buttons [[icon:add-circle]] or [[button:Create new activity]]."
+    },
+    "add-episode": {
+      "title": "Create and save activity",
+      "content": "Select the [[strong:category]] of the activity (e.g., studies) from the drop-down menu and adjust the [[strong:date]] if necessary. Then click on [[button:Save]] and enter further activities."
+    },
+    "continue-episode": {
+      "title": "Enter details for activities",
+      "content": "By clicking on [[button:Continue to details]], you can directly enter [[strong:further information for this activity]]. If you skip this step, you can complete the detailed questions later by clicking on [[button:Continue editing]]. Activities that have not yet been edited are indicated by the shading and the [[icon:attention-bubble]]."
+    },
+    "calendar2": {
+      "title": "Edit or delete entries",
+      "content": "You can add [[strong:further activities to the calendar]], including those that take place simultaneously or overlap. If possible, make at least one entry each month. Entries that have already been created can be edited [[icon:edit-circle]] or deleted [[icon:delete-circle]] at any time."
+    },
+    "table": {
+      "title": "Switch between calendar and list view",
+      "content": "You can [[strong:switch between the calendar view and the list view]]. In the list view, you can filter your activities specifically – for example, by category or time period."
+    },
+    "finish": {
+      "title": "Repeat tour",
+      "content": "You can return to these instructions at any time by clicking the [[icon:help]] button.\nEnjoy filling out!"
+    }
+  },
+  "topMenu": {
+    "menu": "Missing value for 'topMenu.menu'",
+    "info": "Tour",
+    "home": "Home",
+    "homeSaveAndExit": "Save and exit"
+  },
+  "topMenuLastUpdate": {
+    "lastUpdate": "Last update"
+  },
+  "newsInfoBar": {
+    "readMore": "Read More",
+    "markAsSeen": "Mark as read"
+  },
+  "dialog": {
+    "closeAriaLabel": "Close dialog"
+  },
+  "zofarEpisodesTable": {
+    "headerType": "Type",
+    "headerTitle": "Title",
+    "headerStart": "Start",
+    "headerEnd": "End",
+    "headerCategory": "Category",
+    "headerActions": "Actions",
+    "gapLabel": "Empty period",
+    "headerSort": "Sort",
+    "rowDateRange": "{{ startDate }} till {{ endDate }}",
+    "sidebarSort": "Sort",
+    "sidebarType": "Type",
+    "sidebarTitle": "Title",
+    "sidebarStart": "Start",
+    "sidebarEnd": "End",
+    "sidebarCategory": "Category"
+  },
+  "episodePopover": {
+    "dateRange": "{{start}} until {{end}}",
+    "editLabel": "Edit activity",
+    "deleteLabel": "Delete activity"
+  },
+  "zofarEpisodes": {
+    "calendarNewEpisodeButton": "Create new activity",
+    "gapConfirmTitle": "Add period",
+    "gapConfirmQuestion": "No information is available for this period at this time. Would you like to add anything?",
+    "gapConfirmYes": "Yes, add activity",
+    "gapConfirmNo": "No",
+    "confirmDeleteTitle": "Delete activity",
+    "confirmDeleteHeader": "Are you sure you want to delete the selected activity?",
+    "confirmDelete": "All saved data for this activity will be lost.",
+    "confirmDeleteYes": "Delete",
+    "confirmDeleteNo": "Cancel",
+    "detailQuestionSubtitle": "{{startDate}} to {{endDate}}",
+    "viewModeAll": "All"
+  },
+  "zfEpisodeViewMode": {
+    "calendar": "Calendar",
+    "list": "List",
+    "mobileButtonTitleVisible": "Title"
+  },
+  "episodeDialog": {
+    "error": {
+      "typeRequired": "Please select the type of activity.",
+      "badgeRequired": "Please select a badge.",
+      "startRequired": "Please enter the start date.",
+      "endRequired": "Please specify the end date.",
+      "startEndMismatch": "The start date cannot be before the end date."
+    },
+    "badgeLabel": "Badge",
+    "namePlaceholder": "e.g. Bachelor BA, ice-cream vendor",
+    "eventCheckbox": "Individual event (no end date)",
+    "eventNote": "Note: Individual events are also recorded by month only; the exact date is not relevant for the survey.",
+    "saveAndGoToDetails": "Continue to details",
+    "newEpisodeTitle": "Missing value for 'episodeDialog.newEpisodeTitle'"
+  },
+  "zfCalendar": {
+    "gapMarker": "gap from {{start}} until {{end}}",
+    "gapConfirmation": {
+      "header": "Missing value for 'zfCalendar.gapConfirmation.header'",
+      "text": "Missing value for 'zfCalendar.gapConfirmation.text'",
+      "no": "Missing value for 'zfCalendar.gapConfirmation.no'",
+      "yes": "Missing value for 'zfCalendar.gapConfirmation.yes'"
+    }
+  },
+  "rootError": {
+    "info": "Unfortunately the app is currently unavailable. Please try again later.",
+    "retryButton": "Reload"
+  },
+  "dashboardFiles": {
+    "header": "Study documents"
+  },
+  "contact": {
+    "text": "Missing value for 'contact.text'",
+    "header": "Missing value for 'contact.header'"
+  },
+  "dateFormatting": {
+    "timeSuffix": ""
+  },
+  "zofarEpisodeBadge": {
+    "bereavement": "Bereavement",
+    "birth": "Birth",
+    "breakup": "Breakup",
+    "graduation": "Graduation",
+    "important-personal-event": "Important personal event",
+    "move": "Move",
+    "partnership": "Partnership",
+    "price": "Price",
+    "wedding": "Wedding",
+    "world-event": "World event"
+  },
+  "confirmDialog": {
+    "title": "Are you sure?",
+    "yes": "Yes",
+    "no": "No"
+  }
+}

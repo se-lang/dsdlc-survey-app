@@ -1,0 +1,76 @@
+:host {
+    display: block;
+    max-height: 21.875rem;
+    overflow-y: auto;
+}
+
+table {
+    border-collapse: separate;
+    border-spacing: 0 0.625rem;
+
+    th:last-child {
+        float: right;
+    }
+}
+
+.archive-sort-button {
+    border: none;
+    font-size: var(--lla-archive-sort-button-font-size);
+    display: flex;
+    gap: 0.4375rem;
+    justify-content: center;
+    align-items: center;
+    background: transparent;
+    text-transform: uppercase;
+    padding: 0;
+
+    .arrow-up-down {
+        --icon-size: 0.6875rem;
+        transition: transform 250ms ease-in-out;
+    }
+
+    .sort-chevron-desc {
+        transform: rotate(180deg);
+    }
+}
+
+tbody {
+    tr {
+        background-color: var(--lla-clr-light-beige);
+        outline: 1px solid var(--lla-clr-beige);
+
+        td:first-child {
+            border-left: 1px solid var(--lla-clr-beige);
+        }
+
+        td:last-child {
+            border-right: 1px solid var(--lla-clr-beige);
+        }
+    }
+
+    td {
+        vertical-align: top;
+        background: transparent;
+    }
+
+    h3,
+    p {
+        overflow: hidden;
+        text-overflow: ellipsis;
+        padding-bottom: 0;
+        margin: 1rem 1.5rem;
+    }
+
+    h3 {
+        font-size: var(--lla-archive-title-font-size);
+        font-weight: var(--lla-text-h3-font-weight);
+        letter-spacing: var(--lla-text-h3-letter-spacing);
+        text-align: left;
+    }
+
+    .news-date {
+        text-align: right;
+        padding: 1rem 1.5rem;
+        font-variant-numeric: tabular-nums;
+    }
+}

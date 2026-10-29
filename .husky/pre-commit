@@ -1,0 +1,2 @@
+poetry run pre-commit
+npx lint-staged --cwd frontend

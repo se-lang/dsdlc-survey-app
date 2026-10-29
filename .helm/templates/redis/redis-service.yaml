@@ -1,0 +1,14 @@
+{{ if .Values.dependencies.redis }}
+apiVersion: v1
+kind: Service
+metadata:
+  name: "redis-service"
+  labels:
+    app: "redis"
+spec:
+  selector:
+    app: "redis"
+  ports:
+    - port: 6379
+      targetPort: redis
+{{ end }}

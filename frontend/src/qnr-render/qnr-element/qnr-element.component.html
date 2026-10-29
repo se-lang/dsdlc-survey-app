@@ -1,0 +1,11 @@
+@let component = this.component();
+@let inputs = this.inputs();
+@if (component && inputs) {
+    <ng-container *ngComponentOutlet="component.component; inputs: inputs" />
+} @else {
+    <lla-qnr-render-error
+        [element]="element()"
+        [render]="component?.component"
+        [elementId]="elementId()"
+    />
+}
