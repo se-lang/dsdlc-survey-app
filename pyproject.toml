@@ -22,7 +22,7 @@ django-celery-beat = "^2.7.0"
 redis = {extras = ["hiredis"], version = "^5.2.1"}
 pydantic = "^2.10.6"
 requests = "^2.32.3"
-lxml = "^5.3.1"
+lxml = "^6.1.0"
 html5lib = "^1.1"
 python-dateutil = "^2.9.0.post0"
 django-pydantic-field = "^0.3.12"
